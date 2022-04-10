@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Components/Navbar/Navbar.js";
+import TestNavbar from "./Components/Navbar/testNavbar.js"
 import Home from "./pages/homePage.js";
 import Login from "./pages/loginPage.js";
 import PostSearch from "./pages/postSearchPage.js";
@@ -12,7 +13,7 @@ import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 function App() {
   return (
     <Router>
-      <Navbar><sheet/></Navbar> 
+      <TestNavbar />
        <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/login" element={<Login />} />
