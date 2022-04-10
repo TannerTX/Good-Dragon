@@ -1,8 +1,8 @@
 const express = require('express')
 const mysql = require('mysql')
 const cors = require("cors")
-const passHash = require("password-hash")
-const port = 3001
+const bcrypt = require("bcrypt")
+const port = 3001, saltRounds = 10
 require('dotenv').config()
 
 const app = express();
@@ -19,11 +19,16 @@ const db = mysql.createConnection({
 
 db.connect()
 
+
+
+
 app.post("/register", (req, res) => {
 
+    const salt = bcrypt.genSaltSync(saltRounds)
+
     const username = req.body.username
-    const password = req.body.password
-    console.log(`\n\nUSERNAME: ${username}\nPASSWORD: ${passHash.generate(password)}\nVERIFICATION: ${passHash.verify(password, passHash.generate(password))}`)
+    const password = bcrypt.hashSync(req.body.password, salt)
+    console.log(`\nREGISTER:\n\nUSERNAME: ${username}\nPASSWORD: ${password}`)
     
 
     if (!username || !password) {
@@ -33,18 +38,51 @@ app.post("/register", (req, res) => {
         db.query(`SELECT username FROM userLoginInfo WHERE username=?`, username, (err, result) => {
             if(err) console.log(err)
             
-            else if(result[0] != null)
-            console.log("USER ALREADY EXISTS")
-
-            else console.log("USER DOES NOT EXIST")
+            else if(result.length){
+                console.log("USER ALREADY EXISTS")
+            }
+            else {db.query('INSERT INTO userLoginInfo (username, isAdmin, password) VALUES (?, ?, ?)', [username, 0, password],
+            (err, result) => {
+                if(err) console.log(err) 
+                else console.log(result)} 
+                )}
         })
-
-        
-
-
-
     }
 })
+
+app.post("/login", (req, res) => {
+
+    const salt = bcrypt.genSaltSync(saltRounds)
+
+    const username = req.body.username
+    const plainTextPass = req.body.password
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt)
+    console.log(`\nLOGIN:\n\nUSERNAME: ${username}\nPASSWORD: ${plainTextPass}\nHASHED PASSWORD: ${hashedPassword}`)
+
+    if (!username || !plainTextPass) {
+        console.log("INVALID USER OR PASS")
+    }
+    else {
+        db.query(`SELECT * FROM userLoginInfo WHERE username=?`, username, (err, result) => {
+            if(err) console.log(err)
+            
+            else if (result.length) {
+                console.log("\nUSER FOUND, CHECKING PASSWORD")
+                console.log(`PASSWORD VERIFICATION CHECK: ${bcrypt.compareSync(plainTextPass, result[0].password)}`)
+            }
+            else console.log("\nUSER NOT FOUND, PLEASE CREATE AN ACCOUNT")
+            
+
+        })
+    }
+    
+
+
+
+
+})
+
+
 
 
 app.listen(port, () => { console.log(`Listening on port ${port}`); })
