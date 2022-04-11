@@ -6,13 +6,13 @@ import Login from "./pages/loginPage.js";
 import PostSearch from "./pages/postSearchPage.js";
 import Register from "./pages/registerPage.js";
 import ErrorPage from "./pages/errorPage.js";
-import sheet from "./style.css";
+import "./style.css";
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
 
 function App() {
   return (
-    <Router>
+    <>
+      <Router>
       <TestNavbar />
        <Routes>
          <Route path="/" element={<Home />} />
@@ -22,6 +22,7 @@ function App() {
          <Route path="*" element={<ErrorPage />} />
        </Routes>
     </Router>
+    </>
   );
 }
 
