@@ -16,12 +16,10 @@
 .menu-bars {
   margin-left: 0.1em;
   font-size: 1rem;
-  background: none;
 }
 
 .nav-menu {
   background-color: #000e5a;
-  border-radius: 10px;
   width: 200px;
   height: 100vh;
   display: flex;
@@ -35,7 +33,6 @@
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
   -webkit-backdrop-filter: blur( 4px );
-  border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
@@ -74,7 +71,7 @@
 }
 
 .navbar-toggle {
-  background-color: rgba(180, 131, 232, 0);
+  background-color: rgba(123, 0, 255, 0);
   width: 100%;
 
   margin-left: 89px;
@@ -84,9 +81,6 @@
   display: flex;
   justify-content: start;
   align-items: center;
-
-
-
 }
 
 span {
