@@ -1,8 +1,6 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import dogPic from '/assets/images/dogs/Afghan-Hound-standing-in-a-garden.jpg'
-
-
+import dogPic from '.../assets/images/dogs/Belgian-Tervuren.jpg'
 
 export function ImageSlider(){
         return (
