@@ -1,5 +1,6 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import dogPic from '../assets/iamges/dogs.mp4'
 
 
 
