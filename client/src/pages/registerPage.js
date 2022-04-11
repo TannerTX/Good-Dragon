@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom" 
 import './Login.css'
 import Axios from "axios"
-
+import bgVideo from '../assets/videos/dogs.mp4'
 
 function Register() {
 
