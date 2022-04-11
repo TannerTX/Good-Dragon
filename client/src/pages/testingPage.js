@@ -1,12 +1,12 @@
 import React from "react"
 import ImageSlider from "../Components/ImageSlider/ImageSlider.js";
-
+import dogPic from "../assets/images/dog1.jpg"
 
 function Testing() {
     
     return (
 
-        <ImageSlider></ImageSlider>
+        <ImageSlider img1={dogPic} />
         
 
 
