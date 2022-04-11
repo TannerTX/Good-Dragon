@@ -1,10 +1,9 @@
 import React from "react";
 
 function ErrorPage() {
-    return(
-        <div>
-            ERROR: Page not found.
-        </div>
+
+    return (
+        <div>THIS IS THE ERROR PAGE</div>
     );
 
 }

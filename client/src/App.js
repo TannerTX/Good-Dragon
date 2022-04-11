@@ -1,21 +1,21 @@
 import React from "react";
 import Navbar from "./Components/Navbar/Navbar.js";
-import ImageSlider from "./Components/Navbar/ImageSlider.js";
-import Home from "./pages/homePage";
-import Login from "./pages/loginPage";
+import TestNavbar from "./Components/Navbar/testNavbar.js"
+import Home from "./pages/homePage.js";
+import Login from "./pages/loginPage.js";
 import PostSearch from "./pages/postSearchPage.js";
 import Register from "./pages/registerPage.js";
 import ErrorPage from "./pages/errorPage.js";
-import sheet from "./style.css";
+import "./style.css";
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
 
 function App() {
   return (
-    <Router>
-      <Navbar><sheet/></Navbar> 
-      <ImageSlider></ImageSlider>
+    <>
+      <Router>
+      <TestNavbar />
        <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/login" element={<Login />} />
@@ -24,6 +24,7 @@ function App() {
          <Route path="*" element={<ErrorPage />} />
        </Routes>
     </Router>
+    </>
   );
 }
 

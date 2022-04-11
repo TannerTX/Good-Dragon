@@ -1,12 +1,18 @@
 import React from "react";
+import "../style.css"
+import SearchBtn from "../Components/SearchBtn/SearchButton.js"
+import bgVideo from '../assets/videos/dogs.mp4'
 
 function Home() {
     return(
         <body> 
-            <div class="center-screen-display">
-                <label class="searchBoxFooter">
-                    <input type="search" id="center-screen-display-searchbox"></input>
-                </label>
+            <div>
+            <video autoPlay loop muted><source src={bgVideo} type="video/mp4" /></video>
+            <img src='https://imgur.com/X5KLtYQ.png' class="center fade-in-image" />
+            <div class="yes-body">
+            <SearchBtn />
+            </div>
+            
             </div>
         </body>
     );
