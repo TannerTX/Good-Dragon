@@ -35,5 +35,11 @@ export const SidebarData = [
     path: '/support',
     icon: <IoIcons.IoMdHelpCircle />,
     cName: 'nav-text'
+  },
+  {
+    title: 'TESTING GROUNDS',
+    path: '/testing',
+    icon: <FaIcons.FaBattleNet />,
+    cName: 'nav-text'
   }
 ];
