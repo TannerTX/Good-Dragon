@@ -1,18 +1,17 @@
 import React from "react"
 import ImageSlider from "../Components/ImageSlider/ImageSlider.js";
-import dogPic from "../assets/images/dog1.jpg"
+import "./testingPage.css"
 
+function importAll(r) {
+        return r.keys().map(r);
+      }
 
 function Testing() {
     
-    
+    const images = importAll(require.context('../assets/images/', false, /\.(png|jpe?g|svg)$/));
     
     return (
-
-        <ImageSlider img1={dogPic} />
-        
-        
-
+        <ImageSlider imgs={images} />  
     )
 
 }
