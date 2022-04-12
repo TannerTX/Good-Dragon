@@ -20,8 +20,6 @@ const db = mysql.createConnection({
 db.connect()
 
 
-
-
 app.post("/register", (req, res) => {
 
     const salt = bcrypt.genSaltSync(saltRounds)
@@ -76,9 +74,14 @@ app.post("/login", (req, res) => {
         })
     }
     
+})
 
+app.post("/getData", (req, res) => {
 
-
+    db.query("SELECT * FROM userLoginInfo", (err, result) => {
+        if(err) console.log(err)
+        else res.send(result)
+    })
 
 })
 

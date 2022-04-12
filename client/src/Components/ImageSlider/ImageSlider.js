@@ -7,11 +7,7 @@ function ImageSlider(props){
     
         return (    
             <Splide options={{rewind: true , autoplay: true, interval: 5000, pauseOnHover: true, padding: '30%',gap:'5%',speed:1500}}>
-        
-                {props.imgs.map((img) => 
-                <SplideSlide><img src={img} /></SplideSlide>
-                )}
-                
+                {props.imgs.map( (img) => <SplideSlide> <img src={img} /> </SplideSlide> )}
             </Splide>                 
         )
     }
