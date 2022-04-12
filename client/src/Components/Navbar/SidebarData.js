@@ -41,5 +41,11 @@ export const SidebarData = [
     path: '/testing',
     icon: <FaIcons.FaBattleNet />,
     cName: 'nav-text'
+  },
+  {
+    title: 'DATA',
+    path: '/data',
+    icon: <FaIcons.FaDev />,
+    cName: 'nav-text'
   }
 ];
