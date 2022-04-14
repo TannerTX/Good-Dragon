@@ -19,7 +19,7 @@ function DataTest() {
 
     const loadshit = (isSubmit) => {
         if(isSubmit)
-        return <PurchasableItems isSubmit={submit} items={items} />
+        return <PurchasableItems items={items} />
     }
     
 

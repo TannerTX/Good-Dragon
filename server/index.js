@@ -66,9 +66,16 @@ app.post("/login", (req, res) => {
             
             else if (result.length) {
                 console.log("\nUSER FOUND, CHECKING PASSWORD")
-                console.log(`PASSWORD VERIFICATION CHECK: ${bcrypt.compareSync(plainTextPass, result[0].password)}`)
+                let passCheck = bcrypt.compareSync(plainTextPass, result[0].password)
+                console.log(`PASSWORD VERIFICATION CHECK: ${passCheck}`)
+
+                if(passCheck) res.send({success: true})
+                else res.send({failure: true})
             }
-            else console.log("\nUSER NOT FOUND, PLEASE CREATE AN ACCOUNT")
+            else {
+                console.log("\nUSER NOT FOUND, PLEASE CREATE AN ACCOUNT")
+                res.send("Invalid Username/Password")
+            }
             
 
         })
@@ -78,7 +85,7 @@ app.post("/login", (req, res) => {
 
 app.post("/getData", (req, res) => {
 
-    db.query("SELECT * FROM userLoginInfo", (err, result) => {
+    db.query("SELECT * FROM itemsForSale", (err, result) => {
         if(err) console.log(err)
         else res.send(result)
     })

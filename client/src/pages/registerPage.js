@@ -9,7 +9,6 @@ function Register() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [formErrors, setFormErrors] = useState({})
-    const [user, setUser] = useState("")
 
     
     const register = async e => {
@@ -31,21 +30,33 @@ function Register() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-        const response = await Axios.post("http://localhost:3001/login", user).then(response =>{console.log(response)})
+        const response = await Axios.post("http://localhost:3001/login", user).then(response =>{console.log(response); setFormErrors(validate(response))})
         }
 
         }
 
     const validate = (obj) => {
-        const errors = {}
+        const notifs = {}
+        
+        if (obj.data) {
+            
+            if(obj.data.success)
+            notifs.overall = "Success!"
+
+            else if(obj.data.failure)
+            notifs.overall = "Invalid Username/Password"
+        }
+
+        else if(!obj.data) {
         
         if(!obj.username)
-        errors.username = "Username must not be empty!"
+        notifs.username = "Username must not be empty!"
 
         if(!obj.password)
-        errors.password = "Password must not be empty!"
+        notifs.password = "Password must not be empty!"
 
-        return errors
+        }
+        return notifs
     }
 
     return (
@@ -60,12 +71,17 @@ function Register() {
 
             <div className='login__container'>
                 <h1>Login</h1>
-
+                <h2><p style={{color: formErrors.overall === "Success!" ? "green" : "red", paddingBottom: "10px", textAlign: "center", fontSize: "15px"}}>{formErrors.overall}</p></h2>
                 <form>
+
                     <h5>Username</h5>
-                    <input type='text' value={username} onChange={e => setUsername(e.target.value)} placeholder={formErrors.username} />
+                    <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
+                    <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.username}</p>
+
                     <h5>Password</h5>
-                    <input type='password' value={password} onChange={e => setPassword(e.target.value)} placeholder={formErrors.password} />  
+                    <input type='password' value={password} onChange={e => setPassword(e.target.value)} />  
+                    <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.password}</p>
+
                 </form>
 
 
