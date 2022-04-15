@@ -4,14 +4,9 @@ import "./productCard.css"
 
 function PurchasableItems(props) {
 
-    const logShit = e => {console.log("YOU PRESSED THE HEART")}
     let width, height = "200px"
     return(
-
-        
-
-        <div>
-
+        <div style={{paddingTop: "10px"}}>
             {props.items.map( (item, value) => 
              
              <div class="product-card">
@@ -37,11 +32,7 @@ function PurchasableItems(props) {
             )}
 
         </div>
-
-
-
-        
-        
+   
     )
 }
 export default PurchasableItems

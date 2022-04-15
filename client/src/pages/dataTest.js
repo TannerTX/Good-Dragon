@@ -13,7 +13,8 @@ function DataTest() {
 
     const getData = async e => {
         e.preventDefault()
-        const response = await Axios.post("http://localhost:3001/getData").then(res => {setItems(res.data); console.log(items)})
+        const response = await Axios.post("http://localhost:3001/getData").then(res => {setItems(res.data); console.log(items);})
+        console.log(response)
         setSubmit(true)
     }
 
