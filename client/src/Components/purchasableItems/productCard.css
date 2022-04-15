@@ -162,3 +162,20 @@ button {
    button:hover::before {
     width: 9em;
    }
+
+   .cards {
+ 
+    display: grid;
+    grid-template-columns: repeat(3, 450px);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+     
+    }
+          
+    .card {
+     
+    border-radius: 4px;
+    padding: .5rem;
+    padding-left: 250px;
+     
+    }
