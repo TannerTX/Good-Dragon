@@ -10,6 +10,7 @@ function importAll(r) {
 function Testing() {
     
     const images = importAll(require.context('../assets/images/', false, /\.(png|jpe?g|svg)$/));
+    console.log(images)
     
     return (
         <ImageSlider imgs={images} />  
