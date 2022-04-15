@@ -24,7 +24,8 @@ img {
 }
 
 .product-card {
-    width: 380px;
+    width: 300px;
+    height: 300px;
     position: relative;
     box-shadow: 0 2px 7px #dfdfdf;
     margin: 50px auto;
@@ -133,7 +134,7 @@ img {
 }
 
 button {
-    width: 9em;
+    width: 6em;
     height: 3em;
     border-radius: 30em;
     font-size: 15px;
@@ -166,7 +167,7 @@ button {
    .cards {
  
     display: grid;
-    grid-template-columns: repeat(3, 450px);
+    grid-template-columns: repeat(3, 400px);
     grid-auto-rows: auto;
     grid-gap: 1rem;
      
@@ -176,6 +177,7 @@ button {
      
     border-radius: 4px;
     padding: .5rem;
-    padding-left: 250px;
+    padding-bottom: 125px;
+    padding-left: 225px;
      
     }
