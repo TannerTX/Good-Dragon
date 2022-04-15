@@ -7,7 +7,7 @@ import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js
 
 
 
-export default class DataTest2 extends React.Component {
+export default class DataTest extends React.Component {
 
     constructor(props){
         super(props);
