@@ -15,10 +15,10 @@ function PurchasableItems(props) {
 
             <div class="card">
              <div class="product-card">
-             <div class="badge">Hot ITEM NUM: {value + 1}</div>
+             <div class="badge">Hot</div>
 
              <div class="product-tumb">
-             {item.itemImg ? <img src={item.itemImg} width={width} height={height} /> : <p>NO IMAGE</p>}
+             {item.itemImg ? <img src={item.itemImg} width={width} height={height} className="prodimg" /> : <p>NO IMAGE</p>}
              </div>
 
              <div class="product-details">
@@ -31,7 +31,7 @@ function PurchasableItems(props) {
 
                 <div class="product-price">${item.itemPrice}</div>
                 <div class="product-links">
-                    <button><FaIcons.FaShoppingCart /></button>
+                    <button class="specialbutton"><FaIcons.FaShoppingCart /></button>
                 </div>
 
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom" 
 import './Login.css'
 import Axios from "axios"
@@ -6,11 +6,13 @@ import bgVideo from '../assets/videos/dogs.mp4'
 
 function Register() {
 
+    Axios.defaults.withCredentials = true
+
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [formErrors, setFormErrors] = useState({})
+    const [loginStatus, setLoginStatus] = useState("")
 
-    
     const register = async e => {
         e.preventDefault()
         
@@ -30,7 +32,11 @@ function Register() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-        const response = await Axios.post("http://localhost:3001/login", user).then(response =>{console.log(response); setFormErrors(validate(response))})
+        const response = await Axios.post("http://localhost:3001/login", user).then(response =>{
+            console.log(response);
+            setFormErrors(validate(response))
+            window.location.reload(false)
+         })
         }
 
         }
@@ -59,8 +65,23 @@ function Register() {
         return notifs
     }
 
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/register").then(response => {
+            console.log(response.data)
+
+            if(response.data.loggedIn === true){
+                setLoginStatus(response.data.user[0])
+            }
+            
+        })
+    }, [])
+
     return (
-        
+        <>
+
+        {loginStatus ? <div class="card">You are logged in as: {loginStatus.username}</div> :
+
         <div className='login'>
             <Link to='/'>
                 <img
@@ -102,6 +123,9 @@ function Register() {
                 
             </div>
         </div>
+        }
+    
+        </>    
     );
 
 }

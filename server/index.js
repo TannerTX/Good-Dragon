@@ -5,9 +5,29 @@ const bcrypt = require("bcrypt")
 const port = 3001, saltRounds = 10
 require('dotenv').config()
 
+const bodyParser = require('body-parser')
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
+
 const app = express();
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+}))
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(session({
+    key: "userID",
+    secret: "userSecret",
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        expires: 1000 * 60 * 60 * 2,
+    },
+})
+)
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -48,6 +68,15 @@ app.post("/register", (req, res) => {
     }
 })
 
+app.get("/register", (req, res) => {
+
+    if(req.session.user) 
+        res.send({loggedIn: true, user: req.session.user})
+    else
+    res.send({loggedIn: false})
+    
+})
+
 app.post("/login", (req, res) => {
 
     const salt = bcrypt.genSaltSync(saltRounds)
@@ -69,7 +98,11 @@ app.post("/login", (req, res) => {
                 let passCheck = bcrypt.compareSync(plainTextPass, result[0].password)
                 console.log(`PASSWORD VERIFICATION CHECK: ${passCheck}`)
 
-                if(passCheck) res.send({success: true})
+                if(passCheck) {
+                    req.session.user = result
+                    console.log(`SESSION INFORMATION: ${req.session.user}`)
+                    res.send({success: true})
+                }
                 else res.send({failure: true})
             }
             else {

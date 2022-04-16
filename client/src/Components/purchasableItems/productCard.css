@@ -17,7 +17,7 @@ a
     text-decoration: none;
 }
 
-img {
+.prodimg {
     clip-path: circle(50% at 50% 50%);
     width: 300px;
     height: 300px;
@@ -133,7 +133,7 @@ img {
     color: #fbb72c;
 }
 
-button {
+.specialbutton {
     width: 6em;
     height: 3em;
     border-radius: 30em;

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Axios from "axios"
 import "./Login.css"
 import "../Components/purchasableItems/PurchasableItems.js"
@@ -8,9 +8,10 @@ import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js
 
 
 export default class DataTest extends React.Component {
-
+    
     constructor(props){
         super(props);
+        Axios.defaults.withCredentials = true
         this.state = {
             items: [{}]
         }
@@ -21,6 +22,7 @@ export default class DataTest extends React.Component {
     }
     
  render(){
+     
     return(
         <div class="cards">
         <PurchasableItems items={this.state.items} />
