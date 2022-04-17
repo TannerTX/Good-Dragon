@@ -111,7 +111,10 @@ function Login() {
             </div>
         </div>
 
-        <div class="profileInfo">ILL FIGURE OUT WHAT TO PUT HERE</div>
+        <div class="profileInfo">
+            ILL FIGURE OUT WHAT TO PUT HERE
+            <p style={{paddingTop: "50px"}}>&lt;----- THATS A DEFAULT PROFILE PIC BTW</p>
+        </div>
         </div>
          :
 

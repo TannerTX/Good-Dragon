@@ -156,7 +156,6 @@
   .profileInfo {
     position: absolute;
     margin: auto;
-    text-align: center;
     transform: translate(-5%, -50%);
     top: 50%;
     left: 45%;
