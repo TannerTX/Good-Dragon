@@ -44,31 +44,34 @@ app.post("/register", (req, res) => {
 
     const salt = bcrypt.genSaltSync(saltRounds)
 
-    const username = req.body.username
+    const email = req.body.email.trim()
+    const username = req.body.username.toLowerCase().trim()
     const password = bcrypt.hashSync(req.body.password, salt)
+    const firstName = req.body.firstName.trim()
+    const lastName = req.body.lastName.trim()
+    const address = req.body.address.trim()
+    const phoneNum = req.body.phone.trim()
+
     console.log(`\nREGISTER:\n\nUSERNAME: ${username}\nPASSWORD: ${password}`)
     
-
-    if (!username || !password) {
-        console.log("INVALID USER OR PASS")
-    }
-    else {
-        db.query(`SELECT username FROM userLoginInfo WHERE username=?`, username, (err, result) => {
-            if(err) console.log(err)
-            
-            else if(result.length){
-                console.log("USER ALREADY EXISTS")
-            }
-            else {db.query('INSERT INTO userLoginInfo (username, isAdmin, password) VALUES (?, ?, ?)', [username, 0, password],
-            (err, result) => {
-                if(err) console.log(err) 
-                else console.log(result)} 
-                )}
-        })
-    }
+    db.query(`SELECT username FROM userLoginInfo WHERE username=?`, username, (err, result) => {
+        if(err) console.log(err)
+        
+        else if(result.length){
+            res.send({success: false, message: "Username already exists!"})
+            console.log("USER ALREADY EXISTS")
+        }
+        else {
+        db.query('INSERT INTO userLoginInfo (username, isAdmin, password, firstName, lastName, address, email, phoneNum) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [username, 0, password, firstName, lastName, address, email, phoneNum],
+        (err, result) => {
+            if(err) console.log(err) 
+            else{console.log(result); res.send({success: true, message: "Success!"})}} 
+            )}
+    })
+    
 })
 
-app.get("/register", (req, res) => {
+app.get("/login", (req, res) => {
 
     if(req.session.user) 
         res.send({loggedIn: true, user: req.session.user})

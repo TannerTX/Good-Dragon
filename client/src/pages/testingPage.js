@@ -1,6 +1,6 @@
 import React from "react"
 import ImageSlider from "../Components/ImageSlider/ImageSlider.js";
-import "./testingPage.css"
+import "../assets/styles/testingPage.css"
 
 function importAll(r) {
         return r.keys().map(r);

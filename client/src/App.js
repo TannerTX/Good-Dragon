@@ -1,13 +1,13 @@
 import React from "react";
-import Navbar from "./Components/Navbar/Navbar.js";
-import TestNavbar from "./Components/Navbar/testNavbar.js"
+import TestNavbar from "./Components/Navbar/Navbar.js"
 import Testing from "./pages/testingPage.js"
 import DataTest from "./pages/dataTest.js"
 import Home from "./pages/homePage.js";
 import PostSearch from "./pages/postSearchPage.js";
-import Register from "./pages/registerPage.js";
+import Login from "./pages/loginPage.js";
+import Register from "./pages/registerPage.js"
 import ErrorPage from "./pages/errorPage.js";
-import "./style.css";
+import "./assets/styles/style.css";
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 
@@ -19,6 +19,7 @@ function App() {
        <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/search" element={<PostSearch />} />
+         <Route path="/login" element={<Login />} />
          <Route path="/register" element={<Register />} />
          <Route path="/testing" element={<Testing />} />
          <Route path="/data" element={<DataTest />} />

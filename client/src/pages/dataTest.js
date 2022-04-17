@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Axios from "axios"
-import "./Login.css"
+import "../assets/styles/Login.css"
 import "../Components/purchasableItems/PurchasableItems.js"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
 

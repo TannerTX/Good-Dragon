@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    /*border: 1px solid lightgray;*/
     padding: 20px;
 
     background: rgba( 255, 255, 255, 0.25 );
@@ -41,10 +40,19 @@
     margin-bottom: 5px;
 }
 
+.login__container > form > h3 {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: rgba(167, 167, 167, 0.87);
+}
+
 .login__container > form > input {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
+    text-align: center;
+    border-radius: 10px;
     width: 98%;
   }
 
@@ -139,6 +147,7 @@
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
+    border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 
@@ -156,6 +165,7 @@
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
+    border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
   }
@@ -180,4 +190,37 @@
   .profileCardContent h5 {
     color:rgb(0, 0, 0);
     padding-top: 10px;
+  }
+
+
+  .fade-in-image {
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
   }
