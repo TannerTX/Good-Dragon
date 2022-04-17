@@ -18,18 +18,10 @@ export const SidebarData = [
     icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
   },
-  /*
-  {
-    title: 'Team',
-    path: '/team',
-    icon: <IoIcons.IoMdPeople />,
-    cName: 'nav-text'
-  },
-  */
   {
     class: 'current',
     title: 'Account',
-    path: '/register',
+    path: '/login',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
   },
