@@ -10,6 +10,10 @@ function Register() {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [address, setAddress] = useState("")
+    const [phone, setPhone] = useState("")
     const [formErrors, setFormErrors] = useState({})
     const [loginStatus, setLoginStatus] = useState("")
 
@@ -35,6 +39,8 @@ function Register() {
         const response = await Axios.post("http://localhost:3001/login", user).then(response =>{
             console.log(response);
             setFormErrors(validate(response))
+
+            if(response.data.success)
             window.location.reload(false)
          })
         }
@@ -77,10 +83,29 @@ function Register() {
         })
     }, [])
 
+
+
     return (
         <>
 
-        {loginStatus ? <div class="card">You are logged in as: {loginStatus.username}</div> :
+        {loginStatus ? 
+        <div class="centered">
+
+        <div class="profileCard">
+            <div class="profileCardContent">
+                <img src="https://cdn.vox-cdn.com/thumbor/u1xA8jhp6gZKCzkGwx_igXGSJ5A=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22388656/Marvel_Tales_Doctor_Strange_Vol_1_1_Virgin_Variant.jpeg"/>
+                
+                <h4>{loginStatus.isAdmin ? "Admin" : "User"}</h4>
+                <h4 style={{paddingTop: "30px"}}>Username</h4>
+                <h5>Admin</h5>
+
+
+            </div>
+        </div>
+
+        <div class="profileInfo">HIII</div>
+        </div>
+         :
 
         <div className='login'>
             <Link to='/'>

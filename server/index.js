@@ -107,7 +107,7 @@ app.post("/login", (req, res) => {
             }
             else {
                 console.log("\nUSER NOT FOUND, PLEASE CREATE AN ACCOUNT")
-                res.send("Invalid Username/Password")
+                res.send({failure: true})
             }
             
 
