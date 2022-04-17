@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
@@ -6,11 +6,26 @@ import { Link, renderMatches } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
+import Axios from "axios"
 
-function TestNavbar() {
+function TestNavbar(props) {
   const [sidebar, setSidebar] = useState(false);
-
+  const [loginStatus, setLoginStatus] = useState("")
+  const [idx, setIdx] = useState("")
   const showSidebar = () => setSidebar(!sidebar);
+
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/login").then(response => {
+        console.log(response.data)
+
+        if(response.data.loggedIn === true){
+            setLoginStatus(response.data.user[0])
+        }
+        
+    })
+}, [])
+
 
   return (
     <>
@@ -40,6 +55,13 @@ function TestNavbar() {
                 </li>
               );
             })}
+            {props.isAdmin === 1 &&
+            <li key="6" className="nav-text">
+              <Link to="/admin">
+                <AiIcons.AiFillCrown />
+                <span>Admin Panel</span>
+              </Link>
+            </li> }
           </ul>
         </nav>
         </IconContext.Provider>

@@ -184,7 +184,11 @@
 
   .profileCardContent h4 {
     color:rgba(148, 148, 148, 0.788);
-    padding-top: 10px;
+    padding-top: 20px;
+  }
+
+  .profileCardContent button {
+    top: 70%;
   }
 
   .profileCardContent h5 {

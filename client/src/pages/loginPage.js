@@ -13,6 +13,8 @@ function Login() {
     const [formErrors, setFormErrors] = useState({})
     const [loginStatus, setLoginStatus] = useState("")
 
+    let phone = loginStatus.phoneNum
+
     const register = async e => {
         e.preventDefault()
         history("/register")
@@ -60,6 +62,12 @@ function Login() {
         return notifs
     }
 
+    const logout = async e => {
+        Axios.post("http://localhost:3001/logout").then(response => {
+            console.log(response)
+            })
+        window.location.reload(false)
+    }
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then(response => {
@@ -84,10 +92,21 @@ function Login() {
             <div class="profileCardContent">
                 <img src="https://cdn.vox-cdn.com/thumbor/u1xA8jhp6gZKCzkGwx_igXGSJ5A=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22388656/Marvel_Tales_Doctor_Strange_Vol_1_1_Virgin_Variant.jpeg"/>
                 
-                <h4>{loginStatus.isAdmin ? "Admin" : "User"}</h4>
-                <h4 style={{paddingTop: "30px"}}>Username</h4>
-                <h5>Admin</h5>
+                <h5>{loginStatus.isAdmin ? "Admin" : "User"}</h5>
 
+                <h4>Username</h4>
+                <h5>{loginStatus.username}</h5>
+
+                <h4>Name</h4>
+                <h5>{loginStatus.firstName && loginStatus.lastName ? `${loginStatus.firstName} ${loginStatus.lastName}` : "NULL"}</h5>
+
+                <h4>Contact Information</h4>
+                <h5>{loginStatus.phoneNum ? `${phone.substring(0,3)}-${phone.substring(3,6)}-${phone.substring(6,10)}` : "NULL"}</h5>
+                
+                <h4>Address</h4>
+                <h5>{loginStatus.address || "NULL"}</h5> 
+                
+                <button onClick={logout}>Logout</button>
 
             </div>
         </div>

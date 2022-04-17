@@ -45,7 +45,7 @@ app.post("/register", (req, res) => {
     const salt = bcrypt.genSaltSync(saltRounds)
 
     const email = req.body.email.trim()
-    const username = req.body.username.toLowerCase().trim()
+    const username = req.body.username.trim()
     const password = bcrypt.hashSync(req.body.password, salt)
     const firstName = req.body.firstName.trim()
     const lastName = req.body.lastName.trim()
@@ -69,6 +69,11 @@ app.post("/register", (req, res) => {
             )}
     })
     
+})
+
+app.post("/logout", (req, res) => {
+    req.session.destroy()
+    console.log("COOKIE GONE")
 })
 
 app.get("/login", (req, res) => {
