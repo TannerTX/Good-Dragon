@@ -111,7 +111,7 @@ function Login() {
             </div>
         </div>
 
-        <div class="profileInfo">HIII</div>
+        <div class="profileInfo">ILL FIGURE OUT WHAT TO PUT HERE</div>
         </div>
          :
 
