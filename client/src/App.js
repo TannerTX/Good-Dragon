@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       <Router>
-      <TestNavbar isAdmin={loginStatus.isAdmin}/>
+      <TestNavbar isLoggedIn={loginStatus} isAdmin={loginStatus.isAdmin}/>
        <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/search" element={<PostSearch />} />

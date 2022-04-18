@@ -10,21 +10,10 @@ import Axios from "axios"
 
 function TestNavbar(props) {
   const [sidebar, setSidebar] = useState(false);
-  const [loginStatus, setLoginStatus] = useState("")
-  const [idx, setIdx] = useState("")
   const showSidebar = () => setSidebar(!sidebar);
 
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login").then(response => {
-        console.log(response.data)
 
-        if(response.data.loggedIn === true){
-            setLoginStatus(response.data.user[0])
-        }
-        
-    })
-}, [])
 
 
   return (
@@ -45,6 +34,7 @@ function TestNavbar(props) {
                 <AiIcons.AiOutlineCloseCircle />
               </Link>
             </li>
+
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
@@ -55,6 +45,7 @@ function TestNavbar(props) {
                 </li>
               );
             })}
+
             {props.isAdmin === 1 &&
             <li key="6" className="nav-text">
               <Link to="/admin">
@@ -62,6 +53,15 @@ function TestNavbar(props) {
                 <span>Admin Panel</span>
               </Link>
             </li> }
+
+          {props.isLoggedIn &&
+          <li key="7" className="nav-text">
+          <Link to="/login">
+            <AiIcons.AiOutlinePoweroff />
+            <span>Logout</span>
+          </Link>
+        </li> }
+        
           </ul>
         </nav>
         </IconContext.Provider>

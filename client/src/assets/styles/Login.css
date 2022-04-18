@@ -149,13 +149,13 @@
     backdrop-filter: blur( 4px );
     border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-
+    border: 1px solid rgba(0, 217, 255, 0.274);
   }
 
   .profileInfo {
     position: absolute;
     margin: auto;
+    text-align: center;
     transform: translate(-5%, -50%);
     top: 50%;
     left: 45%;
@@ -167,7 +167,22 @@
     backdrop-filter: blur( 4px );
     border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(0, 217, 255, 0.274);
+  }
+
+  .profileInfo input {
+    position: relative;
+    height: 30px;
+    margin-top: 5px;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    width: 50%;
+  }
+
+  .profileInfo h4 {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .profileCardContent {

@@ -76,6 +76,47 @@ app.post("/logout", (req, res) => {
     console.log("COOKIE GONE")
 })
 
+app.post("/changePassword", (req, res) => {
+
+    const salt = bcrypt.genSaltSync(saltRounds)
+
+    const username = req.body.username.toLowerCase()
+    const oldPassPlain = req.body.oldPass.trim()
+    const newPassPlain =  req.body.newPass.trim()
+    console.log(`USER ${username}\nOLDPASS: ${oldPassPlain}\nNEWPASS: ${newPassPlain}`)
+    db.query("SELECT * FROM userLoginInfo WHERE username=?", username, (err, result) => {
+        if(err) console.log(err)
+
+        else if(result.length) {
+
+            let passCheck = bcrypt.compareSync(oldPassPlain, result[0].password)
+            console.log(`PASS CHECK: ${passCheck}`)
+            if(passCheck) {
+
+            db.query("UPDATE userLoginInfo SET password=? WHERE username=?", [bcrypt.hashSync(newPassPlain, salt), username], (err, result) => {
+                if(err) console.log(err)
+                else if(result) {
+                    console.log("TRUE RES")
+                    console.log(result)
+                    res.send({message: "Success!"})
+                    console.log("SUCCESSFUL PASS CHANGE")
+                }
+                
+                else {
+                    console.log("WRONG SHIT BUDDY")
+                    res.send({message: "Failure!"}) }
+            })
+        }
+
+            
+
+    }
+    else {console.log("WE HIT AN ERROR BUD"); console.log(result)}
+
+    })
+
+})
+
 app.get("/login", (req, res) => {
 
     if(req.session.user) 
