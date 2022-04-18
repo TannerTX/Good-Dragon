@@ -100,13 +100,16 @@ app.post("/changePassword", (req, res) => {
                     console.log(result)
                     res.send({message: "Success!"})
                     console.log("SUCCESSFUL PASS CHANGE")
+                    req.session.destroy()
                 }
                 
                 else {
                     console.log("WRONG SHIT BUDDY")
-                    res.send({message: "Failure!"}) }
+                    res.send({message: "Invalid Password!"}) 
+                    }
             })
         }
+        else res.send({message: "Invalid Password!"})
 
             
 

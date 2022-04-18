@@ -54,6 +54,9 @@ function Login() {
             console.log(response);
             setFormErrors(validateNewPassword(response))
 
+            console.log("FORM ERRORS")
+            console.log(formErrors)
+
             if(response.data.message === "Success!")
             window.location.reload(false)
          })
@@ -86,11 +89,10 @@ function Login() {
 
     const validateNewPassword = (obj) => {
         const errors = {}
-        const messages = {}
 
         if(obj.data) {
 
-            messages.message = obj.data.message
+            errors.message = obj.data.message
 
         }
         else{
@@ -103,7 +105,7 @@ function Login() {
 
         }
 
-        return errors ? errors : messages
+        return errors
     }
 
     const logout = async e => {
@@ -164,7 +166,7 @@ function Login() {
             <p style={{color: "red", paddingBottom: "10px"}}></p> 
 
             <input type='password' placeholder="New Password" value={newPass} onChange={e => setNewPass(e.target.value)} />
-            <p style={{color: "red", paddingBottom: "10px", paddingTop: "5px"}}>{formErrors.passError}</p> 
+            <p style={{color: formErrors.message === "Success!" ? "green" : "red", paddingBottom: "10px", paddingTop: "5px"}}>{formErrors.passError || formErrors.message}</p> 
 
             </form>
 
