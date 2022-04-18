@@ -12,7 +12,7 @@ export const SidebarData = [
   },
   {
     title: 'Shop',
-    path: '/products',
+    path: '/shop',
     icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
   },
@@ -26,12 +26,6 @@ export const SidebarData = [
     title: 'TESTING GROUNDS',
     path: '/testing',
     icon: <FaIcons.FaBattleNet />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'DATA',
-    path: '/data',
-    icon: <FaIcons.FaDev />,
     cName: 'nav-text'
   }
 ];

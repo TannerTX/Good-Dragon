@@ -76,6 +76,25 @@ app.post("/logout", (req, res) => {
     console.log("COOKIE GONE")
 })
 
+app.post("/updateCart", (req, res) => {
+
+    // WE NEED 2 QUERIES; CART AND INVENTORY
+    const item = req.body.item
+    const user = req.body.user
+
+    db.query("UPDATE itemsForSale SET availableQuantity=? WHERE itemName=?", [item.availableQuantity - 1, item.itemName], (err, result) => {
+        if(err) console.log(err)
+
+        if(result) console.log("Updated Table.")
+    })
+
+    db.query("INSERT INTO customerCart (username, itemID) VALUES (?, ?)", [user.username.toLowerCase(), item.itemID], (err, result) => {
+        if(err) console.log(err)
+
+        if(result) console.log("Updated User Cart.")
+    })
+})
+
 app.post("/changePassword", (req, res) => {
 
     const salt = bcrypt.genSaltSync(saltRounds)
@@ -83,8 +102,9 @@ app.post("/changePassword", (req, res) => {
     const username = req.body.username.toLowerCase()
     const oldPassPlain = req.body.oldPass.trim()
     const newPassPlain =  req.body.newPass.trim()
-    console.log(`USER ${username}\nOLDPASS: ${oldPassPlain}\nNEWPASS: ${newPassPlain}`)
+
     db.query("SELECT * FROM userLoginInfo WHERE username=?", username, (err, result) => {
+        
         if(err) console.log(err)
 
         else if(result.length) {
@@ -94,12 +114,11 @@ app.post("/changePassword", (req, res) => {
             if(passCheck) {
 
             db.query("UPDATE userLoginInfo SET password=? WHERE username=?", [bcrypt.hashSync(newPassPlain, salt), username], (err, result) => {
+
                 if(err) console.log(err)
+
                 else if(result) {
-                    console.log("TRUE RES")
-                    console.log(result)
                     res.send({message: "Success!"})
-                    console.log("SUCCESSFUL PASS CHANGE")
                     req.session.destroy()
                 }
                 
@@ -152,7 +171,6 @@ app.post("/login", (req, res) => {
 
                 if(passCheck) {
                     req.session.user = result
-                    console.log(`SESSION INFORMATION: ${req.session.user}`)
                     res.send({success: true})
                 }
                 else res.send({failure: true})

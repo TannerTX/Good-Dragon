@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TestNavbar from "./Components/Navbar/Navbar.js"
 import Testing from "./pages/testingPage.js"
-import DataTest from "./pages/dataTest.js"
+import Shop from "./pages/shop.js"
 import Home from "./pages/homePage.js";
 import PostSearch from "./pages/postSearchPage.js";
 import Login from "./pages/loginPage.js";
@@ -40,7 +40,7 @@ function App() {
          <Route path="/register" element={<Register />} />
          <Route path="/testing" element={<Testing />} />
          <Route path="/admin" element={<Testing />} />
-         <Route path="/data" element={<DataTest />} />
+         <Route path="/shop" element={<Shop />} />
          <Route path="*" element={<ErrorPage />} />
        </Routes>
     </Router>
