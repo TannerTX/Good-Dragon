@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Axios from "axios"
-import { AiFillCodeSandboxSquare } from "react-icons/ai";
-
+import CartItem from "../Components/cartItem/cartItem.js"
 
 export default class Cart extends React.Component {
     
@@ -28,17 +27,13 @@ export default class Cart extends React.Component {
 
              })
             
-            
-        
         })  
         
     }
 
-    viewData() {
-        console.log(this.state.newCart)
+    getCart() {
+        return this.state.cart
     }
-
-
 
     
  render(){
@@ -46,7 +41,10 @@ export default class Cart extends React.Component {
     return(
         <div>
             ITEMS
-            {this.viewData()}
+            {this.state.cart.map(item => 
+                
+                <div><CartItem item={item} /></div>
+                )}
         </div>
         )
     }
