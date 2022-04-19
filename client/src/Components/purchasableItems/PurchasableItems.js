@@ -19,7 +19,7 @@ function PurchasableItems(props) {
         
         console.log(props.cart)
         let data = {item: props.item, user: props.currUser}
-        await Axios.post("http://localhost:3001/updateCart", data).then(response => console.log(response))
+        await Axios.post("http://localhost:3001/addToCart", data).then(response => console.log(response))
         window.location.reload(false)
     }
 

@@ -46,8 +46,16 @@ function TestNavbar(props) {
               );
             })}
 
-            {props.isAdmin === 1 &&
-            <li key="6" className="nav-text">
+            {props.isLoggedIn &&
+          <li key="6" className="nav-text">
+          <Link to="/cart">
+            <FaIcons.FaShoppingBag />
+            <span>Cart</span>
+          </Link>
+        </li> }
+
+        {props.isAdmin === 1 &&
+            <li key="7" className="nav-text">
               <Link to="/admin">
                 <AiIcons.AiFillCrown />
                 <span>Admin Panel</span>
@@ -55,13 +63,13 @@ function TestNavbar(props) {
             </li> }
 
           {props.isLoggedIn &&
-          <li key="7" className="nav-text">
+          <li key="8" className="nav-text">
           <Link to="/login">
             <AiIcons.AiOutlinePoweroff />
             <span>Logout</span>
           </Link>
         </li> }
-        
+
           </ul>
         </nav>
         </IconContext.Provider>

@@ -76,7 +76,21 @@ app.post("/logout", (req, res) => {
     console.log("COOKIE GONE")
 })
 
-app.post("/updateCart", (req, res) => {
+app.post("/getUserCart", (req, res) => {
+
+    const user = req.body.user
+    
+    db.query("SELECT * FROM itemsForSale JOIN customerCart ON itemsForSale.itemID=customerCart.itemID WHERE customerCart.username=?", user.username.trim().toLowerCase(), (err, result) => {
+
+        if(err) console.log(err)
+
+        if(result) res.send(result)
+    })
+
+    
+})
+
+app.post("/addToCart", (req, res) => {
 
     // WE NEED 2 QUERIES; CART AND INVENTORY
     const item = req.body.item
@@ -88,11 +102,34 @@ app.post("/updateCart", (req, res) => {
         if(result) console.log("Updated Table.")
     })
 
-    db.query("INSERT INTO customerCart (username, itemID) VALUES (?, ?)", [user.username.toLowerCase(), item.itemID], (err, result) => {
+    db.query("SELECT * FROM customerCart WHERE username=? AND itemID=?", [user.username, item.itemID], (err, result) => {
         if(err) console.log(err)
 
-        if(result) console.log("Updated User Cart.")
+        if(result.length) { // IF THIS ITEM ALREADY EXISTS IN THE CART
+            
+            db.query("UPDATE customerCart SET quantity=? WHERE username=? AND itemID=?", [result[0].quantity + 1, user.username, item.itemID], (err, r) => {
+                if(err) console.log(err)
+
+                if(r.length) console.log(`Updated ${item.itemName}'s quantity in ${user.username}'s Cart`)
+            })
+
+        }
+        else if(!result.length) { // IF ITEM ISN'T IN THE CART
+
+
+            db.query("INSERT INTO customerCart (username, itemID, quantity) VALUES (?, ?, ?)", [user.username, item.itemID, 1], (err, r) => {
+                if(err) console.log(err)
+
+                if(r.length) console.log(`Added ${item.itemName} to ${user.username}'s Cart`)
+            })
+
+        }
+
+        
+
     })
+
+    
 })
 
 app.post("/changePassword", (req, res) => {
@@ -195,6 +232,17 @@ app.post("/getData", (req, res) => {
 
 })
 
+app.post("/test", (req, res) => {
+
+    db.query("SELECT * FROM customerCart WHERE username=? AND itemID=?", ["admin", 5], (err, result) => {
+        if(err) console.log(err)
+        else if (result.length) {
+            console.log("RESULT: ")
+            console.log(result.length)
+            console.log(`IS EMPTY? ${result === undefined}`)
+        }
+    })
+})
 
 
 
