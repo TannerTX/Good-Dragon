@@ -5,7 +5,7 @@ function CartItem(props) {
 
 
     return(
-        <div class="card">
+        <div class="cardCart">
              <div class="product-card">
              <div class="badge">{props.item.itemCategory || "NULL"}</div>
              <div class="product-tumb">
@@ -21,7 +21,7 @@ function CartItem(props) {
                 <div class="product-price">
                     ${props.item.itemPrice || "NULL"} X {props.item.quantity}
                 </div>
-                <div>Total: ${props.item.quantity * props.item.itemPrice}</div>
+                <div class="product-total">Total: ${props.item.quantity * props.item.itemPrice}</div>
                 
             </div>
             </div>

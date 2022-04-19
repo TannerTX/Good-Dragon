@@ -127,19 +127,23 @@ a
     text-align: right;
 }
 
+.product-total {
+    color:rgb(5, 146, 0);
+    font-weight: bold;
+    padding-top: 2px;
+}
 
 
-
-   .cards {
+   .cardsCart {
  
     display: grid;
-    grid-template-columns: repeat(1, 10px);
+    grid-template-columns: repeat(4, 300px);
     grid-auto-rows: auto;
     grid-gap: 1rem;
      
     }
           
-    .card {
+    .cardCart {
     transform: translate(0%, 0%);
     border-radius: 4px;
     padding: .5rem;

@@ -39,7 +39,7 @@ export default class Cart extends React.Component {
  render(){
      
     return(
-        <div>
+        <div className="cardsCart">
             ITEMS
             {this.state.cart.map(item => 
                 
