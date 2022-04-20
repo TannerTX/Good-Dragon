@@ -9,7 +9,7 @@ Clone the repository:
 git clone https://github.com/TannerTX/Good-Dragon.git
 ```
 
-### Install dependencies:
+### Install Dependencies:
 
 Navigate into Good-Dragon/client
 
