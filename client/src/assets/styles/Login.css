@@ -135,7 +135,7 @@
     transform: scale(0.95);
    }
 
-   /* START HERE -----------------------------
+   /* START HERE -----------------------------*/
   .profileCard {
     position: absolute;
     display: block;
@@ -214,7 +214,7 @@
     color:rgb(0, 0, 0);
     padding-top: 10px;
   }
-----------------------------------------*/
+/*----------------------------------------*/
 
   .fade-in-image {
     animation: fadeIn 5s;
