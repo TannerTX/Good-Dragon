@@ -15,16 +15,13 @@ Navigate into Good-Dragon/client
 
 ```git
 cd Good-Dragon/client
-
 npm i
-
 ```
 
 Navigate into Good-Dragon/server
 
 ```git
 cd Good-Dragon/server
-
 npm i
 ```
 
