@@ -134,9 +134,11 @@
    .cssbuttons-io-button:active .icon {
     transform: scale(0.95);
    }
-   
+
+   /* START HERE -----------------------------
   .profileCard {
     position: absolute;
+    display: block;
     margin: auto;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -200,6 +202,7 @@
 
   .profileCardContent h4 {
     color:rgba(148, 148, 148, 0.788);
+    font-size: 1vw;
     padding-top: 20px;
   }
 
@@ -211,7 +214,7 @@
     color:rgb(0, 0, 0);
     padding-top: 10px;
   }
-
+----------------------------------------*/
 
   .fade-in-image {
     animation: fadeIn 5s;
