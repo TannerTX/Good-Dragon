@@ -227,10 +227,22 @@ app.post("/login", (req, res) => {
 
 app.post("/getData", (req, res) => {
 
+    const sortMethod = req.body.sortMethod
+    console.log(`QUERY: ${sortMethod}`)
+
+    if(sortMethod === undefined) 
     db.query("SELECT * FROM itemsForSale", (err, result) => {
         if(err) console.log(err)
         else res.send(result)
+      })
+
+    else db.query(`SELECT * FROM itemsForSale ${sortMethod}`, (err, result) => {
+        if(err) console.log(err)
+        else res.send(result)
     })
+    
+
+    
 
 })
 

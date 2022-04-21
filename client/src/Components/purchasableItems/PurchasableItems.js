@@ -15,9 +15,7 @@ function PurchasableItems(props) {
     const [itemQuant, setItemQuant] = useState(props.item.availableQuantity)
     const [quantSelector, setQuantSelector] = useState(1)
 
-    const getVal = () => {console.log(quantSelector)}
-
-
+    console.log(`${props.item.itemName} - ${itemQuant}`)
     const addToCart = async item => {
 
         var actualAmount = 0
@@ -28,7 +26,7 @@ function PurchasableItems(props) {
         }
         else if(itemQuant - quantSelector >= 0) {
             actualAmount = quantSelector
-            setItemQuant(itemQuant - quantSelector)    
+            setItemQuant(itemQuant - quantSelector)
         }
         
 
@@ -43,44 +41,52 @@ function PurchasableItems(props) {
 
     }
 
+    useEffect(() => {
+        setItemQuant(props.item.availableQuantity)
+    }, [props.item.availableQuantity])
+
+
     return(
-            <div class="card">
-             <div class="product-card">
-             <div class="badge">{props.item.itemCategory || "NULL"}</div>
-             <div class="product-tumb">
-             {props.item.itemImg ? <img src={props.item.itemImg} width={width} height={height} className="prodimg" /> : <p>NO IMAGE</p>}
-             </div>
-                
-             <div class="product-details">
-             <h4><a href="">{props.item.itemName || "NULL"}</a></h4>
+        <div class="card">
 
-             {props.item.availableQuantity > 0 ?
-             <div className="qtySelect"><QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e) => {setQuantSelector(e)} } />
-            
-            </div>
-             :
-              <h6 style={{paddingTop: "45px"}}></h6>
-             }
+           <div class="product-card">
 
-             <h6 className="itemQuant">Available: {itemQuant || "0"}</h6>
+              <div class="badge"> {props.item.itemCategory || "NULL"} </div>
 
-             <div class="product-bottom-details">
+              <div class="product-tumb">
+                 {props.item.itemImg ? <img src={props.item.itemImg} width={width} height={height} className="prodimg" /> :
+                 <p>NO IMAGE</p>
+                 } 
+              </div>
 
-                <div class="product-price">${props.item.itemPrice || "NULL"}</div>
-                <div class="product-links">
-                    {itemQuant > 0 ?
-                    <>
-                    <button class="specialbutton" onClick={() => addToCart(props.item)}><FaIcons.FaShoppingCart /></button>
-                    </>
-                    :
-                    <p style={{color: "red"}}>OUT OF STOCK</p>
-                    }
-                </div>
+              <div class="product-details">
+                 <h4><a href="">{props.item.itemName || "NULL"}</a></h4>
 
-            </div>
-            </div>
-            </div>
-            </div>
+                 {itemQuant > 0 ?
+                 <div className="qtySelect">
+                    <QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e)=> {setQuantSelector(e)} } /> 
+                 </div>
+                 :
+                 <h6 style={{paddingTop: "45px"}}></h6> }
+                 <h6 className="itemQuant">Available: {itemQuant || "0"}</h6>
+                 <div class="product-bottom-details">
+                    <div class="product-price">${props.item.itemPrice || "NULL"}</div>
+
+                    <div class="product-links">
+                       {itemQuant > 0 ?
+                       <>
+                       <button class="specialbutton" onClick={()=>
+                          addToCart(props.item)}>
+                          <FaIcons.FaShoppingCart />
+                       </button>
+                       </> :
+                       <p style={{color: "red"}}>OUT OF STOCK</p> } 
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+
     )
 }
 export default PurchasableItems
