@@ -55,7 +55,7 @@ export default class Shop extends React.Component {
             case "Price: Low to High": query = "ORDER BY itemPrice ASC"; break;
             case "Availability: High to Low": query = "ORDER BY availableQuantity DESC"; break;
             case "Availability: Low to High": query = "ORDER BY availableQuantity ASC"; break;
-            default: query = "ORDER BY itemPrice DESC";
+            default: query = "";
         }
 
         this.setState({sortMethod: query}, () => Axios.post("http://localhost:3001/getData", {sortMethod: this.state.sortMethod}).then(res => { 
@@ -76,7 +76,7 @@ export default class Shop extends React.Component {
         <Dropdown
         placeholder="Sort"
         className="dropdown_menu"
-        options={['Price: Hight to Low', 'Price: Low to High', 'Availability: High to Low', "Availability: Low to High"]}
+        options={['Price: Hight to Low', 'Price: Low to High', 'Availability: High to Low', "Availability: Low to High", "Unsorted"]}
         value="Unsorted"
         onChange={(response) => setSort(response.value)}
         />

@@ -7,7 +7,7 @@ function CartItem(props) {
     return(
         <div class="cardCart">
              <div class="product-card">
-             <div class="badge">{props.item.itemCategory || "NULL"}</div>
+             <div class="badge">{props.item.itemCategory + ` ITEM ID: ${props.item.itemID}` || "NULL"}</div>
              <div class="product-tumb">
              {props.item.itemImg ? <img src={props.item.itemImg} width={200} height={200} className="prodimg" /> : <p>NO IMAGE</p>}
              </div>

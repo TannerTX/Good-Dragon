@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { QuantityPicker } from "react-qty-picker"
 import * as FaIcons from "react-icons/fa"
 import "./productCard.css"
@@ -62,7 +62,7 @@ function PurchasableItems(props) {
               </div>
 
               <div class="product-details">
-                 <h4><a href="">{props.item.itemName || "NULL"}</a></h4>
+                 <h4><a>{props.item.itemName || "NULL"}</a></h4>
 
                  {itemQuant > 0 ?
                  <div className="qtySelect">
@@ -70,7 +70,7 @@ function PurchasableItems(props) {
                  </div>
                  :
                  <h6 style={{paddingTop: "45px"}}></h6> }
-                 <h6 className="itemQuant">Available: {itemQuant || "0"}</h6>
+                 <h6 className="itemQuant">Available: {itemQuant || "N/A"}</h6>
                  <div class="product-bottom-details">
                     <div class="product-price">${props.item.itemPrice || "NULL"}</div>
 
