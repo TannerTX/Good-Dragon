@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { QuantityPicker } from "react-qty-picker"
 import * as FaIcons from "react-icons/fa"
 import "./productCard.css"
 import Axios from "axios"
@@ -8,19 +10,37 @@ function PurchasableItems(props) {
     
     Axios.defaults.withCredentials = true
     let width, height = "200px"
-    
+    const history = useNavigate()
+
     const [itemQuant, setItemQuant] = useState(props.item.availableQuantity)
+    const [quantSelector, setQuantSelector] = useState(1)
+
+    const getVal = () => {console.log(quantSelector)}
 
 
     const addToCart = async item => {
 
+        var actualAmount = 0
+        
+        if(itemQuant - quantSelector < 0) {
+            actualAmount = itemQuant
+            setItemQuant(0)
+        }
+        else if(itemQuant - quantSelector >= 0) {
+            actualAmount = quantSelector
+            setItemQuant(itemQuant - quantSelector)    
+        }
+        
+
         props.cart.push(item)
-        setItemQuant(itemQuant - 1)
+        
         
         console.log(props.cart)
-        let data = {item: props.item, user: props.currUser}
-        await Axios.post("http://localhost:3001/addToCart", data).then(response => console.log(response))
-        window.location.reload(false)
+        let data = {item: props.item, user: props.currUser, amt: actualAmount}
+
+        console.log(`ADDING ${data.amt} ${data.item.itemName}s TO ${data.user.username}'s CART`)
+        await Axios.post("http://localhost:3001/addToCart", data).then(response => {console.log(response)})
+
     }
 
     return(
@@ -33,7 +53,15 @@ function PurchasableItems(props) {
                 
              <div class="product-details">
              <h4><a href="">{props.item.itemName || "NULL"}</a></h4>
-             <p>{props.item.description || "NULL"}</p>
+
+             {props.item.availableQuantity > 0 ?
+             <div className="qtySelect"><QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e) => {setQuantSelector(e)} } />
+            
+            </div>
+             :
+              <h6 style={{paddingTop: "45px"}}></h6>
+             }
+
              <h6 className="itemQuant">Available: {itemQuant || "0"}</h6>
 
              <div class="product-bottom-details">

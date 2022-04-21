@@ -153,8 +153,15 @@ function Login() {
                 
                 <h4>Address</h4>
                 <h5>{loginStatus.address || "NULL"}</h5> 
+
             </div>
-            <button className="logoutbutton" onClick={logout}>Logout</button>
+            
+            
+
+        </div>
+
+        <div style={{paddingTop: "50px"}}>
+        <button className="logoutbutton" onClick={logout}>Logout</button>
         </div>
 
         <div className="profileInfo">

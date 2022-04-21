@@ -62,14 +62,6 @@ function TestNavbar(props) {
               </Link>
             </li> }
 
-          {props.isLoggedIn &&
-          <li key="8" className="nav-text">
-          <Link to="/login">
-            <AiIcons.AiOutlinePoweroff />
-            <span>Logout</span>
-          </Link>
-        </li> }
-
           </ul>
         </nav>
         </IconContext.Provider>

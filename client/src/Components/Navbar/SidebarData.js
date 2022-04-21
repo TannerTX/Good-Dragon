@@ -19,7 +19,7 @@ export const SidebarData = [
   {
     title: 'Account',
     path: '/login',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    icon: <IoIcons.IoIosPerson />,
     cName: 'nav-text'
   },
   {

@@ -32,6 +32,7 @@ a
     background: #fafafa;
 }
 
+
 .badge {
     position: absolute;
     left: 0;
@@ -73,6 +74,10 @@ a
     color: #ccc;
 }
 
+.product-details h4 {
+    text-align: center;
+}
+
 .product-details h4 a {
     font-weight: 500;
     display: block;
@@ -85,6 +90,19 @@ a
 
 .product-details h4 a:hover {
     color: #fbb72c;
+}
+
+.product-details h5 {
+    font-size: 0.6vw;
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.qtySelect {
+    transform: translate(50%, 45%);
 }
 
 .product-details p {

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import Axios from "axios"
 import "../assets/styles/Login.css"
 import "../Components/purchasableItems/PurchasableItems.js"
-import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
 import "../Components/purchasableItems/productCard.css"
+import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
 
 
 

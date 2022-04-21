@@ -109,8 +109,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.2em;
-    width: 2.2em;
+    height: 2.1em;
+    width: 2.1em;
     border-radius: 0.7em;
     box-shadow: 0.1em 0.1em 0.6em 0.2em #129ec9;
     right: 0.3em;
@@ -215,14 +215,15 @@
     color:rgb(0, 0, 0);
     padding-top: 10px;
   }
+  
 /*----------------------------------------*/
 
   .fade-in-image {
-    animation: fadeIn 5s;
-    -webkit-animation: fadeIn 5s;
-    -moz-animation: fadeIn 5s;
-    -o-animation: fadeIn 5s;
-    -ms-animation: fadeIn 5s;
+    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 3s;
+    -moz-animation: fadeIn 3s;
+    -o-animation: fadeIn 3s;
+    -ms-animation: fadeIn 3s;
   }
   @keyframes fadeIn {
     0% {opacity:0;}

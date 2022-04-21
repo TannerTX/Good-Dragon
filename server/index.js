@@ -95,8 +95,10 @@ app.post("/addToCart", (req, res) => {
     // WE NEED 2 QUERIES; CART AND INVENTORY
     const item = req.body.item
     const user = req.body.user
+    const amount = req.body.amt
+    console.log(`AMOUNT: ${amount}`)
 
-    db.query("UPDATE itemsForSale SET availableQuantity=? WHERE itemName=?", [item.availableQuantity - 1, item.itemName], (err, result) => {
+    db.query("UPDATE itemsForSale SET availableQuantity=? WHERE itemName=?", [item.availableQuantity - amount, item.itemName], (err, result) => {
         if(err) console.log(err)
 
         if(result) console.log("Updated Table.")
@@ -107,7 +109,7 @@ app.post("/addToCart", (req, res) => {
 
         if(result.length) { // IF THIS ITEM ALREADY EXISTS IN THE CART
             
-            db.query("UPDATE customerCart SET quantity=? WHERE username=? AND itemID=?", [result[0].quantity + 1, user.username, item.itemID], (err, r) => {
+            db.query("UPDATE customerCart SET quantity=? WHERE username=? AND itemID=?", [result[0].quantity + amount, user.username, item.itemID], (err, r) => {
                 if(err) console.log(err)
 
                 if(r.length) console.log(`Updated ${item.itemName}'s quantity in ${user.username}'s Cart`)
@@ -117,7 +119,7 @@ app.post("/addToCart", (req, res) => {
         else if(!result.length) { // IF ITEM ISN'T IN THE CART
 
 
-            db.query("INSERT INTO customerCart (username, itemID, quantity) VALUES (?, ?, ?)", [user.username, item.itemID, 1], (err, r) => {
+            db.query("INSERT INTO customerCart (username, itemID, quantity) VALUES (?, ?, ?)", [user.username, item.itemID, amount], (err, r) => {
                 if(err) console.log(err)
 
                 if(r.length) console.log(`Added ${item.itemName} to ${user.username}'s Cart`)
