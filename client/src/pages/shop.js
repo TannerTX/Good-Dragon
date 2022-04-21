@@ -1,12 +1,14 @@
 import React from "react"
 import Axios from "axios"
 import { Dropdown, Selection } from "react-dropdown-now"
+import { Link } from "react-router-dom"
 import 'react-dropdown-now/style.css'
 import "../assets/styles/Login.css"
 import "../assets/styles/shop.css"
 import "../Components/purchasableItems/PurchasableItems.js"
 import "../Components/purchasableItems/productCard.css"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
+import { FaWindows } from "react-icons/fa"
 
 
 
@@ -36,9 +38,13 @@ export default class Shop extends React.Component {
              })   
     }
 
+   
+
     
  render(){
 
+    
+    
     
     const setSort = (val) => {
 
@@ -60,6 +66,12 @@ export default class Shop extends React.Component {
     }
      
     return(
+
+        <>
+        { 
+        
+        this.state.currentUser.username ? 
+
         <>
         <Dropdown
         placeholder="Sort"
@@ -70,10 +82,23 @@ export default class Shop extends React.Component {
         />
 
         <div class="cards">
-        {this.state.items.map((prod) => <PurchasableItems item={prod} cart={this.state.cart} currUser={this.state.currentUser} />)}
+            {this.state.items.map((prod) => <PurchasableItems item={prod} cart={this.state.cart} currUser={this.state.currentUser} />)}
+        </div>
+        </>
+
+        :
+    
+
+        <div className="pleaseLogin-container">
+            <div className="pleaseLogin-inner">
+            <h3>Please <Link to="/login">Login</Link> to Continue</h3>
+            </div>
         </div>
 
+        }
+
         </>
+
         )
     }
 

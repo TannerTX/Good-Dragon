@@ -11,6 +11,7 @@ function PurchasableItems(props) {
     Axios.defaults.withCredentials = true
     let width, height = "200px"
     const history = useNavigate()
+    const user = props.currUser || undefined
 
     const [itemQuant, setItemQuant] = useState(props.item.availableQuantity)
     const [quantSelector, setQuantSelector] = useState(1)
@@ -47,6 +48,7 @@ function PurchasableItems(props) {
 
 
     return(
+        
         <div class="card">
 
            <div class="product-card">
