@@ -1,17 +1,20 @@
 import React from "react"
 import Axios from "axios"
 import { Dropdown, Selection } from "react-dropdown-now"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import 'react-dropdown-now/style.css'
 import "../assets/styles/Login.css"
 import "../assets/styles/shop.css"
 import "../Components/purchasableItems/PurchasableItems.js"
 import "../Components/purchasableItems/productCard.css"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
-
 import { FaWindows } from "react-icons/fa"
 
+function GetLocation() {
+    const location = useLocation()
 
+    return location.state.search
+}
 
 export default class Shop extends React.Component {
     
@@ -19,6 +22,7 @@ export default class Shop extends React.Component {
         super(props);
         Axios.defaults.withCredentials = true
         this.state = {
+            searchValue: GetLocation || "",
             items: [],
             cart: [],
             currentUser: [{}],
@@ -27,16 +31,15 @@ export default class Shop extends React.Component {
     }
 
     componentDidMount() {
-        Axios.post("http://localhost:3001/getData").then(res => {
-            this.setState({items: res.data});
-             console.log(this.state.items);
-            })
-        
+        console.log(`SEARCH VALUE: ${this.state.searchValue}`)
+
+        Axios.post("http://localHost:3001/getData", {sortMethod: ""}).then(res => {this.setState({items: res.data})})
+
         Axios.get("http://localhost:3001/login").then(response => {    
             if(response.data.loggedIn === true) 
-            this.state.currentUser = response.data.user[0]
-            
-             })   
+            this.setState({currentUser: response.data.user[0]})
+             })
+        
     }
 
    

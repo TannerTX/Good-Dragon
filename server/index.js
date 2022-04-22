@@ -241,21 +241,26 @@ app.post("/getData", (req, res) => {
         else res.send(result)
     })
     
+})
 
+
+app.post("/test", (req, res) => {
     
+    const reqSearch = req.body.search
+    if(reqSearch.trim()) {
+        res.send("SUCCESSFUL RECEIPT")
+        req.session.query = reqSearch.trim()
+        console.log(req.session.query)
+    }
 
 })
 
-app.post("/test", (req, res) => {
-
-    db.query("SELECT * FROM customerCart WHERE username=? AND itemID=?", ["admin", 5], (err, result) => {
-        if(err) console.log(err)
-        else if (result.length) {
-            console.log("RESULT: ")
-            console.log(result.length)
-            console.log(`IS EMPTY? ${result === undefined}`)
-        }
-    })
+app.get("/test", (req, res) => {
+    console.log("YOU REQUESTED")
+    if(req.session.query)
+    console.log(`YOUR SEARCH: ${req.session.query}`)
+    else
+    console.log(req.session)
 })
 
 
