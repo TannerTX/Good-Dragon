@@ -39,13 +39,37 @@ export default class Cart extends React.Component {
  render(){
      
     return(
+        <>
+        <div className="cardsContainer">
+
         <div className="cardsCart">
-            ITEMS
-            {this.state.cart.map(item => 
-                
-                <div><CartItem item={item} /></div>
-                )}
+            {this.state.cart.map(item => <div><CartItem item={item} /></div> )}
+
+            <div className="checkoutInfo">
+            <h3 style={{paddingTop: "10px", paddingBottom: "5px"}}>Checkout</h3>
+
+            <div className="checkoutItems">
+            {this.state.cart.map(item =>
+
+            
+            <div style={{padding: "1px"}}> 
+            <h5 className="checkoutItemCard">{item.quantity} x {item.itemName}:  <p>${item.quantity * item.itemPrice}</p></h5>
+            
+            </div>
+            
+
+            )}
+            </div>
+
+            </div>
         </div>
+
+        
+
+        </div>
+
+        
+        </>
         )
     }
 

@@ -3,6 +3,7 @@ import TestNavbar from "./Components/Navbar/Navbar.js"
 import Testing from "./pages/testingPage.js"
 import Admin from "./pages/adminPage.js"
 import Shop from "./pages/shop.js"
+import Shop2 from "./pages/shop2.js"
 import Home from "./pages/homePage.js";
 import Login from "./pages/loginPage.js";
 import Register from "./pages/registerPage.js"
@@ -41,8 +42,10 @@ function App() {
          <Route path="/testing" element={<Testing />} />
          <Route path="/cart" element={<Cart />} />
          <Route path="/admin" element={<Admin />} />
-         <Route path="/shop" element={<Shop />} />
+         <Route path="/shop" element={<Shop2 />} />
+         <Route path="/shop2" element={<Shop2 />} />
          <Route path="*" element={<ErrorPage />} />
+         
        </Routes>
     </Router>
     </>

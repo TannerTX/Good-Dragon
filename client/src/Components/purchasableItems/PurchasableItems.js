@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { QuantityPicker } from "react-qty-picker"
 import * as FaIcons from "react-icons/fa"
 import "./productCard.css"
+import Dropdown from "../Modal/Modal.js"
+import "../Modal/modal.css"
 import Axios from "axios"
+
 
 
 function PurchasableItems(props) {
@@ -11,11 +14,12 @@ function PurchasableItems(props) {
     Axios.defaults.withCredentials = true
     let width, height = "200px"
     const history = useNavigate()
+    const user = props.currUser || undefined
 
     const [itemQuant, setItemQuant] = useState(props.item.availableQuantity)
     const [quantSelector, setQuantSelector] = useState(1)
+    const [showModal, setShowModal] = useState(false)
 
-    console.log(`${props.item.itemName} - ${itemQuant}`)
     const addToCart = async item => {
 
         var actualAmount = 0
@@ -43,12 +47,20 @@ function PurchasableItems(props) {
 
     useEffect(() => {
         setItemQuant(props.item.availableQuantity)
-    }, [props.item.availableQuantity])
+        setShowModal(showModal)
+    }, [props.item.availableQuantity, showModal])
 
+    const handleModal = async e => {
+       setShowModal(!showModal)
+    }
 
     return(
-        <div class="card">
+        <>
+        {showModal && <Dropdown item={props.item} />}
+        {showModal && <button className="btn" onClick={handleModal}>Close</button>}
+         
 
+           <div class="card">
            <div class="product-card">
 
               <div class="badge"> {props.item.itemCategory || "NULL"} </div>
@@ -60,7 +72,7 @@ function PurchasableItems(props) {
               </div>
 
               <div class="product-details">
-                 <h4><a href="">{props.item.itemName || "NULL"}</a></h4>
+                 <h4><a onClick={() => {handleModal(); console.log(`SHOWING MODAL ${showModal}`)}}>{props.item.itemName || "NULL"}</a></h4>
 
                  {itemQuant > 0 ?
                  <div className="qtySelect">
@@ -68,7 +80,7 @@ function PurchasableItems(props) {
                  </div>
                  :
                  <h6 style={{paddingTop: "45px"}}></h6> }
-                 <h6 className="itemQuant">Available: {itemQuant || "0"}</h6>
+                 <h6 className="itemQuant">Available: {itemQuant || "N/A"}</h6>
                  <div class="product-bottom-details">
                     <div class="product-price">${props.item.itemPrice || "NULL"}</div>
 
@@ -86,7 +98,7 @@ function PurchasableItems(props) {
               </div>
            </div>
         </div>
-
+   </>
     )
 }
 export default PurchasableItems
