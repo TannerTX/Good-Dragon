@@ -8,6 +8,7 @@ import "../assets/styles/shop.css"
 import "../Components/purchasableItems/PurchasableItems.js"
 import "../Components/purchasableItems/productCard.css"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
+
 import { FaWindows } from "react-icons/fa"
 
 

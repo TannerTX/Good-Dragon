@@ -46,7 +46,7 @@ export default class Cart extends React.Component {
             {this.state.cart.map(item => <div><CartItem item={item} /></div> )}
 
             <div className="checkoutInfo">
-            <h3>Checkout</h3>
+            <h3 style={{paddingTop: "10px", paddingBottom: "5px"}}>Checkout</h3>
 
             <div className="checkoutItems">
             {this.state.cart.map(item =>
