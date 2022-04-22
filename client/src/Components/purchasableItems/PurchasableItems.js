@@ -57,7 +57,7 @@ function PurchasableItems(props) {
     return(
         <>
         {showModal && <Dropdown item={props.item} />}
-        {showModal && <button className="btn" onClick={handleModal}>Close</button>} 
+        {showModal && <button className="btn" onClick={handleModal}>Close</button>}
          
 
            <div class="card">
