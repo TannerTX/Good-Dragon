@@ -32,30 +32,22 @@ export default function Shop2() {
             setCurrentUser(response.data.user[0])
              })
 
-        if(location.state) {
-            setSearchValue(location.state.search)
-            console.log(searchValue)
-        }
         
-            console.log("SEARCH VALUE")
-            console.log(searchValue)
+             if(location.state) {
             
-
-            setTimeout(function(){
-                if(searchValue === "" && numSearches === 0) {
-                    console.log("DEFAULT WAS CHOSEN")
-                    Axios.post("http://localHost:3001/getData", {sortMethod: ""}).then(res => {setItems(res.data) })
-                    setNumSearches(1)
-                    }
-            
-                    else if(searchValue != "" && numSearches === 0) {
+                    if(location.state.search != "") {
                     console.log("NONDEFAULT WAS CHOSEN")
-                    Axios.post("http://localHost:3001/getData", {searchData: searchValue}).then(res => {setItems(res.data)})
-                    setNumSearches(1)
+                    Axios.post("http://localHost:3001/getData", {searchData: location.state.search}).then(res => {setItems(res.data)})
+                    window.history.replaceState(null, '')
                     }
-            }, 200);
-
-    }, [searchValue, numSearches])
+           
+             }
+             else {
+                Axios.post("http://localHost:3001/getData", {sortMethod: ""}).then(res => {setItems(res.data) })
+             }
+                
+            
+    }, [])
 
 
 /*
