@@ -21,6 +21,7 @@
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-router": "^6.3.0"
   }
 }

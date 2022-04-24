@@ -1,0 +1,45 @@
+.dropdown_menu {
+    margin-left: 55%;
+    margin-right: 10%;    
+}
+
+.rdn {
+    
+    font-size: 15px;
+}
+
+.rdn-control-placeholder {
+
+    margin: auto;
+}
+
+.pleaseLogin-container {
+
+    position: absolute;
+    display: block;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    width: 45vw;
+    height: 45vh;
+
+    background: rgb(255, 255, 255);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    border-radius: 5px;
+    -webkit-backdrop-filter: blur( 4px );
+    border: 1px solid rgba(0, 217, 255, 0.274);
+    
+}
+
+.pleaseLogin-inner {
+    position: absolute;
+    font-size: 1vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+   

@@ -109,8 +109,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.2em;
-    width: 2.2em;
+    height: 2.1em;
+    width: 2.1em;
     border-radius: 0.7em;
     box-shadow: 0.1em 0.1em 0.6em 0.2em #129ec9;
     right: 0.3em;
@@ -134,28 +134,31 @@
    .cssbuttons-io-button:active .icon {
     transform: scale(0.95);
    }
-   
+
+   /* START HERE -----------------------------*/
   .profileCard {
-    position: absolute;
+    position:absolute;
+    display: block;
     margin: auto;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 35%;
     width: 15%;
     height: 50%;
+    overflow: scroll;
 
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-
+    border: 1px solid rgba(0, 217, 255, 0.274);
   }
 
   .profileInfo {
     position: absolute;
     margin: auto;
+    text-align: center;
     transform: translate(-5%, -50%);
     top: 50%;
     left: 45%;
@@ -167,7 +170,23 @@
     backdrop-filter: blur( 4px );
     border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid rgba(0, 217, 255, 0.274);
+  }
+
+  .profileInfo input {
+    position: relative;
+    height: 30px;
+    margin-top: 5px;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    width: 50%;
+  }
+
+  .profileInfo h4 {
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .profileCardContent {
@@ -184,6 +203,7 @@
 
   .profileCardContent h4 {
     color:rgba(148, 148, 148, 0.788);
+    font-size: 1vw;
     padding-top: 20px;
   }
 
@@ -195,14 +215,15 @@
     color:rgb(0, 0, 0);
     padding-top: 10px;
   }
-
+  
+/*----------------------------------------*/
 
   .fade-in-image {
-    animation: fadeIn 5s;
-    -webkit-animation: fadeIn 5s;
-    -moz-animation: fadeIn 5s;
-    -o-animation: fadeIn 5s;
-    -ms-animation: fadeIn 5s;
+    animation: fadeIn 3s;
+    -webkit-animation: fadeIn 3s;
+    -moz-animation: fadeIn 3s;
+    -o-animation: fadeIn 3s;
+    -ms-animation: fadeIn 3s;
   }
   @keyframes fadeIn {
     0% {opacity:0;}

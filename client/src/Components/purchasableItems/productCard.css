@@ -32,6 +32,7 @@ a
     background: #fafafa;
 }
 
+
 .badge {
     position: absolute;
     left: 0;
@@ -39,7 +40,7 @@ a
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 700;
-    background: red;
+    background: rgba(207, 3, 3, 0.418);
     color: #fff;
     padding: 3px 10px;
 }
@@ -62,13 +63,19 @@ a
     padding: 30px;
 }
 
-.product-catagory {
-    display: block;
+.product-category {
+    display: inline-block;
     font-size: 12px;
     font-weight: 700;
+    position: relative;
+    margin: auto;
+    padding-bottom: 10px;
     text-transform: uppercase;
     color: #ccc;
-    margin-bottom: 18px;
+}
+
+.product-details h4 {
+    text-align: center;
 }
 
 .product-details h4 a {
@@ -83,6 +90,19 @@ a
 
 .product-details h4 a:hover {
     color: #fbb72c;
+}
+
+.product-details h5 {
+    font-size: 0.6vw;
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.qtySelect {
+    transform: translate(50%, 45%);
 }
 
 .product-details p {
@@ -167,17 +187,20 @@ a
    .cards {
  
     display: grid;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(4, 350px);
     grid-auto-rows: auto;
     grid-gap: 1rem;
      
     }
           
     .card {
-     
+    transform: translate(50%, 0%);
     border-radius: 4px;
     padding: .5rem;
     padding-bottom: 125px;
-    padding-left: 225px;
-     
+    }
+
+    .itemQuant {
+        font-size: 13px;
+        padding-bottom: 10px;
     }

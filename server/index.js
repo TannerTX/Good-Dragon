@@ -76,6 +76,108 @@ app.post("/logout", (req, res) => {
     console.log("COOKIE GONE")
 })
 
+app.post("/getUserCart", (req, res) => {
+
+    const user = req.body.user
+    
+    db.query("SELECT * FROM itemsForSale JOIN customerCart ON itemsForSale.itemID=customerCart.itemID WHERE customerCart.username=?", user.username.trim().toLowerCase(), (err, result) => {
+
+        if(err) console.log(err)
+
+        if(result) res.send(result)
+    })
+
+    
+})
+
+app.post("/addToCart", (req, res) => {
+
+    // WE NEED 2 QUERIES; CART AND INVENTORY
+    const item = req.body.item
+    const user = req.body.user
+    const amount = req.body.amt
+    console.log(`AMOUNT: ${amount}`)
+
+    db.query("UPDATE itemsForSale SET availableQuantity=? WHERE itemName=?", [item.availableQuantity - amount, item.itemName], (err, result) => {
+        if(err) console.log(err)
+
+        if(result) console.log("Updated Table.")
+    })
+
+    db.query("SELECT * FROM customerCart WHERE username=? AND itemID=?", [user.username, item.itemID], (err, result) => {
+        if(err) console.log(err)
+
+        if(result.length) { // IF THIS ITEM ALREADY EXISTS IN THE CART
+            
+            db.query("UPDATE customerCart SET quantity=? WHERE username=? AND itemID=?", [result[0].quantity + amount, user.username, item.itemID], (err, r) => {
+                if(err) console.log(err)
+
+                if(r.length) console.log(`Updated ${item.itemName}'s quantity in ${user.username}'s Cart`)
+            })
+
+        }
+        else if(!result.length) { // IF ITEM ISN'T IN THE CART
+
+
+            db.query("INSERT INTO customerCart (username, itemID, quantity) VALUES (?, ?, ?)", [user.username, item.itemID, amount], (err, r) => {
+                if(err) console.log(err)
+
+                if(r.length) console.log(`Added ${item.itemName} to ${user.username}'s Cart`)
+            })
+
+        }
+
+        
+
+    })
+
+    
+})
+
+app.post("/changePassword", (req, res) => {
+
+    const salt = bcrypt.genSaltSync(saltRounds)
+
+    const username = req.body.username.toLowerCase()
+    const oldPassPlain = req.body.oldPass.trim()
+    const newPassPlain =  req.body.newPass.trim()
+
+    db.query("SELECT * FROM userLoginInfo WHERE username=?", username, (err, result) => {
+        
+        if(err) console.log(err)
+
+        else if(result.length) {
+
+            let passCheck = bcrypt.compareSync(oldPassPlain, result[0].password)
+            console.log(`PASS CHECK: ${passCheck}`)
+            if(passCheck) {
+
+            db.query("UPDATE userLoginInfo SET password=? WHERE username=?", [bcrypt.hashSync(newPassPlain, salt), username], (err, result) => {
+
+                if(err) console.log(err)
+
+                else if(result) {
+                    res.send({message: "Success!"})
+                    req.session.destroy()
+                }
+                
+                else {
+                    console.log("WRONG SHIT BUDDY")
+                    res.send({message: "Invalid Password!"}) 
+                    }
+            })
+        }
+        else res.send({message: "Invalid Password!"})
+
+            
+
+    }
+    else {console.log("WE HIT AN ERROR BUD"); console.log(result)}
+
+    })
+
+})
+
 app.get("/login", (req, res) => {
 
     if(req.session.user) 
@@ -108,7 +210,6 @@ app.post("/login", (req, res) => {
 
                 if(passCheck) {
                     req.session.user = result
-                    console.log(`SESSION INFORMATION: ${req.session.user}`)
                     res.send({success: true})
                 }
                 else res.send({failure: true})
@@ -126,13 +227,42 @@ app.post("/login", (req, res) => {
 
 app.post("/getData", (req, res) => {
 
+    const searchQuery = req.body.searchData
+    console.log(`SEARCH: ${searchQuery}`)
+
+    if(searchQuery === undefined) 
     db.query("SELECT * FROM itemsForSale", (err, result) => {
+        if(err) console.log(err)
+        else res.send(result)
+      })
+
+    else db.query(`SELECT * FROM itemsForSale WHERE itemName LIKE "%${searchQuery}%"`, (err, result) => {
         if(err) console.log(err)
         else res.send(result)
     })
 
+    
 })
 
+
+app.post("/test", (req, res) => {
+    
+    const reqSearch = req.body.search
+    if(reqSearch.trim()) {
+        res.send("SUCCESSFUL RECEIPT")
+        req.session.query = reqSearch.trim()
+        console.log(req.session.query)
+    }
+
+})
+
+app.get("/test", (req, res) => {
+    console.log("YOU REQUESTED")
+    if(req.session.query)
+    console.log(`YOUR SEARCH: ${req.session.query}`)
+    else
+    console.log(req.session)
+})
 
 
 
