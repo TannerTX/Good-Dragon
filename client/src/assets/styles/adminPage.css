@@ -1,0 +1,57 @@
+.box {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90%;
+    width: 90%;
+    border: 5px solid #36454F;
+    padding: 10px;
+    opacity: 50%;
+  }
+  .itemBox {
+    background-color: #7393B3;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25%;
+    width: 99%;
+    border: 5px solid #36454F;
+    padding: 10px;
+  }
+  .orderBox {
+    background-color: #7393B3;
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25%;
+    width: 99%;
+    border: 5px solid #36454F;
+    padding: 10px;
+  }
+  .userBox {
+    background-color: #7393B3;
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25%;
+    width: 99%;
+    border: 5px solid #36454F;
+    padding: 10px;
+  }
+  .submit{
+    background-color: #36454F;
+    color: black;
+    position: absolute;
+    top: 95%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    height: 5%;
+    width: 8%;
+    padding: 10px;
+
+  }
