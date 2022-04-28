@@ -1,0 +1,59 @@
+.AdminContainer {
+    background-color: rgba(185, 184, 184, 0.74);
+    position:absolute;
+    text-align: center;
+    top: 25%;
+    width: 50%;
+    height: 50%;
+}
+
+.buttonNavContainer {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 10%;
+    height: 30vh;
+    background-color: rgba(250, 235, 215, 0);
+    padding-left: 5px;
+    border-left: 1px solid black;
+}
+.buttonNavContainer button {
+    padding: 15px 25px;
+    border: unset;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e800;
+    position: relative;
+    font-weight: 1000;
+    font-size: 0.7vw;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+   }
+   
+   .buttonNavContainer button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #212121;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms
+   }
+   
+  .buttonNavContainer button:hover {
+    color: #e8e8e8;
+   }
+   
+   .buttonNavContainer button:hover::before {
+    width: 100%;
+   }
+
+   .buttonNavContainer button:focus {
+       background-color: #212121;
+   }

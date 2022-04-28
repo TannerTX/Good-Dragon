@@ -1,10 +1,12 @@
 import React from "react";
-import "../assets/styles/adminPage.css"
+//import "../assets/styles/adminPage.css"
+import "../assets/styles/adminPage2.css"
 
 
 function Admin() {
 
     return (
+        /*
         <div class = "box">
 
             <div class = "itemBox">
@@ -58,6 +60,23 @@ function Admin() {
 
 
         </div>
+        */
+
+
+
+        <div className="mainContainer">
+
+        <div className="buttonNavContainer">
+            <button>Account Management</button>
+            <button>Product Management</button>
+            <button>Discount Codes</button>
+
+            <button>Order History</button>
+        </div>
+
+
+        </div>
+
     );
 
 }
