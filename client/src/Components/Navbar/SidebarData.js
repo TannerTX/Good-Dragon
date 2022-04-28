@@ -31,12 +31,5 @@ export const SidebarData = [
     path: '/testing',
     icon: <FaIcons.FaBattleNet />,
     cName: 'nav-text'
-  },
-  {
-    class: 'current',
-    title: 'DATA',
-    path: '/data',
-    icon: <FaIcons.FaDev />,
-    cName: 'nav-text'
   }
 ];
