@@ -230,7 +230,7 @@ app.post("/getData", (req, res) => {
     const searchQuery = req.body.searchData
     console.log(`SEARCH: ${searchQuery}`)
 
-    if(searchQuery === undefined) 
+    if(searchQuery === undefined || searchQuery.trim() === "") 
     db.query("SELECT * FROM itemsForSale", (err, result) => {
         if(err) console.log(err)
         else res.send(result)
