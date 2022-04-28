@@ -90,6 +90,7 @@ a
 
 .product-details h4 a:hover {
     color: #fbb72c;
+    cursor: pointer;
 }
 
 .product-details h5 {
