@@ -3,7 +3,7 @@ import Axios from "axios"
 //import "../assets/styles/adminPage.css"
 import "../assets/styles/adminPage2.css"
 import AcctManagement from "../Components/AdminPage/AcctManagement.js"
-
+import Discount from "../Components/AdminPage/Discounts.js"
 
 function Admin() {
 
@@ -99,7 +99,7 @@ function Admin() {
             }
 
             { portal == "Discounts" &&
-                <div>DISCOUNTS</div>
+                <Discount />
             }
 
             { portal == "History" &&

@@ -208,6 +208,7 @@ app.post("/updateUserInfo", (req, res) => {
                     else if(!result.length) res.send({success: true})
                     else res.send(result)
                 })
+
     }
     else
     db.query("SELECT * FROM userLoginInfo WHERE username=?", [user.username], (err, result) => {
@@ -220,6 +221,10 @@ app.post("/updateUserInfo", (req, res) => {
                     else if(!result.length) res.send({success: true})
                     else res.send(result)
                 })
+
+                db.query("UPDATE customerCart SET username=? WHERE username=?", [user.username, user.oldUser], (err, result) => {if(err) console.log(err)})
+                db.query("UPDATE placedOrders SET username=? WHERE username=?", [user.username, user.oldUser], (err, result) => {if(err) console.log(err)})
+                db.query("UPDATE orderHistory SET username=? WHERE username=?", [user.username, user.oldUser], (err, result) => {if(err) console.log(err)})
         }
     })
 
@@ -291,6 +296,32 @@ app.post("/getData", (req, res) => {
     })
 
     
+})
+
+app.post("/discountCodes", (req, res) => {
+
+    if(req.body.function === "add") {
+        db.query("INSERT INTO discountCodes (codes, discount) VALUES (?, ?)", [req.body.disCode, req.body.disOff], (err, result) => {
+            if (err) console.log(err)
+            else res.send({success: true})
+        })
+    }
+    else if(req.body.function === "get") {
+        console.log("GETTING CODES")
+        db.query("SELECT * FROM discountCodes", (err, result) => {
+            if(err) console.log(err)
+            else res.send(result)
+        })
+    }
+    else if(req.body.function === "delete") {
+        db.query("DELETE FROM discountCodes WHERE codes=?", [req.body.disCode], (err, result) => {
+            if(err) console.log(err)
+            else
+            res.send({success: true})
+        })
+    }
+
+
 })
 
 app.post("/getUserInfo", (req, res) => {

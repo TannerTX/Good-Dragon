@@ -133,10 +133,12 @@ function AcctManagement() {
         </div>
 
         <div className="userPlacedOrders">
-        { placedOrders &&
-            <p className="noOrders">{placedOrders.username}</p>
+        {  
+            <p className="placedOrder">
+                H
+            </p>
         }
-        { !placedOrders && 
+        {  
             <p className="noOrders">NO ORDERS</p>
         }
         </div>
