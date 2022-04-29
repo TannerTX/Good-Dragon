@@ -178,6 +178,55 @@ app.post("/changePassword", (req, res) => {
 
 })
 
+app.post("/updateUserInfo", (req, res) => {
+
+    const salt = bcrypt.genSaltSync(saltRounds)
+    const user = req.body.userInfo
+    
+    if(user.newPassword == "")
+    user.newPassword = user.oldPassword
+    else
+    user.newPassword = bcrypt.hashSync(user.newPassword, salt)
+    
+    
+    
+    // console.log(`\t\tPREVIOUS USER: ${user.oldUser}
+    //              USERNAME: ${user.username}
+    //              ADMIN?: ${user.isAdmin}
+    //              OLD: ${user.oldPassword}
+    //              PASSWORD: ${user.newPassword == ""}
+    //              FIRST: ${user.first}
+    //              LAST: ${user.last}
+    //              ADDRESS: ${user.address}
+    //              EMAIL: ${user.email}
+    //              PHONE: ${user.phone}`)
+
+    if(user.oldUser === user.username) {
+        db.query("UPDATE userLoginInfo SET username=?, isAdmin=?, password=?, firstName=?, lastName=?, address=?, email=?, phoneNum=? WHERE username=?", 
+                [user.username, user.isAdmin, user.newPassword, user.first, user.last, user.address, user.email, user.phone, user.oldUser], (err, result) => {
+                    if(err) console.log(err)
+                    else if(!result.length) res.send({success: true})
+                    else res.send(result)
+                })
+    }
+    else
+    db.query("SELECT * FROM userLoginInfo WHERE username=?", [user.username], (err, result) => {
+        if(err) console.log(err)
+        if(result.length) res.send({errorMessage: "USER ALREADY EXISTS"})
+        else {
+            db.query("UPDATE userLoginInfo SET username=?, isAdmin=?, password=?, firstName=?, lastName=?, address=?, email=?, phoneNum=? WHERE username=?", 
+                [user.username, user.isAdmin, user.newPassword, user.first, user.last, user.address, user.email, user.phone, user.oldUser], (err, result) => {
+                    if(err) console.log(err)
+                    else if(!result.length) res.send({success: true})
+                    else res.send(result)
+                })
+        }
+    })
+
+    
+
+})
+
 app.get("/login", (req, res) => {
 
     if(req.session.user) 
@@ -242,6 +291,29 @@ app.post("/getData", (req, res) => {
     })
 
     
+})
+
+app.post("/getUserInfo", (req, res) => {
+
+    const username = req.body.user
+    
+    db.query("SELECT * FROM userLoginInfo WHERE username=?", [username], (err, result) => {
+        if(err) console.log(err)
+        else if(!result.length) res.send("NOT FOUND")
+        else res.send(result)
+    })
+
+})
+
+app.post("/getUserOrders", (req, res) => {
+    
+    const username = req.body.user
+
+    db.query("SELECT * FROM placedOrders WHERE username=?", [username], (err, result) => {
+        if(err) console.log(err)
+        else if(!result.length) res.send("NO ITEMS")
+        else res.send(result)
+    })
 })
 
 

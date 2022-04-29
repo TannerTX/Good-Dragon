@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios"
 //import "../assets/styles/adminPage.css"
 import "../assets/styles/adminPage2.css"
+import AcctManagement from "../Components/AdminPage/AcctManagement.js"
 
 
 function Admin() {
+
+    const [portal, setPortal] = useState("")
+    const [loginStatus, setLoginStatus] = useState({})
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then(response => {    
+            if(response.data.loggedIn === true) 
+            setLoginStatus(response.data.user[0])
+             })
+    }, [])
+
 
     return (
         /*
@@ -62,20 +75,52 @@ function Admin() {
         </div>
         */
 
-
+        <>
+        { loginStatus.isAdmin ? 
 
         <div className="mainContainer">
 
         <div className="buttonNavContainer">
-            <button>Account Management</button>
-            <button>Product Management</button>
-            <button>Discount Codes</button>
+            <button onClick={() => setPortal("Accounts")}>Account Management</button>
+            <button onClick={() => setPortal("Products")}>Product Management</button>
+            <button onClick={() => setPortal("Discounts")}>Discount Codes</button>
 
-            <button>Order History</button>
+            <button onClick={() => setPortal("History")}>Order History</button>
+        </div>
+
+        <div className="portalComponents">
+
+            { portal=="Accounts" &&
+                <AcctManagement />
+            }
+            
+            { portal == "Products" &&
+                <div>PRODUCTS</div>
+            }
+
+            { portal == "Discounts" &&
+                <div>DISCOUNTS</div>
+            }
+
+            { portal == "History" &&
+                <div>HISTORY</div>
+            }
+
+
+
         </div>
 
 
         </div>
+
+            : 
+        
+        <div>YOU ARE NOT AN ADMIN</div>
+            
+
+        }
+
+        </>
 
     );
 
