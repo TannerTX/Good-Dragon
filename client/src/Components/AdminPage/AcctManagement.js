@@ -135,7 +135,7 @@ function AcctManagement() {
         <div className="userPlacedOrders">
         {  
             <p className="placedOrder">
-                H
+                
             </p>
         }
         {  

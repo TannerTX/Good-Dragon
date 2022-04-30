@@ -7,14 +7,24 @@ function Discount() {
     const [code, setCode] = useState("")
     const [percentOff, setPercentOff] = useState("")
     const [currCodes, setCurrCodes] = useState([])
+    const def=""
 
     const addDiscountCode = () => {
 
+        let good = true
+        currCodes.forEach(item => {
+            if(item.codes.toLowerCase() === code.toLowerCase()) 
+            good = false
+        })
+
+        if(code != "" && percentOff != "" && good === true ) {
         Axios.post("http://localhost:3001/discountCodes", {function: "add", disCode: code, disOff: percentOff}).then(res => {
             if(res.success)
             alert("Success!")
         })
         setCode(2)
+        }
+        else alert("ERROR: Invalid Code / Duplicate")
     }
 
 
@@ -28,8 +38,8 @@ function Discount() {
         <>
         <div className="CreateDiscountContainer">
             <h2>Create a Discount Code</h2>
-            <input className="discountInput" type="text" placeholder="Discount Code" onChange={(e) => setCode(e.target.value)} />
-            <input className="discountInput" type="number" placeholder="Discount" max={100} min={0} onChange={(e) => {
+            <input className="discountInput" defaultValue={def} type="text" placeholder="Discount Code" onChange={(e) => setCode(e.target.value)} />
+            <input className="discountInput" defaultValue={def} type="number" placeholder="Discount" max={100} min={0} onChange={(e) => {
                 if(e.target.value > 100)
                 setPercentOff(100)
                 else if(e.target.value < 0)

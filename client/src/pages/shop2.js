@@ -101,7 +101,7 @@ export default function Shop2() {
         <Dropdown
         placeholder="Sort"
         className="dropdown_menu"
-        options={['Price: High to Low', 'Price: Low to High', 'Availability: High to Low', "Availability: Low to High", "Unsorted"]}
+        options={['Price: High to Low', 'Price: Low to High', 'Availability: High to Low', "Availability: Low to High"]}
         value="Unsorted"
         onChange={(response) => {console.log(response); sortCart(response.value)}}
         />

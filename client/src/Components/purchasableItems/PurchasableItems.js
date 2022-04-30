@@ -86,7 +86,7 @@ function PurchasableItems(props) {
 
                  <h6 className="itemQuant">Available: {itemQuant || "N/A"}</h6>
                  <div class="product-bottom-details">
-                    <div class="product-price">${props.item.itemPrice || "NULL"}</div>
+                    <div class="product-price">${props.item.itemPrice.toLocaleString() || "NULL"}</div>
                      { user.username &&
                     <div class="product-links">
                        {itemQuant > 0 ?

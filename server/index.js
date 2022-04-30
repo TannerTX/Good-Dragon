@@ -79,6 +79,7 @@ app.post("/logout", (req, res) => {
 app.post("/getUserCart", (req, res) => {
 
     const user = req.body.user
+    db.query("DELETE FROM customerCart WHERE quantity<=0")
     
     db.query("SELECT * FROM itemsForSale JOIN customerCart ON itemsForSale.itemID=customerCart.itemID WHERE customerCart.username=?", user.username.trim().toLowerCase(), (err, result) => {
 
@@ -132,6 +133,33 @@ app.post("/addToCart", (req, res) => {
     })
 
     
+})
+
+app.post("/removeFromCart", (req, res) => {
+
+    const user = req.body.currentUser
+    const itemName = req.body.itemName
+    const itemID = req.body.itemID
+    const amtToDelete = req.body.numToDelete
+
+    db.query("SELECT quantity FROM customerCart WHERE username=? AND itemID=?", [user.username, itemID], (err, result) => {
+        if(err) console.log(err)
+        else if(result.length) {
+
+            if(result[0].quantity <= 0)
+            db.query("DELETE FROM customerCart WHERE quantity=0");
+            else {
+            db.query("UPDATE customerCart set quantity=quantity-? WHERE username=? AND itemID=?", [amtToDelete, user.username, itemID], (err, result) => {
+            if(err) console.log(err)
+            else console.log(result)
+            })
+
+            db.query("UPDATE itemsForSale SET quantity=quantity+? WHERE itemID=?", [amtToDelete, itemID])
+            }
+
+        }
+        
+    })
 })
 
 app.post("/changePassword", (req, res) => {
