@@ -8,7 +8,7 @@ import Home from "./pages/homePage.js";
 import Login from "./pages/loginPage.js";
 import Register from "./pages/registerPage.js"
 import ErrorPage from "./pages/errorPage.js";
-import Cart from "./pages/cart.js"
+import Cart from "./pages/cart2.js"
 import "./assets/styles/style.css";
 import Axios from "axios"
 import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";

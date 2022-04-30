@@ -42,4 +42,9 @@
     transform: translate(-50%, -50%);
 }
 
+.cartButton {
+    position: absolute;
+    margin-left: 95%;
+    margin-top: 10px;;
+}   
    

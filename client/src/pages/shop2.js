@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import 'react-dropdown-now/style.css'
 import "../assets/styles/Login.css"
 import "../assets/styles/shop.css"
+import * as FaIcons from 'react-icons/fa';
 import "../Components/purchasableItems/PurchasableItems.js"
 import "../Components/purchasableItems/productCard.css"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
@@ -92,11 +93,11 @@ export default function Shop2() {
     return(
 
         <>
-        { 
-        
-        currentUser.username ? 
-            
-        <>
+        <div className="cartButton">
+        <Link to={currentUser.username ? "/cart":"/login"}>
+            <FaIcons.FaShoppingBag />
+          </Link>
+        </div>
         <Dropdown
         placeholder="Sort"
         className="dropdown_menu"
@@ -108,18 +109,6 @@ export default function Shop2() {
         <div class="cards">
             {items.map((prod) => <PurchasableItems item={prod} cart={cart} currUser={currentUser} />)}
         </div>
-        </>
-
-        :
-    
-
-        <div className="pleaseLogin-container">
-            <div className="pleaseLogin-inner">
-            <h3>Please <Link to="/login">Login</Link> to Continue</h3>
-            </div>
-        </div>
-
-        }
 
         </>
 

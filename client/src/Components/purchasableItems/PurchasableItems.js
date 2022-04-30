@@ -74,26 +74,39 @@ function PurchasableItems(props) {
               <div class="product-details">
                  <h4><a onClick={() => {handleModal(); console.log(`SHOWING MODAL ${showModal}`)}}>{props.item.itemName || "NULL"}</a></h4>
 
+                 { user.username &&
+                  <>
                  {itemQuant > 0 ?
                  <div className="qtySelect">
                     <QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e)=> {setQuantSelector(e)} } /> 
                  </div>
                  :
-                 <h6 style={{paddingTop: "45px"}}></h6> }
+                 <h6 style={{paddingTop: "45px"}}></h6> } </>
+                  }
+
                  <h6 className="itemQuant">Available: {itemQuant || "N/A"}</h6>
                  <div class="product-bottom-details">
                     <div class="product-price">${props.item.itemPrice || "NULL"}</div>
-
+                     { user.username &&
                     <div class="product-links">
                        {itemQuant > 0 ?
                        <>
-                       <button class="specialbutton" onClick={()=>
+                       <button class="specialbutton" onClick={()=> 
                           addToCart(props.item)}>
                           <FaIcons.FaShoppingCart />
                        </button>
                        </> :
                        <p style={{color: "red"}}>OUT OF STOCK</p> } 
                     </div>
+                     }
+
+                     { !user.username &&
+                        <div className="product-links">
+                           <Link to="/login">
+                              <span>Login to Purchase</span>
+                           </Link>
+                        </div>
+                     }
                  </div>
               </div>
            </div>

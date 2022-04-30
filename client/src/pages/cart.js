@@ -10,7 +10,7 @@ export default class Cart extends React.Component {
         this.state = {
             cart: [{}],
             currentUser: [{}],
-            
+            subTotal: 0,
         }
     }
 
@@ -24,6 +24,10 @@ export default class Cart extends React.Component {
                 
                 this.setState({cart: res.data});
                 console.log(this.state.cart)
+                
+                let total = 0
+                this.state.cart.forEach(item => total += (item.quantity * item.itemPrice))
+                this.setState({subTotal: total})
 
              })
             
@@ -35,7 +39,6 @@ export default class Cart extends React.Component {
         return this.state.cart
     }
 
-    
  render(){
      
     return(
@@ -50,16 +53,19 @@ export default class Cart extends React.Component {
 
             <div className="checkoutItems">
             {this.state.cart.map(item =>
-
-            
             <div style={{padding: "1px"}}> 
-            <h5 className="checkoutItemCard">{item.quantity} x {item.itemName}:  <p>${item.quantity * item.itemPrice}</p></h5>
-            
+            <h5 className="checkoutItemCard">{item.quantity} x {item.itemName}:  <p>${item.quantity * item.itemPrice}</p></h5> 
             </div>
-            
-
             )}
+
+
             </div>
+            
+            <div className="checkoutDetails">
+            
+            <h4>Subtotal: ${this.state.subTotal}</h4>
+            </div>
+            
 
             </div>
         </div>
