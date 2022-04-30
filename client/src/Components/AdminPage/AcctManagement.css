@@ -3,6 +3,7 @@
     background-color: rgba(255, 0, 0, 0);
     width: 30%;
     height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.582);
     
 }
 
@@ -15,7 +16,7 @@
   .AcctSearchContainer input {
     text-align: center;
     position: absolute;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Optima', sans-serif;
     color: #333;
     font-size: 1vw;
     padding-top: 15px;
@@ -29,6 +30,7 @@
     left: 10%;
     transform: translateY(-45%);
     border-bottom: 0.3rem solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.582);
     transition: all 0.3s;
   }
 
@@ -93,6 +95,10 @@
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     justify-items: stretch;
+    border-right: 1px solid rgba(0, 0, 0, 0.582);
+    border-top: 1px solid rgba(0, 0, 0, 0.582);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.445);
+
     align-items: stretch;
    }
 
@@ -112,7 +118,12 @@
     width: 12vw;
     height: 4vh;
     border-bottom: 0.3rem solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.582);
     transition: all 0.3s;
+   }
+
+   .userInfoInput::placeholder {
+     color: black;
    }
 
    .userInfoInput:disabled {
@@ -175,6 +186,7 @@
    .userPlacedOrders {
     position: absolute;
     background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.582);
     width: 17vw;
     height: 35vh;
     top: 5%;

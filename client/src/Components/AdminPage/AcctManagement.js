@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import "./AcctManagement.css"
 import Axios from "axios"
 
@@ -18,6 +18,7 @@ function AcctManagement() {
     const [newPassword, setNewPassword] = useState("")
     const [isAdmin, setIsAdmin] = useState(0)
     const [placedOrders, setPlacedOrders] = useState([])
+    const [rand, setRand] = useState(0)
 
     const handleUserSearch = () => {
 
@@ -42,7 +43,8 @@ function AcctManagement() {
                 })
 
                 
-
+                setRand(1)
+                setName(`${foundUser.firstName} ${foundUser.lastName}`)
             }
             else {
             setUsername("User Not Found")
@@ -57,6 +59,16 @@ function AcctManagement() {
         })
         console.log(placedOrders)
     }
+
+    useEffect(() => {
+        setFoundUser(foundUser)
+        setUsername(foundUser.username)
+                setEmail(foundUser.email)
+                setIsAdmin(foundUser.isAdmin)
+                setAddress(foundUser.address)
+                setOldPassword(foundUser.password)
+                setPhone(foundUser.phoneNum)
+    }, [rand])
 
     const handleChangeSubmit = () => {
 

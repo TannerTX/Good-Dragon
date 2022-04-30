@@ -50,31 +50,6 @@ export default function Shop2() {
             
     }, [])
 
-
-/*
-    const setSort = (val) => {
-
-        var query = ""
-    
-        switch(val) {
-            case "Price: High to Low": query = "ORDER BY itemPrice DESC"; break;
-            case "Price: Low to High": query = "ORDER BY itemPrice ASC"; break;
-            case "Availability: High to Low": query = "ORDER BY availableQuantity DESC"; break;
-            case "Availability: Low to High": query = "ORDER BY availableQuantity ASC"; break;
-            default: query = "";
-        }
-
-        setSortMethod(query)
-            
-        Axios.post("http://localhost:3001/getData", {sortMethod: query}).then(res => { 
-            setItems(res.data)
-            console.log(items)
-        })
-
-    }
-*/
-
-
     const sortCart = (val) => {
 
             switch(val) {
@@ -84,7 +59,6 @@ export default function Shop2() {
                 case "Availability: Low to High": setItems(items.sort(Funcs.ALH)); break;
                 default: setItems(items.sort(Funcs.PHL));
             }
-            //setItems(res.data)
             setSortMethod(`Done${Math.floor(Math.random() * 100)}`)
 
     }
