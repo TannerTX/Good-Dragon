@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import '../assets/styles/Login.css'
 import '../assets/styles/fancyLogout.css'
 import bgVideo from '../assets/videos/dogs2.mp4'
+import bgVideo2 from '../assets/videos/dogs3.mp4'
+
 import Axios from "axios"
 
 function Login() {
@@ -197,6 +199,8 @@ function Login() {
                     alt=""
                 />
             </Link>
+            <video autoPlay loop muted><source src={bgVideo2} type="video/mp4" /></video>
+
 
             <div className='login__container'>
                 <h1>Login</h1>
