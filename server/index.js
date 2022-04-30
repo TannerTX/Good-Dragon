@@ -326,6 +326,14 @@ app.post("/getData", (req, res) => {
     
 })
 
+app.post("/getMaxID", (req, res) => {
+    
+    db.query("SELECT MAX(itemID) as maxItemID from itemsForSale", (err, result) => {
+        if(err) console.log(err)
+        else res.send(result)
+    })
+})
+
 app.post("/discountCodes", (req, res) => {
 
     if(req.body.function === "add") {
