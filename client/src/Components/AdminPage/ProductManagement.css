@@ -7,14 +7,7 @@
     padding-top: 5px;
 }
 
-.newProductInfoContainer {
-    position: absolute;
-    background-color: #db4d4d00;
-    top: 10%;
-    width: 100%;
-    height: 90%;
-    
-}
+
 
 .newProductInfoContainer button {
     padding: 10px 2px;
@@ -68,7 +61,13 @@
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
-    border: 1px solid rgba(0, 0, 0, 0.274);
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
    }
 
   
@@ -140,15 +139,15 @@
     top: 2%;
     overflow: scroll;
     display: grid;
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(2, minmax(100px, 10fr));
     grid-auto-rows: auto;
 
     background: rgba( 255, 255, 255, 0.25 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 4px );
--webkit-backdrop-filter: blur( 4px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .imgSc {
@@ -156,7 +155,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     background-color: rgba(0, 0, 0, 0);
     height: 23%;
     border-radius: 4px;
-    padding-bottom: 80px;
+    padding-bottom: 100px;
 }
 
 span {
@@ -166,6 +165,7 @@ span {
 
 .imgS {
     width: 6vw;
+    height: 10vh;
     position: absolute;
 }
 
@@ -181,4 +181,9 @@ span {
 
 #age {
     width: 175px;
+}
+
+#sale {
+    width: 75px;
+    padding-left: 15px;
 }

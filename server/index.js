@@ -135,6 +135,18 @@ app.post("/addToCart", (req, res) => {
     
 })
 
+app.post("/addItem", (req, res) => {
+
+    const data = req.body.data
+    
+    db.query("INSERT INTO itemsForSale (itemName, itemID, description, itemPrice, availableQuantity, itemImg, itemCategory, age, pedigree, sale) VALUES (?,?,?,?,?,?,?,?,?,?)",
+              [data.itemName, data.id, data.description, data.price, data.available, data.image, data.category, data.isAge, data.isPedigree, data.sale], (err, result) => {
+                  if(err) console.log(err)
+                  else res.send(result)
+              })
+
+})
+
 app.post("/removeFromCart", (req, res) => {
 
     const user = req.body.currentUser
@@ -306,6 +318,8 @@ app.post("/login", (req, res) => {
     }
     
 })
+
+
 
 app.post("/getData", (req, res) => {
 

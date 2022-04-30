@@ -21,19 +21,21 @@ function ProductManagement(props) {
     const submitItem = () => {
 
         
-        if( category === "Pet" && ( itemName === "" || description === "" || price === null || available === null || image === null || category === "" || age === null || pedigree === "") )
+        if( category === "Pet" && ( itemName === "" || description === "" || price === null || available === null || image === null || category === "" || age === null || pedigree === "" || sale === "") )
         alert("No Empty Fields!")
-        else if(category != "Pet" && ( itemName === "" || description === "" || price === null || available === null || image === null || category === "") )
+        else if(category != "Pet" && ( itemName === "" || description === "" || price === null || available === null || image === null || category === "" || sale === "") )
         alert("No Empty Fields!")
         else {
 
         Axios.post("http://localhost:3001/getMaxID").then(res => {
             console.log(res.data[0].maxItemID)
             let max = res.data[0].maxItemID + 1
-            let isAge = age || null
+            let isAge = parseInt(age) || null
             let isPedigree = pedigree || null
             
-            Axios.post("http://localhost:3001/addItem", {itemName, max, description, price, available, image, category, isAge, isPedigree}).then(result => {
+            console.log({itemName, max, description, price, available, image, category, age, isPedigree, sale})
+
+            Axios.post("http://localhost:3001/addItem",{data: {itemName, id: max, description, price, available, image, category, isAge, isPedigree, sale} }).then(result => {
                 console.log(result)
             })
 
@@ -53,6 +55,7 @@ function ProductManagement(props) {
         setCategory(category)
         setAge(age)
         setPedigree(pedigree)
+        setSale(sale)
     }, [image])
 
 
@@ -65,7 +68,7 @@ function ProductManagement(props) {
         <div className="newProductInfoContainer">
         <Dropdown
         placeholder="Category" 
-        className="dropdown_menu"
+        className="dropdown_menu rdnI rdn-dropI"
         options={["Pet", "Accessory", "Service"]}
         onChange={(e) => setCategory(e.value)}
         />  
@@ -87,11 +90,11 @@ function ProductManagement(props) {
         </div>
 
         <div>
-        <input id="priceInput" placeholder="Price" min={0} max={9999} type="number" step=".01" onChange={(e) => setPrice(e.target.value)} />
+        <input id="priceInput" placeholder="Price" min={0} max={9999} type="number" step=".01" onChange={(e) => setPrice(parseFloat(e.target.value))} />
         </div>
 
         <div>
-        <input id="availability" min={0} max={9999} placeholder="Available Quantity" type="number" onChange={(e) => setAvailable(e.target.value)} />    
+        <input id="availability" min={0} max={9999} placeholder="Available Quantity" type="number" onChange={(e) => setAvailable(parseInt(e.target.value))} />    
         </div>
         
         <div id="imgPreview">
@@ -100,7 +103,8 @@ function ProductManagement(props) {
         </div>
 
         <div>
-        <input id="age" type="number" min={1} max={30} placeholder="Age" onChange={(e) => setAge(e.target.value)} disabled={(category === "Service" || category === "Accessory") ? true:false}/>
+        <input id="age" type="number" min={1} max={30} placeholder="Age" onChange={(e) => setAge(parseInt(e.target.value))} disabled={(category === "Service" || category === "Accessory") ? true:false}/>
+        <input id="sale" type="number" min={0} max={100} placeholder="Sale" onChange={(e) => setSale(parseInt(e.target.value))}/>
         </div>
 
         <div>
