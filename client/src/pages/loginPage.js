@@ -172,10 +172,10 @@ function Login() {
 
             <form>
 
-            <input type='password' placeholder="Password" value={oldPass} onChange={e => setOldPass(e.target.value)} />    
+            <input class = "input" type='password' placeholder="Password" value={oldPass} onChange={e => setOldPass(e.target.value)} />    
             <p style={{color: "red", paddingBottom: "10px"}}></p> 
 
-            <input type='password' placeholder="New Password" value={newPass} onChange={e => setNewPass(e.target.value)} />
+            <input class = "input" type='password' placeholder="New Password" value={newPass} onChange={e => setNewPass(e.target.value)} />
             <p style={{color: formErrors.message === "Success!" ? "green" : "red", paddingBottom: "10px", paddingTop: "5px"}}>{formErrors.passError || formErrors.message}</p> 
 
             </form>
