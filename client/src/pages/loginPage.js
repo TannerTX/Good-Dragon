@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom" 
 import '../assets/styles/Login.css'
 import '../assets/styles/fancyLogout.css'
+import bgVideo from '../assets/videos/dogs2.mp4'
 import Axios from "axios"
 
 function Login() {
@@ -132,9 +133,9 @@ function Login() {
     return (
         <>
         {loginStatus ?
-         
-        <div className="cardsContainer fade-in-image">
         
+        <div className="cardsContainer fade-in-image">
+        <video autoPlay loop muted><source src={bgVideo} type="video/mp4" /></video>
         <div className="profileCard">
             <div className="profileCardContent">
                 <img alt="" src="https://cdn.vox-cdn.com/thumbor/u1xA8jhp6gZKCzkGwx_igXGSJ5A=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22388656/Marvel_Tales_Doctor_Strange_Vol_1_1_Virgin_Variant.jpeg"/>

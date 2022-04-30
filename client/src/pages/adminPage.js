@@ -84,7 +84,6 @@ function Admin() {
             <button onClick={() => setPortal("Accounts")}>Account Management</button>
             <button onClick={() => setPortal("Products")}>Product Management</button>
             <button onClick={() => setPortal("Discounts")}>Discount Codes</button>
-
             <button onClick={() => setPortal("History")}>Order History</button>
         </div>
 
