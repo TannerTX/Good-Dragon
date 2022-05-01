@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Axios from "axios"
 import "./modal.css"
+import { useNavigate } from "react-router-dom"
 import { AiFillPropertySafety } from "react-icons/ai"
 
 
@@ -18,6 +19,7 @@ export default function Dropbox(props) {
     const [pedigree, setPedigree] = useState(props.item.pedigree)
     const [sale, setSale] = useState(props.item.sale)
     const [rand, setRand] = useState(0)
+    const history = useNavigate()
 
     const handleChangeSubmit = () => {
         setRand(Math.floor(Math.random() * 100))
@@ -39,8 +41,7 @@ export default function Dropbox(props) {
         Axios.post("http://localhost:3001/deleteItem", {id: id}).then(res => {
             console.log(res)
             alert("Success!")
-            window.location.href = window.location.href
-            window.location.reload(true)
+            history("/shop")
         })
     }
 

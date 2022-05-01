@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate, useHistory } from "react-router-dom"
 import Axios from "axios"
 import "../assets/styles/checkout.css"
 
@@ -15,6 +16,8 @@ function Checkout() {
     const [discountCode, setDiscountCode] = useState("")
     const [percentOff, setPercentOff] = useState(0)
     Axios.defaults.withCredentials = true
+
+    const history = useNavigate()
 
     useState(() => {
 
@@ -49,7 +52,7 @@ function Checkout() {
     }
 
     useEffect(() => {
-    }, [totalPrice])
+    }, [])
 
     const getTotalPrice = () => {
         return totalPrice
@@ -58,19 +61,28 @@ function Checkout() {
     const placeOrder = () => {
         const current = new Date();
         const date = `${current.getMonth() + 1}-${current.getDate()}-${current.getFullYear()}`
-        
+        let id
 
         let orderTotal = ( ((totalPrice + (totalPrice * 0.0825)).toFixed(2)) - (((totalPrice + (totalPrice * 0.0825)).toFixed(2)) * (percentOff / 100) ) ).toFixed(2)
         console.log(orderTotal)
         console.log(checkOutItems)
         console.log(date)
 
+        let itemList = ""
+        let quantityList = ""
+
         checkOutItems.forEach(item => {
-            let quant = item.quantity
-            Axios.post("http://localhost:3001/placeOrder", {itemID: item.itemID, total: orderTotal, username: currentUser.username, date: date, quantity: quant}).then(res => {
-                console.log(res)
-            })
+            itemList += `${item.itemID},`
+            quantityList += `${item.quantity},`
         })
+
+
+            Axios.post("http://localhost:3001/placeOrder", {data: {itemID: itemList, total: orderTotal, username: currentUser.username, date: date, quantity: quantityList}}).then(res => {
+                console.log(res)
+                
+            })
+
+        history("/shop")
     }
 
     return(

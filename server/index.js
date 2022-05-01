@@ -83,6 +83,33 @@ app.post("/checkDiscountCode", (req, res) => {
     })
 })
 
+app.post("/placeOrder", (req, res) => {
+
+    const data = req.body.data
+    let orderID = 0
+    db.query("SELECT MAX(orderID) as maxID FROM placedOrders", (err, result) => {
+        if(err) console.log(err)
+        if(result[0].maxID === null)
+        orderID = 0
+        else if(result[0].maxID != null) {
+            orderID = result[0].maxID + 1
+        }
+
+        db.query("INSERT INTO placedOrders (orderID, purchasedItemID, orderTotal, username, date, itemQuantity) VALUES (?,?,?,?,?,?)", 
+              [orderID, data.itemID, data.total, data.username, data.date, data.quantity], (err, result) => {
+                  if(err) console.log(err)
+                  else console.log(result)
+
+                  db.query("DELETE FROM customerCart WHERE username=?", [data.username])
+              })
+        
+    })
+
+
+    
+
+})
+
 app.post("/logout", (req, res) => {
     req.session.destroy()
     console.log("COOKIE GONE")

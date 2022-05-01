@@ -2,8 +2,6 @@ import React, {useEffect, useState} from "react"
 import "./AcctManagement.css"
 import Axios from "axios"
 
-
-
 function AcctManagement() {
 
     const [userSearch, setUserSearch] = useState("")
@@ -17,29 +15,41 @@ function AcctManagement() {
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [isAdmin, setIsAdmin] = useState(0)
+    const [show, setShow] = useState(false)
     const [placedOrders, setPlacedOrders] = useState([])
     const [rand, setRand] = useState(0)
+    const [orderMap, setOrderMap] = useState(new Map())
+    const updateOrderMap = (k, v) => {
+        setOrderMap(orderMap.set(k, v))
+    }
 
+    let map = new Map()
     const handleUserSearch = () => {
 
         Axios.post("http://localhost:3001/getUserInfo", {user:userSearch}).then(res => {
             if(res.data[0].username) {
                 console.log(res.data[0])
                 setFoundUser(res.data[0])
-                setUsername(foundUser.username)
-                setName(`${foundUser.firstName} ${foundUser.lastName}`)
-                setEmail(foundUser.email)
-                setIsAdmin(foundUser.isAdmin)
-                setAddress(foundUser.address)
-                setOldPassword(foundUser.password)
-                setPhone(foundUser.phoneNum)
+                setUsername(res.data[0].username)
+                setName(`${res.data[0].firstName} ${res.data[0].lastName}`)
+                setEmail(res.data[0].email)
+                setIsAdmin(res.data[0].isAdmin)
+                setAddress(res.data[0].address)
+                setOldPassword(res.data[0].password)
+                setPhone(res.data[0].phoneNum)
 
-                Axios.post("http://localhost:3001/getUserOrders", {user:foundUser.username}).then(res => {
-                    if(res.data[0]) 
-                    setPlacedOrders(res.data[0])
+                Axios.post("http://localhost:3001/getUserOrders", {user: res.data[0].username}).then(res => {
                     
-                    else if(!res.data[0])
+                if(res.data[0]) {
+                    setPlacedOrders(res.data)
+                    console.log("PLACED ORDERS")
+                    console.log(res.data)
+                }
+                    //getOrders() 
+                else
                     setPlacedOrders(null)
+                    setShow(true)      
+                    
                 })
 
                 
@@ -57,18 +67,16 @@ function AcctManagement() {
             }
 
         })
-        console.log(placedOrders)
+
     }
 
     useEffect(() => {
-        setFoundUser(foundUser)
-        setUsername(foundUser.username)
-                setEmail(foundUser.email)
-                setIsAdmin(foundUser.isAdmin)
-                setAddress(foundUser.address)
-                setOldPassword(foundUser.password)
-                setPhone(foundUser.phoneNum)
-    }, [rand])
+        setPlacedOrders(placedOrders)
+    }, [placedOrders])
+
+    useEffect(() => {
+        setOrderMap(orderMap)
+    }, [orderMap])
 
     const handleChangeSubmit = () => {
 
@@ -89,6 +97,17 @@ function AcctManagement() {
 
     }
 
+    const getOrders = () => {
+        console.log("ORDERS")
+        console.log(placedOrders)
+        return placedOrders
+    }
+
+    const getTotalItems = (item) => {
+        let total = 0
+        total = item.itemQuantity.substring(0, item.itemQuantity.length - 1).split(",").reduce((a, b) => parseInt(a) + parseInt(b), 0)
+        return total
+    }
 
     return(
         <>
@@ -145,14 +164,20 @@ function AcctManagement() {
         </div>
 
         <div className="userPlacedOrders">
-        {  
-            <p className="placedOrder">
-                
-            </p>
+        { (show && !placedOrders) &&
+            <p>NO ORDERS</p>
         }
-        {  
-            <p className="noOrders">NO ORDERS</p>
+        { (show && placedOrders != null)  &&
+
+            placedOrders.map(item => 
+            <div className="ITEM">
+                <h5>ORDER ID: {item.orderID}</h5>
+                <h5>Purchase Total: ${item.orderTotal.toLocaleString()}</h5>
+                <h5>Items: {getTotalItems(item)}</h5>
+                <h5>Date: {item.date}</h5>
+            </div>)
         }
+
         </div>
         </>
     )

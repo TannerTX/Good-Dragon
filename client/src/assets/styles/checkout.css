@@ -176,7 +176,8 @@ hr {
 .TotalPrice h2 {
     position: absolute;
     text-align: right;
-    top: 60%;
+    font-size: 0.9vw;
+    top: 61%;
     left: 70%;
 }
 

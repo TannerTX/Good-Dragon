@@ -9,6 +9,7 @@ import Login from "./pages/loginPage.js";
 import Register from "./pages/registerPage.js"
 import ErrorPage from "./pages/errorPage.js";
 import Checkout from "./pages/checkout.js"
+import CheckoutSuccess from "./pages/checkoutSuccess.js"
 import Cart from "./pages/cart2.js"
 import "./assets/styles/style.css";
 import Axios from "axios"
@@ -44,6 +45,7 @@ function App() {
          <Route path="/cart" element={<Cart />} />
          <Route path="/admin" element={<Admin />} />
          <Route path="/checkout" element={<Checkout />} />
+         <Route path="/checkoutSuccess" element={<CheckoutSuccess />} />
          <Route path="/shop" element={<Shop2 />} />
          <Route path="/shop2" element={<Shop2 />} />
          <Route path="*" element={<ErrorPage />} />
