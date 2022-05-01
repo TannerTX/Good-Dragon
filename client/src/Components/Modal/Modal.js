@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Axios from "axios"
 import "./modal.css"
+import { AiFillPropertySafety } from "react-icons/ai"
 
 
 export default function Dropbox(props) {
@@ -30,6 +31,17 @@ export default function Dropbox(props) {
         })
 
 
+    }
+
+    const handleDelete = () => {
+        setRand(Math.floor(Math.random() * 100))
+        let id = props.item.itemID
+        Axios.post("http://localhost:3001/deleteItem", {id: id}).then(res => {
+            console.log(res)
+            alert("Success!")
+            window.location.href = window.location.href
+            window.location.reload(true)
+        })
     }
 
     useEffect(() => {
@@ -69,6 +81,9 @@ export default function Dropbox(props) {
 
             <div className="dropdown-header">
                 <h4>Modify {props.item.itemName}</h4>
+                <div className="deleteButton">
+                <button className="btn newStyle" onClick={handleDelete}>Delete Item</button>
+                </div>
             </div>
             <div class="img-container">
                 <img src={props.item.itemImg} alt="dogImg" class="circleBase type1"></img>

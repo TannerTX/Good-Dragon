@@ -245,3 +245,9 @@
       top: 29%;
   }
 
+  .deleteButton {
+      position: absolute;
+      left: 85%;
+      top: 25%;
+      background-color: red;
+  }

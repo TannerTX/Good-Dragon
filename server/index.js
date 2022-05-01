@@ -174,6 +174,12 @@ app.post("/removeFromCart", (req, res) => {
     })
 })
 
+app.post("/deleteItem", (req, res) => {
+    const itemID = req.body.id
+    db.query("DELETE FROM itemsForSale WHERE itemID=?", [itemID])
+    db.query("DELETE FROM customerCart WHERE itemID=?", [itemID])
+})
+
 app.post("/changePassword", (req, res) => {
 
     const salt = bcrypt.genSaltSync(saltRounds)

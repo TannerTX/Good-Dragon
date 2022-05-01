@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import Axios from "axios"
 import CartItem from "../Components/cartItem/cartItem.js"
 import * as AiIcons from "react-icons/ai"
+import cartImg from "../assets/images/logos/cart.png"
 
 export default function Cart() {
     
@@ -15,7 +17,9 @@ export default function Cart() {
     }
 
     Axios.defaults.withCredentials = true
-    
+    const history = useNavigate()
+
+
     useEffect(() => {
     
         Axios.get("http://localhost:3001/login").then(response => {    
@@ -132,7 +136,11 @@ export default function Cart() {
             }
 
             { cart.length <= 0 &&
-            <div className="noItems">NO ITEMS</div>
+            <div className="noItems">
+                <h1>You have no items in your cart!</h1>
+                <img src={cartImg} />
+                <button onClick={() => history("/shop")}>Continue Shopping</button>
+            </div>
 
             }
             
