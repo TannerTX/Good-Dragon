@@ -34,7 +34,7 @@ function Login() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-            await Axios.post("http://localhost:3001/login", user).then(response =>{
+            await Axios.post(`https://good-dragon.herokuapp.com/login`, user).then(response =>{
             console.log(response);
             setFormErrors(validate(response))
 
