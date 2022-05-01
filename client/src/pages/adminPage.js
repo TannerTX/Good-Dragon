@@ -5,6 +5,8 @@ import "../assets/styles/adminPage2.css"
 import AcctManagement from "../Components/AdminPage/AcctManagement.js"
 import Discount from "../Components/AdminPage/Discounts.js"
 import ProductManagement from "../Components/AdminPage/ProductManagement.js"
+import bg from '../assets/videos/dog4.jpg'
+
 
 function Admin() {
 
@@ -34,7 +36,7 @@ function Admin() {
         { loginStatus.isAdmin ? 
 
         <div className="mainContainer">
-
+            <img src = {bg} class="center fade-in-image" />
         <div className="buttonNavContainer">
             <button onClick={() => setPortal("Accounts")}>Account Management</button>
             <button onClick={() => setPortal("Products")}>Product Management</button>

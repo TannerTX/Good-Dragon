@@ -1,9 +1,11 @@
 .AcctSearchContainer {
     position: relative;
-    background-color: rgba(255, 0, 0, 0);
+    background-color: rgba(255,255,255,.5);
     width: 30%;
     height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.582);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
     
 }
 
@@ -84,7 +86,10 @@
    
    .AcctInfoGridContainer {
     position: absolute;
-    background-color: #db4d4d00;
+    background-color: rgba(255,255,255,.5);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
     width: 70%;
     height: 100%;
     top: 0;
@@ -95,9 +100,6 @@
     grid-gap: 15px;
     justify-items: stretch;
 
-    border-right: 1px solid rgba(0, 0, 0, 0.582);
-    border-top: 1px solid rgba(0, 0, 0, 0.582);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.445);
 
     align-items: stretch;
    }
