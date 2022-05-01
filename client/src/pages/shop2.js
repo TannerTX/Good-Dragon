@@ -25,6 +25,7 @@ export default function Shop2() {
     const [currentUser, setCurrentUser] = useState({})
     const [sort, setSortMethod] = useState("")
     const [numSearches, setNumSearches] = useState(0)
+    const [rand, setRand] = useState(0)
 
     useEffect(() => {
         
@@ -49,6 +50,7 @@ export default function Shop2() {
                 
             
     }, [])
+
 
     const sortCart = (val) => {
 

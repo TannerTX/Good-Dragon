@@ -272,6 +272,16 @@ app.post("/updateUserInfo", (req, res) => {
 
 })
 
+app.post("/updateItem", (req, res) => {
+    const data = req.body.data;
+
+    db.query("UPDATE itemsForSale SET itemName=?, description=?, itemPrice=?, availableQuantity=?, age=?, pedigree=?, sale=? WHERE itemID=?", 
+             [data.itemName, data.description, data.price, data.available, data.age, data.pedigree, data.sale, data.id], (err, result) => {
+                 if(err) console.log(err)
+                 else res.send(result)
+             })
+})
+
 app.get("/login", (req, res) => {
 
     if(req.session.user) 

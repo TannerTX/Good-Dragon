@@ -6,6 +6,7 @@ import "./productCard.css"
 import Dropdown from "../Modal/Modal.js"
 import "../Modal/modal.css"
 import Axios from "axios"
+import { IconContext } from "react-icons/lib"
 
 
 
@@ -19,6 +20,8 @@ function PurchasableItems(props) {
     const [itemQuant, setItemQuant] = useState(props.item.availableQuantity)
     const [quantSelector, setQuantSelector] = useState(1)
     const [showModal, setShowModal] = useState(false)
+    const [showAdminModal, setShowAdminModal] = useState(false)
+    const [rand, setRand] = useState(0)
 
     const addToCart = async item => {
 
@@ -48,22 +51,46 @@ function PurchasableItems(props) {
     useEffect(() => {
         setItemQuant(props.item.availableQuantity)
         setShowModal(showModal)
-    }, [props.item.availableQuantity, showModal])
+    }, [props.item.availableQuantity, showModal, rand])
 
     const handleModal = async e => {
        setShowModal(!showModal)
     }
 
+    const handleAdminModal = () => {
+      setRand(Math.floor(Math.random() * 100))
+      setShowAdminModal(!showAdminModal)
+    }
+
     return(
         <>
-        {showModal && <Dropdown item={props.item} />}
+        {showModal && <Dropdown item={props.item} adminMode={false} />}
         {showModal && <button className="btn" onClick={handleModal}>Close</button>}
-         
+
+        {showAdminModal && <Dropdown item={props.item} adminMode={true} />}
+        {showAdminModal && <button className="btn" onClick={handleAdminModal}>Close</button>}
 
            <div class="card">
            <div class="product-card">
 
               <div class="badge"> {props.item.itemCategory || "NULL"} </div>
+
+              { props.item.sale > 0 &&
+              <>
+              <div class="saleNameBadge">SALE</div>
+              <div class="saleBadge">{props.item.sale}% OFF</div>
+              </>
+              }
+
+              {  user.isAdmin &&
+                  <div className="adminCogs">
+                  <IconContext.Provider value={{color: "rgba(0, 0, 0, 0.33)"}} >
+                  <span onClick={() => handleAdminModal()}>
+                  <FaIcons.FaCog />
+                  </span>
+                  </IconContext.Provider>
+                  </div>
+              }
 
               <div class="product-tumb">
                  {props.item.itemImg ? <img src={props.item.itemImg} width={width} height={height} className="prodimg" /> :
