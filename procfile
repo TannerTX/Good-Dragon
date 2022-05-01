@@ -1,2 +1,2 @@
-worker: cd server
-worker: npm run runall
+web: cd server
+web: npm run runall
