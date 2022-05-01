@@ -8,6 +8,7 @@ import Home from "./pages/homePage.js";
 import Login from "./pages/loginPage.js";
 import Register from "./pages/registerPage.js"
 import ErrorPage from "./pages/errorPage.js";
+import Checkout from "./pages/checkout.js"
 import Cart from "./pages/cart2.js"
 import "./assets/styles/style.css";
 import Axios from "axios"
@@ -42,6 +43,7 @@ function App() {
          <Route path="/testing" element={<Testing />} />
          <Route path="/cart" element={<Cart />} />
          <Route path="/admin" element={<Admin />} />
+         <Route path="/checkout" element={<Checkout />} />
          <Route path="/shop" element={<Shop2 />} />
          <Route path="/shop2" element={<Shop2 />} />
          <Route path="*" element={<ErrorPage />} />
