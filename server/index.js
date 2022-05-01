@@ -1,6 +1,7 @@
 const express = require('express')
 const mysql = require('mysql')
 const cors = require("cors")
+const path = require("path")
 const bcrypt = require("bcryptjs")
 const port = 3001, saltRounds = 10
 require('dotenv').config()
@@ -28,6 +29,7 @@ app.use(session({
     },
 })
 )
+app.use(express.static(path.join(__dirname + "/public")))
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
