@@ -38,11 +38,39 @@ function Checkout() {
 
     }, [])
 
+    const checkDiscountCode = () => {
+        let code = discountCode
+        Axios.post("http://localhost:3001/checkDiscountCode", {code: code}).then(res => {
+            console.log(res)
+            if(res.data.discount)
+            setPercentOff(res.data.discount)
+            else if(!res.data.discount) alert("Invalid Code!")
+    })
+    }
+
     useEffect(() => {
     }, [totalPrice])
 
     const getTotalPrice = () => {
         return totalPrice
+    }
+
+    const placeOrder = () => {
+        const current = new Date();
+        const date = `${current.getMonth() + 1}-${current.getDate()}-${current.getFullYear()}`
+        
+
+        let orderTotal = ( ((totalPrice + (totalPrice * 0.0825)).toFixed(2)) - (((totalPrice + (totalPrice * 0.0825)).toFixed(2)) * (percentOff / 100) ) ).toFixed(2)
+        console.log(orderTotal)
+        console.log(checkOutItems)
+        console.log(date)
+
+        checkOutItems.forEach(item => {
+            let quant = item.quantity
+            await Axios.post("http://localhost:3001/placeOrder", {itemID: item.itemID, total: orderTotal, username: currentUser.username, date: date, quantity: quant}).then(res => {
+                console.log(res)
+            })
+        })
     }
 
     return(
@@ -85,14 +113,28 @@ function Checkout() {
     
         <div className="Total">
         <hr className="longHR" />
+        { percentOff &&
+         <p>Discount: %{percentOff}</p>
+        }
         <h2>Order Total: </h2>
         </div>
 
         <div className="TotalPrice">
-            <h2>${((totalPrice + (totalPrice * 0.0825)).toFixed(2)) - (((totalPrice + (totalPrice * 0.0825)).toFixed(2)) * (percentOff / 100) )}</h2>
+            <h2 style={{textDecoration: percentOff > 0 && "line-through"}}>${( ((totalPrice + (totalPrice * 0.0825)).toFixed(2)))}</h2>
+            { percentOff > 0 &&
+            <h2 style={{paddingTop: "25px", color: "green"}}>${( ((totalPrice + (totalPrice * 0.0825)).toFixed(2)) - (((totalPrice + (totalPrice * 0.0825)).toFixed(2)) * (percentOff / 100) ) ).toFixed(2)}</h2> 
+            }
         </div>
 
-        <input className="userInfoInput" placeholder="Discount Code" onChange={(e) => setDiscountCode(e.target.value)}/>
+        <div className="CheckoutButtons">
+        <input className="userInfoInputCheckout" placeholder="Discount Code" onChange={(e) => setDiscountCode(e.target.value)}/>
+        <button className="checkoutbtn" onClick={checkDiscountCode}>Add Discount</button>
+        </div>
+
+        <div className="placeOrder">
+        <button className="checkoutbtn" onClick={placeOrder}>Place Order</button>
+        </div>
+
         </div>
         </>
     )

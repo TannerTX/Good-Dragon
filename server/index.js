@@ -73,6 +73,16 @@ app.post("/register", (req, res) => {
     
 })
 
+app.post("/checkDiscountCode", (req, res) => {
+    const code = req.body.code
+
+    db.query("SELECT * FROM discountCodes WHERE codes=?", [code], (err, result) => {
+        if(err) console.log(err)
+        else if(result.length) res.send({discount: result[0].discount})
+        else res.send({message: ""})
+    })
+})
+
 app.post("/logout", (req, res) => {
     req.session.destroy()
     console.log("COOKIE GONE")
