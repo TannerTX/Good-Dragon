@@ -67,7 +67,7 @@ function Checkout() {
 
         checkOutItems.forEach(item => {
             let quant = item.quantity
-            await Axios.post("http://localhost:3001/placeOrder", {itemID: item.itemID, total: orderTotal, username: currentUser.username, date: date, quantity: quant}).then(res => {
+            Axios.post("http://localhost:3001/placeOrder", {itemID: item.itemID, total: orderTotal, username: currentUser.username, date: date, quantity: quant}).then(res => {
                 console.log(res)
             })
         })
