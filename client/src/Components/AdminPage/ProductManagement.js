@@ -94,7 +94,7 @@ function ProductManagement(props) {
         </div>
 
         <div>
-        <input id="availability" min={0} max={9999} placeholder="Available Quantity" type="number" onChange={(e) => setAvailable(parseInt(e.target.value))} />    
+        <input id="availability" min={0} max={9999} placeholder="Available Units" type="number" onChange={(e) => setAvailable(parseInt(e.target.value))} />    
         </div>
         
         <div id="imgPreview">
