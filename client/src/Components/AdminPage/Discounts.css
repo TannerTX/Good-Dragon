@@ -1,10 +1,12 @@
 .CreateDiscountContainer {
     position: absolute;
-    width: 60%;
+    width: 61%;
     height: 100%;
-    background-color: rgb(177, 175, 175);
+    background-color: rgba(255, 255, 255,.5);
     text-align: center;
     padding-top: 10px;
+    transition: .5s ease;
+    border-radius: 10px;
 }
 
 .DiscountCodesContainer {
@@ -12,10 +14,13 @@
     width: 40%;
     left: 60%;
     height: 100%;
-    background-color: gray;
+    background-color: rgba(255, 255, 255,.5);
     padding-top: 10px;
     text-align: center;
+    transition: .5s ease;
+    border-radius: 10px;
 }
+
 
 .DiscountCodesContainer h3 {
     padding-top: 10px;
@@ -36,6 +41,8 @@
     grid-row-gap: 20px;
     justify-items: stretch;
     align-items: stretch;
+    border-radius: 10px;
+
    }
 
    .CreateDiscountContainer input {
@@ -48,7 +55,7 @@
     padding-bottom: 15px;
     margin-left: 5%;
     margin-top: 10%;
-    border-radius: 0.1rem;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     border: none;
     width: 12vw;

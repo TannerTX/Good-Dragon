@@ -21,7 +21,7 @@
     font-size: 1vw;
     padding-top: 15px;
     padding-bottom: 15px;
-    border-radius: 0.1rem;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     border: none;
     width: 12vw;
@@ -89,12 +89,12 @@
     height: 100%;
     top: 0;
     left: 30%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    display: inline-grid;
+    grid-template-columns: 300px 100px;
+    grid-template-rows: 100px 100px;
+    grid-gap: 15px;
     justify-items: stretch;
+
     border-right: 1px solid rgba(0, 0, 0, 0.582);
     border-top: 1px solid rgba(0, 0, 0, 0.582);
     border-bottom: 1px solid rgba(0, 0, 0, 0.445);
@@ -102,21 +102,15 @@
     align-items: stretch;
    }
 
-   .userInfoInput {
+   .AcctInfoGridContainer .userInfoInput {
     text-align: center;
     position: relative;
     font-family: 'Roboto', sans-serif;
     color: #333;
     font-size: 0.9vw;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-left: 5%;
-    margin-top: 11%;
-    border-radius: 0.1rem;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     border: none;
-    width: 12vw;
-    height: 4vh;
     border-bottom: 0.3rem solid transparent;
     border: 1px solid rgba(0, 0, 0, 0.582);
     transition: all 0.3s;
