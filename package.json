@@ -3,7 +3,6 @@
     "react-dropdown-now": "^6.0.1"
   },
   "scripts": {
-    "startClient": "cd client && npm run start",
-    "startServer": "cd server && node index.js"
+    "start": "node server/index.js"
   }
 }
