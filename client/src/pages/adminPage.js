@@ -5,6 +5,8 @@ import "../assets/styles/adminPage2.css"
 import AcctManagement from "../Components/AdminPage/AcctManagement.js"
 import Discount from "../Components/AdminPage/Discounts.js"
 import ProductManagement from "../Components/AdminPage/ProductManagement.js"
+import OrderHistory from "../Components/AdminPage/OrderHistory.js"
+
 import bg from '../assets/videos/dog4.jpg'
 
 
@@ -59,7 +61,7 @@ function Admin() {
             }
 
             { portal == "History" &&
-                <div>HISTORY</div>
+                <OrderHistory />
             }
 
 
