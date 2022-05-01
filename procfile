@@ -1,2 +1,2 @@
-web: cd server
-web: npm run runall
+web: npm start
+api: node server/index.js
