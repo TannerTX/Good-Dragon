@@ -166,7 +166,7 @@ app.post("/removeFromCart", (req, res) => {
             else console.log(result)
             })
 
-            db.query("UPDATE itemsForSale SET quantity=quantity+? WHERE itemID=?", [amtToDelete, itemID])
+            db.query("UPDATE itemsForSale SET availableQuantity=availableQuantity+? WHERE itemID=?", [amtToDelete, itemID])
             }
 
         }

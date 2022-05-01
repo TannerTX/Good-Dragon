@@ -37,6 +37,7 @@ function ProductManagement(props) {
 
             Axios.post("http://localhost:3001/addItem",{data: {itemName, id: max, description, price, available, image, category, isAge, isPedigree, sale} }).then(result => {
                 console.log(result)
+                alert("Successfully added item!")
             })
 
 
