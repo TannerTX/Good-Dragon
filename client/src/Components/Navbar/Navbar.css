@@ -16,6 +16,8 @@
 .menu-bars {
   margin-left: 0.1em;
   font-size: 1rem;
+  position:fixed;
+  z-index: 999;
 }
 
 .nav-menu {
