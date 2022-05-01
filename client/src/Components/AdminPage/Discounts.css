@@ -1,12 +1,14 @@
 .CreateDiscountContainer {
     position: absolute;
-    width: 61%;
+    width: 60%;
     height: 100%;
     background-color: rgba(255, 255, 255,.5);
     text-align: center;
     padding-top: 10px;
     transition: .5s ease;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
 }
 
 .DiscountCodesContainer {
@@ -18,7 +20,8 @@
     padding-top: 10px;
     text-align: center;
     transition: .5s ease;
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 
