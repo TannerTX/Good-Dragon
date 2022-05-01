@@ -435,4 +435,4 @@ app.get("/test", (req, res) => {
 
 
 
-app.listen(port, () => { console.log(`Listening on port ${port}`); })
+app.listen(process.env.PORT || 3001, () => { console.log(`Listening on port ${process.env.PORT || 3001}`); })
