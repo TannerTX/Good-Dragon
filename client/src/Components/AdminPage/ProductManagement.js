@@ -73,8 +73,9 @@ function ProductManagement(props) {
         options={["Pet", "Accessory", "Service"]}
         onChange={(e) => setCategory(e.value)}
         />  
+        <div class = "1">
         <input id="itemName" placeholder="Item name" onChange={(e) => setItemName(e.target.value)} />
-
+        </div>
         <div id="imgScroller">
          { props.imgs.map(img => 
          <span onClick={() => setImage(img)}>
@@ -86,29 +87,29 @@ function ProductManagement(props) {
          }  
         </div>
 
-        <div>
+        <div class = "2">
         <input id="itemDescription" placeholder="Item Description" onChange={(e) => setDescription(e.target.value)} />
         </div>
 
-        <div>
+        <div class = "3">
         <input id="priceInput" placeholder="Price" min={0} max={9999} type="number" step=".01" onChange={(e) => setPrice(parseFloat(e.target.value))} />
         </div>
 
-        <div>
+        <div class = "4">
         <input id="availability" min={0} max={9999} placeholder="Available Units" type="number" onChange={(e) => setAvailable(parseInt(e.target.value))} />    
         </div>
-        
+
         <div id="imgPreview">
         <img src={image} width={200} height={200}></img>
         <h3>Image Preview</h3>
         </div>
 
-        <div>
+        <div class = "5">
         <input id="age" type="number" min={1} max={30} placeholder="Age" onChange={(e) => setAge(parseInt(e.target.value))} disabled={(category === "Service" || category === "Accessory") ? true:false}/>
         <input id="sale" type="number" min={0} max={100} placeholder="Sale" onChange={(e) => setSale(parseInt(e.target.value))}/>
         </div>
 
-        <div>
+        <div class = "5">
         <input id="pedigree" placeholder="Pedigree" onChange={(e) => setPedigree(e.target.value)} disabled={(category === "Service" || category === "Accessory") ? true:false} />
         </div>
 

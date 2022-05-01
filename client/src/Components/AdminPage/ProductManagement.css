@@ -68,6 +68,12 @@
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    display: inline-grid;
+    grid-template-rows: 42px 50px;
+    grid-gap: 1px;
+    
+
    }
 
   
@@ -77,15 +83,16 @@
     font-family: 'Roboto', sans-serif;
     color: #333;
     font-size: 0.9vw;
-    margin: 10px;
-    transform:translateY(0%);
+
     padding-bottom: 15px;
     padding-top: 10px;
-    border-radius: 0.1rem;
+    border-radius: 10px;
     background-color: rgb(255, 255, 255);
     border: none;
+
     width: 12vw;
-    height: 4vh;
+    margin:2px;
+
     border-radius: 5px;
     border-bottom: 0.3rem solid transparent;
     border: 1px solid rgba(0, 0, 0, 0.582);
@@ -117,6 +124,11 @@
 #itemDescription {
     text-align: center;
     height: 75px;
+
+}
+
+#itemName{
+    width: 230px;
 }
 
 #priceInput {
