@@ -70,6 +70,8 @@ export default function Cart() {
      
     return(
         <>
+        { cart.length > 0 && 
+        <>
         <div className="cardsContainer">
 
         <div className="cardsCart">
@@ -126,8 +128,14 @@ export default function Cart() {
             
 
             </div>
+            </>
+            }
 
-        
+            { cart.length <= 0 &&
+            <div className="noItems">NO ITEMS</div>
+
+            }
+            
         </>
         )
     
