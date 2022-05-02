@@ -9,12 +9,10 @@ import { IconContext } from 'react-icons';
 import Axios from "axios"
 
 function TestNavbar(props) {
+
+
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-
-
-
-
 
   return (
     <>
