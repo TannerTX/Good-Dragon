@@ -140,6 +140,10 @@
 #availability {
     width: 175px;
 }
+
+#selector {
+    width: 5vw;
+}
   
 
 #imgScroller {

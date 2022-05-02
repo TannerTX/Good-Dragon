@@ -151,7 +151,6 @@ app.post("/getOrderHistory", (req, res) => {
 
 })
 
-
 app.post("/getUsers", (req, res) => {
     db.query("SELECT username FROM userLoginInfo", (err, result) => {
         if(err) console.log(err)

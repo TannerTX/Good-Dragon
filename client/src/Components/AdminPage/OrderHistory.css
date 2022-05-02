@@ -78,8 +78,9 @@
 
 .upperRight {
     position: absolute;
-    top: 0%;
+    top: 60%;
     left: 80%;
+    transform: translate(-10%, -80%);
 }
 
 .insidePlaced span {
@@ -101,4 +102,23 @@
     top: 1%;
     left: 83%;
 }
+
+#xbutton {
+    position: absolute;
+    top: -3%;
+    left: 90%;
+}
+
+.itemsInOrder {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    left: 45%;
+    top: 10%;
+    width: 30%;
+    height: 80%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.308);
+}
+
+
 

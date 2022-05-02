@@ -67,12 +67,13 @@ function ProductManagement(props) {
         </div>
 
         <div className="newProductInfoContainer">
-        <Dropdown
-        placeholder="Category" 
-        className="dropdown_menu rdnI rdn-dropI"
-        options={["Pet", "Accessory", "Service"]}
-        onChange={(e) => setCategory(e.value)}
-        />  
+
+        <select id="selector" onChange={(e) => setCategory(e.target.value)}>
+        <option>Pet</option>
+        <option>Accessory</option>
+        <option>Service</option>    
+        </select> 
+
         <div class = "1">
         <input id="itemName" placeholder="Item name" onChange={(e) => setItemName(e.target.value)} />
         </div>
