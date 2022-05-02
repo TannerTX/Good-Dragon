@@ -35,7 +35,6 @@ function Login() {
         
         if(Object.values(formErrors).length === 0){
             await Axios.post(`https://good-dragon.herokuapp.com/login`, user).then(response =>{
-            console.log(response);
             setFormErrors(validate(response))
 
             if(response.data.success)
@@ -54,7 +53,6 @@ function Login() {
 
         if(Object.values(formErrors).length === 0){
             await Axios.post("https://good-dragon.herokuapp.com/changePassword", user).then(response =>{
-            console.log(response);
             setFormErrors(validateNewPassword(response))
 
             console.log("FORM ERRORS")
