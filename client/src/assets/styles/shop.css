@@ -1,15 +1,15 @@
 .dropdown_menu {
-    margin-left:60%;
+    left: 0%;
 }
 
 .rdn {
-    margin-left: 60%;
+    margin-left: 80%;
+    margin-right: 10%;
     font-size: 15px;
 }
 
-.rdn-control-placeholder {
-    margin-left:60%;
-    margin: auto;
+.rdn-control-arrow {
+   position: absolute;
 }
 
 .pleaseLogin-container {
@@ -46,4 +46,40 @@
     margin-left: 95%;
     margin-top: 10px;;
 }   
+
+.searchbar {
+    position: absolute;
+    left: 11.9%;
+    top: 5px;
+}
+
+.searchbar input {
+    border: none;
+    padding: 1rem;
+    width: 20vw;
+    background: #e8e8e8;
+    transition: 0.3s;
+   }
    
+   .searchbar input:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+   }
+
+   .searchbar button {
+     position: absolute;
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 1vw;
+    top: 1px;
+    transform: translateX(1px);
+    background: #e8e8e8;
+    border: 1px solid #00000046;
+    transition: all .3s;
+   }
+   
+  .searchbar button:active {
+    color: #666;
+    box-shadow: inset 4px 4px 12px #c5c5c5,
+                inset -4px -4px 12px #ffffff;
+   }

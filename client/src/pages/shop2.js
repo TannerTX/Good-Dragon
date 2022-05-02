@@ -26,6 +26,7 @@ export default function Shop2() {
     const [sort, setSortMethod] = useState("")
     const [numSearches, setNumSearches] = useState(0)
     const [rand, setRand] = useState(0)
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         
@@ -65,10 +66,20 @@ export default function Shop2() {
 
     }
 
+    const searchItem = () => {
+        Axios.post("http://localhost:3001/getData", {searchData:search}).then(res => {
+            setItems(res.data)
+        })
+    }
+
      
     return(
 
         <>
+        <div className="searchbar">
+            <input onChange={(e) => setSearch(e.target.value)} placeholder="Search Products..." />
+            <button onClick={searchItem}>Search</button>
+        </div>
         <div className="cartButton">
         <Link to={currentUser.username ? "/cart":"/login"}>
             <FaIcons.FaShoppingBag />
