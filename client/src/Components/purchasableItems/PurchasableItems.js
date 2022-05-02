@@ -44,7 +44,7 @@ function PurchasableItems(props) {
         let data = {item: props.item, user: props.currUser, amt: actualAmount}
 
         console.log(`ADDING ${data.amt} ${data.item.itemName}s TO ${data.user.username}'s CART`)
-        await Axios.post("http://localhost:3001/addToCart", data).then(response => {console.log(response)})
+        await Axios.post("https://good-dragon.herokuapp.com/addToCart", data).then(response => {console.log(response)})
 
     }
 

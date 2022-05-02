@@ -18,7 +18,7 @@ function Discount() {
   
 
     if (code != "" && percentOff != "" && good === true) {
-      Axios.post("http://localhost:3001/discountCodes", {
+      Axios.post("https://good-dragon.herokuapp.com/discountCodes", {
         function: "add",
         disCode: code,
         disOff: percentOff,
@@ -30,12 +30,12 @@ function Discount() {
   };
 
   const removeDiscount = (code) => {
-    Axios.post("http://localhost:3001/deleteCode", {code: code})
+    Axios.post("https://good-dragon.herokuapp.com/deleteCode", {code: code})
     setCode("sdfds")
   }
 
   useEffect(() => {
-    Axios.post("http://localhost:3001/discountCodes", { function: "get" }).then(
+    Axios.post("https://good-dragon.herokuapp.com/discountCodes", { function: "get" }).then(
       (res) => {
         setCurrCodes(res.data);
       }

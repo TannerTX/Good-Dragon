@@ -27,7 +27,7 @@ function ProductManagement(props) {
         alert("No Empty Fields!")
         else {
 
-        Axios.post("http://localhost:3001/getMaxID").then(res => {
+        Axios.post("https://good-dragon.herokuapp.com/getMaxID").then(res => {
             console.log(res.data[0].maxItemID)
             let max = res.data[0].maxItemID + 1
             let isAge = parseInt(age) || null
@@ -35,7 +35,7 @@ function ProductManagement(props) {
             
             console.log({itemName, max, description, price, available, image, category, age, isPedigree, sale})
 
-            Axios.post("http://localhost:3001/addItem",{data: {itemName, id: max, description, price, available, image, category, isAge, isPedigree, sale} }).then(result => {
+            Axios.post("https://good-dragon.herokuapp.com/addItem",{data: {itemName, id: max, description, price, available, image, category, isAge, isPedigree, sale} }).then(result => {
                 console.log(result)
                 alert("Successfully added item!")
             })

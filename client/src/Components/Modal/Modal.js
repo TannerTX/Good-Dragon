@@ -25,7 +25,7 @@ export default function Dropbox(props) {
         setRand(Math.floor(Math.random() * 100))
 
         let id = props.item.itemID
-        Axios.post("http://localhost:3001/updateItem", {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
+        Axios.post("https://good-dragon.herokuapp.com/updateItem", {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
             console.log(res)
             alert("Successfully Updated!")
             window.location.href = window.location.href;
@@ -38,7 +38,7 @@ export default function Dropbox(props) {
     const handleDelete = () => {
         setRand(Math.floor(Math.random() * 100))
         let id = props.item.itemID
-        Axios.post("http://localhost:3001/deleteItem", {id: id}).then(res => {
+        Axios.post("https://good-dragon.herokuapp.com/deleteItem", {id: id}).then(res => {
             console.log(res)
             alert("Success!")
             history("/shop")
