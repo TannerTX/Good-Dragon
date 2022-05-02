@@ -21,7 +21,8 @@ function SearchBtn() {
         <input type="text" class="input-search" onChange={(e) => setSearchVal(e.target.value)} placeholder="Type to Search..."/>
         </div>
     );
-
 }
+
+
 
 export default SearchBtn;

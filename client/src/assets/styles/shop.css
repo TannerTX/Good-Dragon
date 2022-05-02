@@ -1,15 +1,14 @@
 .dropdown_menu {
-    margin-left: 55%;
-    margin-right: 10%;    
+    margin-left:60%;
 }
 
 .rdn {
-    
+    margin-left: 60%;
     font-size: 15px;
 }
 
 .rdn-control-placeholder {
-
+    margin-left:60%;
     margin: auto;
 }
 
@@ -42,4 +41,9 @@
     transform: translate(-50%, -50%);
 }
 
+.cartButton {
+    position: absolute;
+    margin-left: 95%;
+    margin-top: 10px;;
+}   
    

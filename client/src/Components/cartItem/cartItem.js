@@ -1,8 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./cart.css"
 
 function CartItem(props) {
-
 
     return(
         <div class="cardCart">

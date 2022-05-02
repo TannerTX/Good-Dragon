@@ -18,10 +18,10 @@ function TestNavbar(props) {
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#008cff'}}>
-        <div className='navbar'>
+      <IconContext.Provider value={{ color: '#17999c', size: '27px' }}>
+        <div className='navbar' onClick={() => showSidebar()}>
           <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar}  />
+            <FaIcons.FaBars />
           </Link>
         </div>
         </IconContext.Provider>
@@ -30,8 +30,7 @@ function TestNavbar(props) {
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'>
-                <AiIcons.AiOutlineCloseCircle />
+              <Link to='#' className='menu-bars' onClick={showSidebar}>
               </Link>
             </li>
 

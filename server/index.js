@@ -1,7 +1,8 @@
 const express = require('express')
 const mysql = require('mysql')
 const cors = require("cors")
-const bcrypt = require("bcrypt")
+const path = require("path")
+const bcrypt = require("bcryptjs")
 const port = 3001, saltRounds = 10
 require('dotenv').config()
 
@@ -28,6 +29,7 @@ app.use(session({
     },
 })
 )
+app.use(express.static(path.join(__dirname + "/public")))
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -71,6 +73,91 @@ app.post("/register", (req, res) => {
     
 })
 
+app.post("/checkDiscountCode", (req, res) => {
+    const code = req.body.code
+
+    db.query("SELECT * FROM discountCodes WHERE codes=?", [code], (err, result) => {
+        if(err) console.log(err)
+        else if(result.length) res.send({discount: result[0].discount})
+        else res.send({message: ""})
+    })
+})
+
+app.post("/placeOrder", (req, res) => {
+
+    const data = req.body.data
+    let orderID = 0
+    db.query("SELECT MAX(orderID) as maxID FROM placedOrders", (err, result) => {
+        if(err) console.log(err)
+        if(result[0].maxID === null)
+        orderID = 0
+        else if(result[0].maxID != null) {
+            orderID = result[0].maxID + 1
+        }
+
+        db.query("INSERT INTO placedOrders (orderID, purchasedItemID, orderTotal, username, date, itemQuantity) VALUES (?,?,?,?,?,?)", 
+              [orderID, data.itemID, data.total, data.username, data.date, data.quantity], (err, result) => {
+                  if(err) console.log(err)
+                  else console.log(result)
+
+                  db.query("DELETE FROM customerCart WHERE username=?", [data.username])
+              })
+        
+        db.query("INSERT INTO orderHistory (orderDate, orderID, username, orderTotal) VALUES (?, ?, ?, ?)", [data.date, orderID, data.username, data.total])
+        
+    })
+
+})
+
+app.post("/getPlacedOrders", (req, res) => {
+
+    db.query("SELECT * FROM placedOrders", (err, result) => {
+
+        if(err) console.log(err)
+        else if(result.length) res.send(result)
+        else res.send({message: "Empty"})
+
+
+    })
+
+})
+
+app.post("/getOrderHistory", (req, res) => {
+
+    if(req.body.sort === null || req.body.sort === undefined) {
+        db.query("SELECT * FROM orderHistory", (err, result) => {
+
+            if(err) console.log(err)
+            else if(result.length) res.send(result)
+            else res.send({message: "Empty"})
+    
+    
+        })
+    }
+    else {
+
+        db.query(`SELECT * FROM orderHistory ${req.body.sort}`, (err, result) => {
+
+            if(err) console.log(err)
+            else if(result.length) res.send(result)
+            else res.send({message: "Empty"})
+        })
+
+
+
+    }
+
+    
+
+})
+
+app.post("/getUsers", (req, res) => {
+    db.query("SELECT username FROM userLoginInfo", (err, result) => {
+        if(err) console.log(err)
+        else res.send(result)
+    })
+})
+
 app.post("/logout", (req, res) => {
     req.session.destroy()
     console.log("COOKIE GONE")
@@ -79,6 +166,7 @@ app.post("/logout", (req, res) => {
 app.post("/getUserCart", (req, res) => {
 
     const user = req.body.user
+    db.query("DELETE FROM customerCart WHERE quantity<=0")
     
     db.query("SELECT * FROM itemsForSale JOIN customerCart ON itemsForSale.itemID=customerCart.itemID WHERE customerCart.username=?", user.username.trim().toLowerCase(), (err, result) => {
 
@@ -134,6 +222,56 @@ app.post("/addToCart", (req, res) => {
     
 })
 
+app.post("/deleteCode", (req, res) => {
+    const code = req.body.code
+    db.query("DELETE FROM discountCodes WHERE codes=?", [code])
+})
+
+app.post("/addItem", (req, res) => {
+
+    const data = req.body.data
+    
+    db.query("INSERT INTO itemsForSale (itemName, itemID, description, itemPrice, availableQuantity, itemImg, itemCategory, age, pedigree, sale) VALUES (?,?,?,?,?,?,?,?,?,?)",
+              [data.itemName, data.id, data.description, data.price, data.available, data.image, data.category, data.isAge, data.isPedigree, data.sale], (err, result) => {
+                  if(err) console.log(err)
+                  else res.send(result)
+              })
+
+})
+
+app.post("/removeFromCart", (req, res) => {
+
+    const user = req.body.currentUser
+    const itemName = req.body.itemName
+    const itemID = req.body.itemID
+    const amtToDelete = req.body.numToDelete
+
+    db.query("SELECT quantity FROM customerCart WHERE username=? AND itemID=?", [user.username, itemID], (err, result) => {
+        if(err) console.log(err)
+        else if(result.length) {
+
+            if(result[0].quantity <= 0)
+            db.query("DELETE FROM customerCart WHERE quantity=0");
+            else {
+            db.query("UPDATE customerCart set quantity=quantity-? WHERE username=? AND itemID=?", [amtToDelete, user.username, itemID], (err, result) => {
+            if(err) console.log(err)
+            else console.log(result)
+            })
+
+            db.query("UPDATE itemsForSale SET availableQuantity=availableQuantity+? WHERE itemID=?", [amtToDelete, itemID])
+            }
+
+        }
+        
+    })
+})
+
+app.post("/deleteItem", (req, res) => {
+    const itemID = req.body.id
+    db.query("DELETE FROM itemsForSale WHERE itemID=?", [itemID])
+    db.query("DELETE FROM customerCart WHERE itemID=?", [itemID])
+})
+
 app.post("/changePassword", (req, res) => {
 
     const salt = bcrypt.genSaltSync(saltRounds)
@@ -176,6 +314,70 @@ app.post("/changePassword", (req, res) => {
 
     })
 
+})
+
+app.post("/updateUserInfo", (req, res) => {
+
+    const salt = bcrypt.genSaltSync(saltRounds)
+    const user = req.body.userInfo
+    
+    if(user.newPassword == "")
+    user.newPassword = user.oldPassword
+    else
+    user.newPassword = bcrypt.hashSync(user.newPassword, salt)
+    
+    
+    
+    // console.log(`\t\tPREVIOUS USER: ${user.oldUser}
+    //              USERNAME: ${user.username}
+    //              ADMIN?: ${user.isAdmin}
+    //              OLD: ${user.oldPassword}
+    //              PASSWORD: ${user.newPassword == ""}
+    //              FIRST: ${user.first}
+    //              LAST: ${user.last}
+    //              ADDRESS: ${user.address}
+    //              EMAIL: ${user.email}
+    //              PHONE: ${user.phone}`)
+
+    if(user.oldUser === user.username) {
+        db.query("UPDATE userLoginInfo SET username=?, isAdmin=?, password=?, firstName=?, lastName=?, address=?, email=?, phoneNum=? WHERE username=?", 
+                [user.username, user.isAdmin, user.newPassword, user.first, user.last, user.address, user.email, user.phone, user.oldUser], (err, result) => {
+                    if(err) console.log(err)
+                    else if(!result.length) res.send({success: true})
+                    else res.send(result)
+                })
+
+    }
+    else
+    db.query("SELECT * FROM userLoginInfo WHERE username=?", [user.username], (err, result) => {
+        if(err) console.log(err)
+        if(result.length) res.send({errorMessage: "USER ALREADY EXISTS"})
+        else {
+            db.query("UPDATE userLoginInfo SET username=?, isAdmin=?, password=?, firstName=?, lastName=?, address=?, email=?, phoneNum=? WHERE username=?", 
+                [user.username, user.isAdmin, user.newPassword, user.first, user.last, user.address, user.email, user.phone, user.oldUser], (err, result) => {
+                    if(err) console.log(err)
+                    else if(!result.length) res.send({success: true})
+                    else res.send(result)
+                })
+
+                db.query("UPDATE customerCart SET username=? WHERE username=?", [user.username, user.oldUser], (err, result) => {if(err) console.log(err)})
+                db.query("UPDATE placedOrders SET username=? WHERE username=?", [user.username, user.oldUser], (err, result) => {if(err) console.log(err)})
+                db.query("UPDATE orderHistory SET username=? WHERE username=?", [user.username, user.oldUser], (err, result) => {if(err) console.log(err)})
+        }
+    })
+
+    
+
+})
+
+app.post("/updateItem", (req, res) => {
+    const data = req.body.data;
+
+    db.query("UPDATE itemsForSale SET itemName=?, description=?, itemPrice=?, availableQuantity=?, age=?, pedigree=?, sale=? WHERE itemID=?", 
+             [data.itemName, data.description, data.price, data.available, data.age, data.pedigree, data.sale, data.id], (err, result) => {
+                 if(err) console.log(err)
+                 else res.send(result)
+             })
 })
 
 app.get("/login", (req, res) => {
@@ -225,22 +427,82 @@ app.post("/login", (req, res) => {
     
 })
 
+
+
 app.post("/getData", (req, res) => {
 
-    const sortMethod = req.body.sortMethod
-    console.log(`QUERY: ${sortMethod}`)
+    const searchQuery = req.body.searchData
+    console.log(`SEARCH: ${searchQuery}`)
 
-    if(sortMethod === undefined) 
+    if(searchQuery === undefined || searchQuery.trim() === "") 
     db.query("SELECT * FROM itemsForSale", (err, result) => {
         if(err) console.log(err)
         else res.send(result)
       })
 
-    else db.query(`SELECT * FROM itemsForSale ${sortMethod}`, (err, result) => {
+    else db.query(`SELECT * FROM itemsForSale WHERE itemName LIKE "%${searchQuery}%"`, (err, result) => {
         if(err) console.log(err)
         else res.send(result)
     })
+
     
+})
+
+app.post("/getMaxID", (req, res) => {
+    
+    db.query("SELECT MAX(itemID) as maxItemID from itemsForSale", (err, result) => {
+        if(err) console.log(err)
+        else res.send(result)
+    })
+})
+
+app.post("/discountCodes", (req, res) => {
+
+    if(req.body.function === "add") {
+        db.query("INSERT INTO discountCodes (codes, discount) VALUES (?, ?)", [req.body.disCode, req.body.disOff], (err, result) => {
+            if (err) console.log(err)
+            else res.send({success: true})
+        })
+    }
+    else if(req.body.function === "get") {
+        console.log("GETTING CODES")
+        db.query("SELECT * FROM discountCodes", (err, result) => {
+            if(err) console.log(err)
+            else res.send(result)
+        })
+    }
+    else if(req.body.function === "delete") {
+        db.query("DELETE FROM discountCodes WHERE codes=?", [req.body.disCode], (err, result) => {
+            if(err) console.log(err)
+            else
+            res.send({success: true})
+        })
+    }
+
+
+})
+
+app.post("/getUserInfo", (req, res) => {
+
+    const username = req.body.user
+    
+    db.query("SELECT * FROM userLoginInfo WHERE username=?", [username], (err, result) => {
+        if(err) console.log(err)
+        else if(!result.length) res.send("NOT FOUND")
+        else res.send(result)
+    })
+
+})
+
+app.post("/getUserOrders", (req, res) => {
+    
+    const username = req.body.user
+
+    db.query("SELECT * FROM placedOrders WHERE username=?", [username], (err, result) => {
+        if(err) console.log(err)
+        else if(!result.length) res.send("NO ITEMS")
+        else res.send(result)
+    })
 })
 
 
@@ -265,4 +527,4 @@ app.get("/test", (req, res) => {
 
 
 
-app.listen(port, () => { console.log(`Listening on port ${port}`); })
+app.listen(process.env.PORT || 3001, () => { console.log(`Listening on port ${process.env.PORT || 3001}`); })

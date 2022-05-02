@@ -1,0 +1,139 @@
+.box {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90%;
+    width: 90%;
+    border: 5px solid #36454F;
+    padding: 10px;
+    opacity: 50%;
+    border-radius: 25px;
+  }
+  .itemBox {
+    background-color: #7393B3;
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25%;
+    width: 99%;
+    border: 5px solid #36454F;
+    padding: 10px;
+    border-radius: 25px;
+  }
+  .orderBox {
+    background-color: #7393B3;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25%;
+    width: 99%;
+    border: 5px solid #36454F;
+    padding: 10px;
+    border-radius: 25px;
+  }
+  .userBox {
+    background-color: #7393B3;
+    position: absolute;
+    top: 74%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 25%;
+    width: 99%;
+    border: 5px solid #36454F;
+    padding: 10px;
+    border-radius: 25px;
+  }
+  .submit{
+    background-color: #36454F;
+    color: black;
+    position: absolute;
+    top: 95%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    height: 5%;
+    width: 8%;
+    padding: 10px;
+    border-radius: 10px;
+
+  }
+  .itemDrop{
+      width: 15%;
+
+  }
+
+  .discountCode{
+      width: 15%;
+      height: 5%;
+  }
+
+  .nameChange{
+      width: 15%;
+      height: 20%;
+      position: absolute;
+      left:25%;
+  }
+  .nameLabel{
+    position: absolute;
+    left:25%;
+  }
+
+  .priceChange{
+    width: 15%;
+    height: 20%;
+    position: absolute;
+    left:42%;
+}
+.priceLabel{
+  position: absolute;
+  left:42%;
+}
+
+.descChange{
+    width: 30%;
+    height: 20%;
+    position: absolute;
+    left:59%;
+}
+.descLabel{
+  position: absolute;
+  left:59%;
+}
+
+.userSearch{
+    width: 20%;
+    height: 20%;
+    position: absolute;
+}
+.userLabel{
+  position: absolute;
+}
+
+.passChange{
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    left:21%;
+}
+.passLabel{
+  position: absolute;
+  left:21%;
+}
+
+.displayUser{
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-14.5%, -50%);
+    height: 90%;
+    width: 58%;
+    border: 5px solid #36454F;
+    padding: 10px;
+    opacity: 50%;
+    border-radius: 25px;
+
+}

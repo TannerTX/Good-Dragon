@@ -6,6 +6,7 @@ import "./productCard.css"
 import Dropdown from "../Modal/Modal.js"
 import "../Modal/modal.css"
 import Axios from "axios"
+import { IconContext } from "react-icons/lib"
 
 
 
@@ -19,6 +20,8 @@ function PurchasableItems(props) {
     const [itemQuant, setItemQuant] = useState(props.item.availableQuantity)
     const [quantSelector, setQuantSelector] = useState(1)
     const [showModal, setShowModal] = useState(false)
+    const [showAdminModal, setShowAdminModal] = useState(false)
+    const [rand, setRand] = useState(0)
 
     const addToCart = async item => {
 
@@ -48,22 +51,47 @@ function PurchasableItems(props) {
     useEffect(() => {
         setItemQuant(props.item.availableQuantity)
         setShowModal(showModal)
-    }, [props.item.availableQuantity, showModal])
+    }, [props.item.availableQuantity, showModal, rand])
 
     const handleModal = async e => {
        setShowModal(!showModal)
     }
 
+    const handleAdminModal = () => {
+      setRand(Math.floor(Math.random() * 100))
+      setShowAdminModal(!showAdminModal)
+    }
+
     return(
         <>
-        {showModal && <Dropdown item={props.item} />}
+        {showModal && <Dropdown item={props.item} adminMode={false} />}
         {showModal && <button className="btn" onClick={handleModal}>Close</button>}
-         
+
+        {showAdminModal && <Dropdown item={props.item} adminMode={true} />}
+        {showAdminModal && <button className="btn" onClick={handleAdminModal}>Close</button>}
 
            <div class="card">
            <div class="product-card">
 
               <div class="badge"> {props.item.itemCategory || "NULL"} </div>
+
+              { props.item.sale > 0 &&
+              <>
+              <div class="saleNameBadge">SALE</div>
+              <div class="saleBadge">{props.item.sale}% OFF</div>
+              </>
+              }
+
+              {  user.isAdmin &&
+                  <div className="adminCogs">
+                  <IconContext.Provider value={{color: "rgba(0, 0, 0, 0.33)"}} >
+                  <span onClick={() => handleAdminModal()}>
+                  <FaIcons.FaCog />
+                  </span>
+                  </IconContext.Provider>
+                  </div>
+              }
+              
 
               <div class="product-tumb">
                  {props.item.itemImg ? <img src={props.item.itemImg} width={width} height={height} className="prodimg" /> :
@@ -74,30 +102,49 @@ function PurchasableItems(props) {
               <div class="product-details">
                  <h4><a onClick={() => {handleModal(); console.log(`SHOWING MODAL ${showModal}`)}}>{props.item.itemName || "NULL"}</a></h4>
 
+                 { user.username &&
+                  <>
                  {itemQuant > 0 ?
                  <div className="qtySelect">
                     <QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e)=> {setQuantSelector(e)} } /> 
                  </div>
                  :
-                 <h6 style={{paddingTop: "45px"}}></h6> }
+                 <h6 style={{paddingTop: "45px"}}></h6> } </>
+                  }
+
                  <h6 className="itemQuant">Available: {itemQuant || "N/A"}</h6>
                  <div class="product-bottom-details">
-                    <div class="product-price">${props.item.itemPrice || "NULL"}</div>
 
+                    <div class="product-price" style={{color: props.item.sale > 0 && "orange"}}>
+                       ${(props.item.itemPrice - (props.item.itemPrice * (props.item.sale / 100))).toFixed(2).toLocaleString() || "NULL"}
+                     </div>
+                     
+
+                     { user.username &&
                     <div class="product-links">
                        {itemQuant > 0 ?
                        <>
-                       <button class="specialbutton" onClick={()=>
+                       <button class="specialbutton" onClick={()=> 
                           addToCart(props.item)}>
                           <FaIcons.FaShoppingCart />
                        </button>
                        </> :
                        <p style={{color: "red"}}>OUT OF STOCK</p> } 
                     </div>
+                     }
+
+                     { !user.username &&
+                        <div className="product-links">
+                           <Link to="/login">
+                              <span>Login to Purchase</span>
+                           </Link>
+                        </div>
+                     }
                  </div>
               </div>
            </div>
         </div>
+                  
    </>
     )
 }

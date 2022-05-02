@@ -1,0 +1,207 @@
+.addProductContainer {
+    position: absolute;
+    background-color: rgba(255,255,255, 0.575);
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+
+
+.newProductInfoContainer button {
+    padding: 10px 2px;
+    border: unset;
+    color: #212121;
+    z-index: 1;
+    background: #bbbbbb;
+    position: absolute;
+    font-weight: 1000;
+    font-size: 0.7vw;
+    left: 38%;
+    top: 85%;
+    width: 12vw;
+    height: 4vh;
+    border: 1px solid rgba(0, 0, 0, 0.507);
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+   }
+   
+   .newProductInfoContainer button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #212121;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms
+   }
+   
+   .newProductInfoContainer button:hover {
+    color: #e8e8e8;
+   }
+   
+   .newProductInfoContainer button:hover::before {
+    width: 100%;
+   }
+
+   .newProductInfoContainer {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    padding-left: 20px;
+    top: 10%;
+    background: rgba(156, 73, 73, 0);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    display: inline-grid;
+    grid-template-rows: 42px 50px;
+    grid-gap: 1px;
+    
+
+   }
+
+  
+   .newProductInfoContainer input {
+    text-align: center;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 0.9vw;
+
+    border-radius: 15px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+
+    width: 12vw;
+    margin:2px;
+
+
+    border-bottom: 0.3rem solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.582);
+    transition: all 0.3s;
+   }
+
+   .newProductInfoContainer input::placeholder {
+     color: rgba(0, 0, 0, 0.473);
+   }
+
+   .newProductInfoContainer input:disabled {
+     background-color: rgb(192, 192, 192);
+   }
+
+   .newProductInfoContainer input:disabled::placeholder {
+     color: rgba(255, 0, 0, 0);
+  }
+
+.rdn {
+    top: 5px;
+    left: -73%;
+    font-size: 15px;
+}
+
+.rdn-drop {
+    text-align: left;
+}
+
+#itemDescription {
+    text-align: center;
+    height: 50px;
+
+
+}
+
+#itemName{
+    width: 230px;
+}
+
+#priceInput {
+    width: 175px;
+}
+
+#availability {
+    width: 175px;
+}
+
+#selector {
+    width: 5vw;
+}
+  
+
+#imgScroller {
+    position: absolute;
+    width: 35%;
+    height: 65%;
+    background-color: rgba(255, 0, 0, 0);
+    border: 2px solid rgba(0, 0, 0, 0.425);
+    border-radius: 5px;
+    left: 33%;
+    top: 2%;
+    overflow: scroll;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 10fr));
+    grid-auto-rows: auto;
+
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.imgSc {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    height: 23%;
+    border-radius: 4px;
+    padding-bottom: 100px;
+}
+
+.sp {
+    background-color: rgba(0, 0, 0, 0);
+    width: 115px;
+}
+
+.imgS {
+    width: 6vw;
+    height: 10vh;
+    position: absolute;
+}
+
+#imgPreview {
+    position: absolute;
+    left: 75%;
+    top: 10%;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.356);
+}
+
+#age {
+    width: 175px;
+}
+
+#sale {
+    width: 75px;
+    padding-left: 15px;
+}

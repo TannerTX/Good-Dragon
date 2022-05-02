@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom" 
 import '../assets/styles/Login.css'
 import '../assets/styles/fancyLogout.css'
+import bgVideo from '../assets/videos/dogs2.mp4'
+import bgVideo2 from '../assets/videos/dogs3.mp4'
+
 import Axios from "axios"
 
 function Login() {
@@ -31,7 +34,7 @@ function Login() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-            await Axios.post("http://localhost:3001/login", user).then(response =>{
+            await Axios.post(`http://localhost:3001/login`, user).then(response =>{
             console.log(response);
             setFormErrors(validate(response))
 
@@ -132,9 +135,9 @@ function Login() {
     return (
         <>
         {loginStatus ?
-         
-        <div className="cardsContainer fade-in-image">
         
+        <div className="cardsContainer fade-in-image">
+        <video autoPlay loop muted><source src={bgVideo} type="video/mp4" /></video>
         <div className="profileCard">
             <div className="profileCardContent">
                 <img alt="" src="https://cdn.vox-cdn.com/thumbor/u1xA8jhp6gZKCzkGwx_igXGSJ5A=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22388656/Marvel_Tales_Doctor_Strange_Vol_1_1_Virgin_Variant.jpeg"/>
@@ -169,15 +172,15 @@ function Login() {
 
             <form>
 
-            <input type='password' placeholder="Password" value={oldPass} onChange={e => setOldPass(e.target.value)} />    
+            <input class = "input" type='password' placeholder="Password" value={oldPass} onChange={e => setOldPass(e.target.value)} />    
             <p style={{color: "red", paddingBottom: "10px"}}></p> 
 
-            <input type='password' placeholder="New Password" value={newPass} onChange={e => setNewPass(e.target.value)} />
+            <input class = "input" type='password' placeholder="New Password" value={newPass} onChange={e => setNewPass(e.target.value)} />
             <p style={{color: formErrors.message === "Success!" ? "green" : "red", paddingBottom: "10px", paddingTop: "5px"}}>{formErrors.passError || formErrors.message}</p> 
 
             </form>
 
-            <button className="cssbuttons-io-button" onClick={changePassword}> Submit
+            <button className="cssbuttons-io-button2" onClick={changePassword}> Submit
                 <div className="icon">
                 <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
                 </div>
@@ -196,6 +199,8 @@ function Login() {
                     alt=""
                 />
             </Link>
+            <video autoPlay loop muted><source src={bgVideo2} type="video/mp4" /></video>
+
 
             <div className='login__container'>
                 <h1>Login</h1>

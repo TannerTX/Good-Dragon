@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom" 
 import "../assets/styles/Login.css"
 import Axios from "axios"
+import bgVideo from '../assets/videos/dogs3.mp4'
+
 
 function Register() {
 
@@ -82,14 +84,18 @@ function Register() {
     return(
 
         <div className='login'>
+
             <Link to='/'>
                 <img
                     className="login__logo fade-in-image"
                     src='https://imgur.com/X5KLtYQ.png' 
                 />
             </Link>
+            <video autoPlay loop muted><source src={bgVideo} type="video/mp4" /></video>
+
 
             <div className='login__container fade-in-image'>
+                
                 <h1>Register</h1>
                 <h2><p style={{color: formErrors.registerMessage === "Success!" ? "green" : "red", paddingBottom: "10px", textAlign: "center", fontSize: "15px"}}>{formErrors.registerMessage}</p></h2>
                 <form>
@@ -97,33 +103,33 @@ function Register() {
                     <h3>Login Information</h3>
 
                     <h5>Email</h5>
-                    <input type='text' value={email} onChange={e => setEmail(e.target.value)} />  
+                    <input class = "input" type='text' value={email} onChange={e => setEmail(e.target.value)} />  
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.email}</p>
 
                     <h5>Username</h5>
-                    <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
+                    <input class = "input" type='text' value={username} onChange={e => setUsername(e.target.value)} />
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.username}</p>
 
                     <h5>Password</h5>
-                    <input type='password' value={password} onChange={e => setPassword(e.target.value)} />  
+                    <input class = "input" type='password' value={password} onChange={e => setPassword(e.target.value)} />  
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.password}</p>
 
                     <h3>Personal Information</h3>
 
                     <h5>First Name</h5>
-                    <input type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />  
+                    <input class = "input" type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />  
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.firstName}</p>
 
                     <h5>Last name</h5>
-                    <input type='text' value={lastName} onChange={e => setLastName(e.target.value)} />  
+                    <input class = "input" type='text' value={lastName} onChange={e => setLastName(e.target.value)} />  
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.lastName}</p>
 
                     <h5>Address</h5>
-                    <input type='text' value={address} onChange={e => setAddress(e.target.value)} />  
+                    <input class = "input" type='text' value={address} onChange={e => setAddress(e.target.value)} />  
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.address}</p>
 
                     <h5>Phone Number</h5>
-                    <input type='text' value={phone} onChange={e => setPhone(e.target.value)} />  
+                    <input class = "input" type='text' value={phone} onChange={e => setPhone(e.target.value)} />  
                     <p style={{color: "red", paddingBottom: "10px"}}>{formErrors.phone}</p>
 
                 </form>

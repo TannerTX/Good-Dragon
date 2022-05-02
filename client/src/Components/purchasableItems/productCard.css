@@ -45,6 +45,31 @@ a
     padding: 3px 10px;
 }
 
+.saleBadge {
+    position: absolute;
+    left: 75%;
+    top: 100%;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    background: rgb(255, 0, 0);
+    color: #fff;
+    padding: 3px 10px;
+    
+}
+
+.saleNameBadge {
+    position: absolute;
+    left: 78.5%;
+    top: 92%;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    background: rgb(255, 0, 0);
+    color: #fff;
+    padding: 3px 10px;
+}
+
 .product-tumb {
     display: flex;
     align-items: center;
@@ -90,6 +115,7 @@ a
 
 .product-details h4 a:hover {
     color: #fbb72c;
+    cursor: pointer;
 }
 
 .product-details h5 {
@@ -203,4 +229,19 @@ a
     .itemQuant {
         font-size: 13px;
         padding-bottom: 10px;
+    }
+
+    .adminCogs span {
+        position: absolute;
+        left: -5%;
+        width: 15px;
+        top: 94%;
+        opacity: 0.5;
+        transition: 0.3s;
+    }
+
+    .adminCogs span:hover {
+        cursor: pointer;
+        opacity: 1;
+
     }
