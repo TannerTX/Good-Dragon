@@ -14,6 +14,8 @@ function TestNavbar(props) {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
+
+
   return (
     <>
       <IconContext.Provider value={{ color: '#17999c', size: '27px' }}>
@@ -51,7 +53,7 @@ function TestNavbar(props) {
           </Link>
         </li> }
 
-        {props.isAdmin === 1 &&
+        { 
             <li key="7" className="nav-text">
               <Link to="/admin">
                 <AiIcons.AiFillCrown />
