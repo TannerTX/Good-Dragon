@@ -3,12 +3,12 @@
     position: fixed;
     margin: auto;
     width:40%;
-    height:40%;
+    height:60%;
     display: block;
     top:15%;
     left:30%;
     z-index: 1;
-    background: rgba( 255, 255, 255, 0.25 );
+    background-color: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     border-radius: 5px;
@@ -20,7 +20,13 @@
 
 }
 
+.dropdown-body .body-table .description-table {
+    width:150px;
+}
 
+table, th, td {
+    border: 1px solid;
+}
 
 .dropdown-header {
     position: relative;
@@ -63,10 +69,24 @@
 }
 
 .dropdown-body h4 {
+   
+    right:200px;
     font-size: 0.9vw;
     font-weight: 25;
+    height:50%;
     padding-top: 10px;
+    float:right;
+    text-align:right;
     
+}
+
+.dropdown-body
+
+.dropdown-body label {
+    font-weight: bold;
+    text-decoration: underline;
+    float:left;
+    text-align:left;
 }
 
 .dropdown-footer {
@@ -95,16 +115,21 @@
 }
 
 .type1 {
-    width: 100%;
-    height: 100%;
     background: yellow;
     border: 3px solid black;
     z-index: 2;
+    background-color: rgba(224, 224, 224, 0.842);
+    width: 30%;
+    height: 80%;
+    margin-right:70%;
+    position: fixed;
+    top:20px;
+    left:20px;
 }
 
 .img-container {
     background-color: rgba(224, 224, 224, 0.842);
-    width:30%;
+    width: 30%;
     height:60%;
 }
 

@@ -62,13 +62,39 @@ export default function Dropbox(props) {
             
             <div className="dropdown-header">
                 <h4>{props.item.itemName}</h4>
-            </div>
-            <div class="img-container">
                 <img src={props.item.itemImg} alt="dogImg" class="circleBase type1"></img>
             </div>
 
+           
+           
+
             <div className="dropdown-body">
-                <h4>{props.item.description}</h4>
+                <table className="body-table">
+                    <tr>
+                        <th>Price: </th>
+                        <td>{props.item.itemPrice}</td>
+                    </tr>
+                    <tr>
+                        <th>Available Quantity: </th>
+                        <td>{props.item.availableQuantity}</td>
+                    </tr>
+                    {props.item.itemCategory === "Pet" &&
+                    <tr>
+                        <th>Age: </th>
+                        <td>{props.item.age}</td>
+                    </tr>
+                    }
+                    {props.item.itemCategory === "Pet" &&
+                    <tr>
+                        <th>Pedigree: </th>
+                        <td>{props.item.pedigree}</td>
+                    </tr>
+                    }               
+                    <tr>
+                        <th>Description: </th>
+                        <td className="description-table">{props.item.description}</td>
+                    </tr>
+                </table>
             </div>
 
             <div className="dropdown-footer">
