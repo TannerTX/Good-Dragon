@@ -91,6 +91,7 @@ function PurchasableItems(props) {
                   </IconContext.Provider>
                   </div>
               }
+              
 
               <div class="product-tumb">
                  {props.item.itemImg ? <img src={props.item.itemImg} width={width} height={height} className="prodimg" /> :
@@ -143,6 +144,7 @@ function PurchasableItems(props) {
               </div>
            </div>
         </div>
+                  
    </>
     )
 }

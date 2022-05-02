@@ -78,7 +78,7 @@ function ProductManagement(props) {
         </div>
         <div id="imgScroller">
          { props.imgs.map(img => 
-         <span onClick={() => setImage(img)}>
+         <span className="sp" onClick={() => setImage(img)}>
             <div className="imgSc">
             <img className="imgS" src={img} />
             </div>

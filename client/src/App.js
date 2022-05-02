@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import TestNavbar from "./Components/Navbar/Navbar.js"
-import Testing from "./pages/testingPage.js"
 import Admin from "./pages/adminPage.js"
 import Shop from "./pages/shop.js"
 import Shop2 from "./pages/shop2.js"
@@ -41,7 +40,6 @@ function App() {
          <Route path="/" element={<Home />} />
          <Route path="/login" element={<Login />} />
          <Route path="/register" element={<Register />} />
-         <Route path="/testing" element={<Testing />} />
          <Route path="/cart" element={<Cart />} />
          <Route path="/admin" element={<Admin />} />
          <Route path="/checkout" element={<Checkout />} />

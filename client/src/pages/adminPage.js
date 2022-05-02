@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios"
-//import "../assets/styles/adminPage.css"
+import { useNavigate } from "react-router-dom"
 import "../assets/styles/adminPage2.css"
 import AcctManagement from "../Components/AdminPage/AcctManagement.js"
 import Discount from "../Components/AdminPage/Discounts.js"
@@ -15,6 +15,7 @@ function Admin() {
     const [portal, setPortal] = useState("")
     const [loginStatus, setLoginStatus] = useState({})
     const [usableImages, setUsableImages] = useState([])
+    const history = useNavigate()
 
     const importAll = (r) => {
         return r.keys().map(r);
@@ -35,7 +36,7 @@ function Admin() {
     return (
 
         <>
-        { loginStatus.isAdmin ? 
+        { loginStatus.isAdmin && 
 
         <div className="mainContainer">
             <img src = {bg} class="center fade-in-image" />
@@ -70,13 +71,10 @@ function Admin() {
 
 
         </div>
-
-            : 
-        
-        <div>YOU ARE NOT AN ADMIN</div>
-            
-
         }
+        { loginStatus.isAdmin === 0 &&
+            history("/")
+        } 
 
         </>
 

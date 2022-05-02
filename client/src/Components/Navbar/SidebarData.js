@@ -24,12 +24,5 @@ export const SidebarData = [
     path: '/login',
     icon: <IoIcons.IoIosPerson />,
     cName: 'nav-text'
-  },
-  {
-    class: 'current',
-    title: 'TESTING GROUNDS',
-    path: '/testing',
-    icon: <FaIcons.FaBattleNet />,
-    cName: 'nav-text'
   }
 ];

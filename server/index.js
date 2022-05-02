@@ -199,6 +199,11 @@ app.post("/addToCart", (req, res) => {
     
 })
 
+app.post("/deleteCode", (req, res) => {
+    const code = req.body.code
+    db.query("DELETE FROM discountCodes WHERE codes=?", [code])
+})
+
 app.post("/addItem", (req, res) => {
 
     const data = req.body.data

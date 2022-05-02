@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./Discounts.css";
+import * as FaIcons from "react-icons/fa"
 
 function Discount() {
   const [code, setCode] = useState("");
@@ -14,6 +15,8 @@ function Discount() {
       if (item.codes.toLowerCase() === code.toLowerCase()) good = false;
     });
 
+  
+
     if (code != "" && percentOff != "" && good === true) {
       Axios.post("http://localhost:3001/discountCodes", {
         function: "add",
@@ -25,6 +28,11 @@ function Discount() {
       setCode(2);
     } else alert("ERROR: Invalid Code / Duplicate");
   };
+
+  const removeDiscount = (code) => {
+    Axios.post("http://localhost:3001/deleteCode", {code: code})
+    setCode("sdfds")
+  }
 
   useEffect(() => {
     Axios.post("http://localhost:3001/discountCodes", { function: "get" }).then(
@@ -67,6 +75,9 @@ function Discount() {
         {currCodes.map((item) => (
           <h3>
             {item.codes} - %{item.discount}
+            <span className="spa" onClick={() => removeDiscount(item.codes)}>
+            <FaIcons.FaWindowClose />
+            </span>
           </h3>
         ))}
 

@@ -120,3 +120,14 @@
    .CreateDiscountContainer button:hover::before {
     width: 100%;
    }
+
+   .spa {
+     position: absolute;
+     right: 10%;
+     transition: 0.4s
+   }
+
+   .spa:hover {
+     color: white;
+   }
+
