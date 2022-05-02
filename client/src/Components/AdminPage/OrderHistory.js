@@ -101,11 +101,7 @@ function OrderHistory() {
             <h5>User: {order.username}</h5>
             <h5 className="upperRight" style={{color: "green"}}>Total: ${order.orderTotal.toLocaleString()}</h5>
             <h5>Date of order: <a style={{color: "red"}}>{order.date}</a></h5>
-            <span>View Items</span>
           
-          <div className="itemsInOrder">
-      
-          </div>
 
         </div>
         )

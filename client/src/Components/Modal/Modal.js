@@ -72,7 +72,7 @@ export default function Dropbox(props) {
                 <table className="body-table">
                     <tr>
                         <th>Price: </th>
-                        <td>{props.item.itemPrice}</td>
+                        <td>${props.item.itemPrice}</td>
                     </tr>
                     <tr>
                         <th>Available Quantity: </th>
@@ -104,19 +104,19 @@ export default function Dropbox(props) {
 
         { props.adminMode &&
 
-        <div className="dropdown-container">
+        <div className="dropdown-container-admin">
 
-            <div className="dropdown-header">
+            <div className="dropdown-header-admin">
                 <h4>Modify {props.item.itemName}</h4>
                 <div className="deleteButton">
-                <button className="btn newStyle" onClick={handleDelete}>Delete Item</button>
+                <button className="btn-admin-delete newStyle-delete" onClick={handleDelete}>Delete Item</button>
                 </div>
             </div>
-            <div class="img-container">
-                <img src={props.item.itemImg} alt="dogImg" class="circleBase type1"></img>
+            <div class="img-container-admin">
+                <img src={props.item.itemImg} alt="dogImg" class="circleBase-admin type1-admin"></img>
             </div>
 
-            <div className="dropdown-body">
+            <div className="dropdown-body-admin">
 
             <div>
             <h4>Item Name</h4>
@@ -152,7 +152,7 @@ export default function Dropbox(props) {
                 
             </div>
 
-            <div className="dropdown-footer">
+            <div className="dropdown-footer-admin">
                 <button className="btn newStyle" onClick={handleChangeSubmit}>Submit Changes</button>
             </div>
         </div>

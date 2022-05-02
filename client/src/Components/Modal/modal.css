@@ -2,11 +2,11 @@
     animation: myAnim 1s ease 0s 1 normal forwards;
     position: fixed;
     margin: auto;
-    width:40%;
+    width:20%;
     height:60%;
     display: block;
     top:15%;
-    left:30%;
+    left:37.5%;
     z-index: 1;
     background-color: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -14,24 +14,26 @@
     border-radius: 5px;
     -webkit-backdrop-filter: blur( 4px );
     border: 1px solid rgba(0, 217, 255, 0.274);
-    
-    
-    
-
 }
 
-.dropdown-body .body-table .description-table {
+.description-table {
     width:150px;
 }
 
-table, th, td {
+table{
+    width: 100%;
     border: 1px solid;
+    height: 100%;
+}
+
+th {
+    text-align:left;
 }
 
 .dropdown-header {
     position: relative;
     margin: auto;
-    text-align: center;
+    text-align: right;
     overflow: hidden;
     width: 100%;
     height: 20%;
@@ -43,9 +45,10 @@ table, th, td {
 }
 
 .dropdown-header h4 {
+    
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 60%;
     font-size: 1vw;
     transform: translate(-50%, -50%);
 }
@@ -55,7 +58,6 @@ table, th, td {
 .dropdown-body {
     position: relative;
     margin: auto;
-    text-align: center;
     width: 100%;
     height: 60%;
     overflow-x: hidden;
@@ -116,7 +118,7 @@ table, th, td {
 
 .type1 {
     background: yellow;
-    border: 3px solid black;
+    border: 2px solid black;
     z-index: 2;
     background-color: rgba(224, 224, 224, 0.842);
     width: 30%;
@@ -137,15 +139,15 @@ table, th, td {
 .btn {
     animation: myAnim 1s ease 0s 1 normal forwards;
     position: fixed;
-    left: 65%;
-    top: 73%;
+    left: 45.4%;
+    top: 66%;
     font-size: 0.5vw;
     text-transform: uppercase;
     padding: 1em 2.5em;
     display: inline-block;
     border-radius: 6em;
     transition: all .2s;
-    border: none;
+    border:#333, 2px;
     font-family: inherit;
     font-weight: bolder;
     color: black;
@@ -266,13 +268,228 @@ table, th, td {
 
   .newStyle {
       position:absolute;
-      left: 70%;
-      top: 29%;
+      left: 48%;
+      top: 25.5%;
   }
+
+  .newStyle-delete {
+    position:absolute;
+    left: 48%;
+    top: 25.5%;
+}
 
   .deleteButton {
       position: absolute;
-      left: 85%;
-      top: 25%;
+      left: 80%;
+      top: 30%;
       background-color: red;
   }
+
+  .dropdown-container-admin {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+    position: fixed;
+    margin: auto;
+    width:30%;
+    height:60%;
+    display: block;
+    top:15%;
+    left:37.5%;
+    z-index: 1;
+    background-color: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    border-radius: 5px;
+    -webkit-backdrop-filter: blur( 4px );
+    border: 1px solid rgba(0, 217, 255, 0.274);
+}
+
+.description-table {
+    width:150px;
+}
+
+table{
+    width: 100%;
+    border: 1px solid;
+    height: 100%;
+}
+
+th {
+    text-align:left;
+}
+
+.dropdown-header-admin {
+    position: relative;
+    margin: auto;
+    text-align: right;
+    overflow: hidden;
+    width: 100%;
+    height: 20%;
+    background-color: rgba(224, 224, 224, 0.842);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-bottom: 1px solid rgba(168, 168, 168, 0.274);
+}
+
+.dropdown-header-admin h4 {
+    
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    font-size: 1vw;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.dropdown-body-admin {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 60%;
+    overflow-x: hidden;
+    background-color: rgba(224, 224, 224, 0.842);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-bottom: 1px solid rgba(168, 168, 168, 0.274);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.dropdown-body h4 {
+   
+    right:200px;
+    font-size: 0.9vw;
+    font-weight: 25;
+    height:50%;
+    padding-top: 10px;
+    float:right;
+    text-align:right;
+    
+}
+
+
+
+.dropdown-label-admin label {
+    font-weight: bold;
+    text-decoration: underline;
+    float:left;
+    text-align:left;
+}
+
+.dropdown-footer-admin {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 20%;
+    background-color: rgba(224, 224, 224, 0.842);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-bottom: 1px solid rgba(168, 168, 168, 0.274);
+}
+
+.dropdown-background {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.circleBase-admin {
+    border-radius: 50%;
+}
+
+.type1-admin {
+    background: yellow;
+    border: 2px solid black;
+    z-index: 2;
+    background-color: rgba(224, 224, 224, 0.842);
+    width: 27%;
+    height: 17%;
+    margin-right:70%;
+    position: fixed;
+    top:10px;
+    left:20px;
+}
+
+.img-container {
+    background-color: rgba(224, 224, 224, 0.842);
+    width: 30%;
+    height:60%;
+}
+
+
+.btn-admin {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+    position: fixed;
+    left: 45.4%;
+    top: 66%;
+    font-size: 0.5vw;
+    text-transform: uppercase;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border:#333, 2px;
+    font-family: inherit;
+    font-weight: bolder;
+    color: black;
+    z-index: 1;
+    background-color: #22b341;
+   }
+
+   .btn-admin-delete {
+    animation: myAnim 1s ease 0s 1 normal forwards;
+    position: fixed;
+    left: 50%;
+    top: 66%;
+    font-size: 0.5vw;
+    text-transform: uppercase;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border:#333, 2px;
+    font-family: inherit;
+    font-weight: bolder;
+    color: black;
+    z-index: 1;
+    background-color: red;
+   }
+
+   .btn-admin-delete:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btn-admin-delete:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btn-admin-delete::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+    
+   }
+   
+   .btn-admin-delete::after {
+    background-color: #fff;
+   }
+   
+   .btn-admin-delete:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+   }

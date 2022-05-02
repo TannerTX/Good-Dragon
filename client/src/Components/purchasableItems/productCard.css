@@ -185,10 +185,10 @@ a
     border-radius: 30em;
     font-size: 15px;
     font-family: inherit;
-    border: none;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    border: black, 1px;
     
    }
    

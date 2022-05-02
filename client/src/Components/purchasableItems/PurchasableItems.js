@@ -106,7 +106,7 @@ function PurchasableItems(props) {
                   <>
                  {itemQuant > 0 ?
                  <div className="qtySelect">
-                    <QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e)=> {setQuantSelector(e)} } /> 
+                    <QuantityPicker value={quantSelector} min={1} max={itemQuant} width="8rem" smooth onChange={ (e)=> {setQuantSelector(e)}} /> 
                  </div>
                  :
                  <h6 style={{paddingTop: "45px"}}></h6> } </>
