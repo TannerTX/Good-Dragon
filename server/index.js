@@ -124,15 +124,39 @@ app.post("/getPlacedOrders", (req, res) => {
 
 app.post("/getOrderHistory", (req, res) => {
 
-    db.query("SELECT * FROM orderHistory", (err, result) => {
+    if(req.body.sort === null || req.body.sort === undefined) {
+        db.query("SELECT * FROM orderHistory", (err, result) => {
 
+            if(err) console.log(err)
+            else if(result.length) res.send(result)
+            else res.send({message: "Empty"})
+    
+    
+        })
+    }
+    else {
+
+        db.query(`SELECT * FROM orderHistory ${req.body.sort}`, (err, result) => {
+
+            if(err) console.log(err)
+            else if(result.length) res.send(result)
+            else res.send({message: "Empty"})
+        })
+
+
+
+    }
+
+    
+
+})
+
+
+app.post("/getUsers", (req, res) => {
+    db.query("SELECT username FROM userLoginInfo", (err, result) => {
         if(err) console.log(err)
-        else if(result.length) res.send(result)
-        else res.send({message: "Empty"})
-
-
+        else res.send(result)
     })
-
 })
 
 app.post("/logout", (req, res) => {
