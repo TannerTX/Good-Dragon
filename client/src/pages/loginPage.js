@@ -38,6 +38,7 @@ function Login() {
             setFormErrors(validate(response))
 
             if(response.data.success)
+            
             history("/shop")
          })
         }
@@ -59,6 +60,7 @@ function Login() {
             console.log(formErrors)
 
             if(response.data.message === "Success!")
+
             history("/shop")
          })
         }
