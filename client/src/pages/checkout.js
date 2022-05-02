@@ -31,11 +31,21 @@ function Checkout() {
             console.log("ITEMS")
             console.log(res.data)
 
+            let totalIt = 0
+            let totalPr = 0
             res.data.forEach(item => {
-                setTotalItems(totalItems + item.quantity) 
-                setTotalPrice(totalPrice + (item.itemPrice * item.quantity))
+                totalIt += item.quantity
+                totalPr += (item.quantity * item.itemPrice)
+                // setTotalItems(totalItems + item.quantity) 
+                // setTotalPrice(totalPr + (item.quantity * item.itemPrice))
+                
             })
+            console.log(totalIt)
+            console.log(`$${totalPr}`)
+            setTotalItems(totalIt)
+            setTotalPrice(totalPr)
             
+            console.log(totalPrice)
         })
     })
 
@@ -52,7 +62,12 @@ function Checkout() {
     }
 
     useEffect(() => {
-    }, [])
+        setTotalItems(totalItems)
+    }, [totalItems])
+
+    useEffect(() => {
+        setTotalPrice(totalPrice)
+    }, [totalPrice])
 
     const getTotalPrice = () => {
         return totalPrice
@@ -82,7 +97,7 @@ function Checkout() {
                 
             })
 
-        history("/shop")
+        history("/checkoutSuccess")
     }
 
     return(
@@ -94,10 +109,21 @@ function Checkout() {
                     <img src={item.itemImg} />
                     </div>
                     <div className="priceInfoContainer">
-                        <div className="itemNameContainer"><h2>{item.itemName}</h2></div>
+                        <div className="itemNameContainer"><h2 style={{fontSize: "15px"}}>{item.itemName}</h2></div>
                         <div className="itemQuantityContainer"><h3>Quantity: {item.quantity}</h3></div>
-                        <div className="itemPriceContainer"><h3>Price/Unit: ${item.itemPrice}</h3></div>
-                        <div className="totalPrice"><h3 style={{color: "green"}}>Total Price: ${item.itemPrice * item.quantity}</h3></div>
+                        <div className="itemPriceContainer"><h3>Price/Unit: <a style={{color: item.sale > 0 && "orange"}}>$
+                            {   item.sale > 0 ? 
+                                (item.itemPrice - (item.itemPrice * item.sale/100) ).toFixed(2)
+                                :
+                                item.itemPrice
+                            }
+                        </a></h3></div>
+                        <div className="totalPrice"><h3 style={{color: "green"}}>Total Price: ${
+                        item.sale > 0 ?
+                        ((item.itemPrice - (item.itemPrice * item.sale/100)) * item.quantity).toFixed(2)
+                        :
+                        item.itemPrice * item.quantity
+                        }</h3></div>
                     </div>
                 </div>    
                 

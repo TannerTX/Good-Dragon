@@ -113,7 +113,12 @@ function PurchasableItems(props) {
 
                  <h6 className="itemQuant">Available: {itemQuant || "N/A"}</h6>
                  <div class="product-bottom-details">
-                    <div class="product-price">${props.item.itemPrice.toLocaleString() || "NULL"}</div>
+
+                    <div class="product-price" style={{color: props.item.sale > 0 && "orange"}}>
+                       ${(props.item.itemPrice - (props.item.itemPrice * (props.item.sale / 100))).toFixed(2).toLocaleString() || "NULL"}
+                     </div>
+                     
+
                      { user.username &&
                     <div class="product-links">
                        {itemQuant > 0 ?

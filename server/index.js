@@ -103,10 +103,35 @@ app.post("/placeOrder", (req, res) => {
                   db.query("DELETE FROM customerCart WHERE username=?", [data.username])
               })
         
+        db.query("INSERT INTO orderHistory (orderDate, orderID, username, orderTotal) VALUES (?, ?, ?, ?)", [data.date, orderID, data.username, data.total])
+        
     })
 
+})
 
-    
+app.post("/getPlacedOrders", (req, res) => {
+
+    db.query("SELECT * FROM placedOrders", (err, result) => {
+
+        if(err) console.log(err)
+        else if(result.length) res.send(result)
+        else res.send({message: "Empty"})
+
+
+    })
+
+})
+
+app.post("/getOrderHistory", (req, res) => {
+
+    db.query("SELECT * FROM orderHistory", (err, result) => {
+
+        if(err) console.log(err)
+        else if(result.length) res.send(result)
+        else res.send({message: "Empty"})
+
+
+    })
 
 })
 
