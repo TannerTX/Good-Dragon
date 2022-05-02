@@ -34,7 +34,7 @@ function Login() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-            await Axios.post(`http://localhost:3001/login`, user).then(response =>{
+            await Axios.post(`https://good-dragon.herokuapp.com/login`, user).then(response =>{
             console.log(response);
             setFormErrors(validate(response))
 
@@ -53,7 +53,7 @@ function Login() {
         setFormErrors(validateNewPassword(user))
 
         if(Object.values(formErrors).length === 0){
-            await Axios.post("http://localhost:3001/changePassword", user).then(response =>{
+            await Axios.post("https://good-dragon.herokuapp.com/changePassword", user).then(response =>{
             console.log(response);
             setFormErrors(validateNewPassword(response))
 
@@ -112,14 +112,14 @@ function Login() {
     }
 
     const logout = async e => {
-        Axios.post("http://localhost:3001/logout").then(response => {
+        Axios.post("https://good-dragon.herokuapp.com/logout").then(response => {
             console.log(response)
             })
         window.location.reload(false)
     }
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login").then(response => {
+        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {
             console.log(response.data)
 
             if(response.data.loggedIn === true){

@@ -30,7 +30,7 @@ export default function Shop2() {
 
     useEffect(() => {
         
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
             if(response.data.loggedIn === true) 
             setCurrentUser(response.data.user[0])
              })
@@ -40,13 +40,13 @@ export default function Shop2() {
             
                     if(location.state.search != "") {
                     console.log("NONDEFAULT WAS CHOSEN")
-                    Axios.post("http://localHost:3001/getData", {searchData: location.state.search}).then(res => {setItems(res.data)})
+                    Axios.post("https://good-dragon.herokuapp.com/getData", {searchData: location.state.search}).then(res => {setItems(res.data)})
                     window.history.replaceState(null, '')
                     }
            
              }
              else {
-                Axios.post("http://localHost:3001/getData", {sortMethod: ""}).then(res => {setItems(res.data) })
+                Axios.post("https://good-dragon.herokuapp.com/getData", {sortMethod: ""}).then(res => {setItems(res.data) })
              }
                 
             
@@ -67,7 +67,7 @@ export default function Shop2() {
     }
 
     const searchItem = () => {
-        Axios.post("http://localhost:3001/getData", {searchData:search}).then(res => {
+        Axios.post("https://good-dragon.herokuapp.com/getData", {searchData:search}).then(res => {
             setItems(res.data)
         })
     }

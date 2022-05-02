@@ -26,7 +26,7 @@ function Admin() {
     }, [])
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
             if(response.data.loggedIn === true) 
             setLoginStatus(response.data.user[0])
              })

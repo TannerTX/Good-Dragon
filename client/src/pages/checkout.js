@@ -21,12 +21,12 @@ function Checkout() {
 
     useState(() => {
 
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
             setCurrentUser(response.data.user[0])
             console.log("CURRENT USER")
             console.log(response.data.user[0])
 
-        Axios.post("http://localhost:3001/getUserCart", {user:response.data.user[0]}).then(res => {
+        Axios.post("https://good-dragon.herokuapp.com/getUserCart", {user:response.data.user[0]}).then(res => {
             setCheckoutItems(res.data)
             console.log("ITEMS")
             console.log(res.data)
@@ -53,7 +53,7 @@ function Checkout() {
 
     const checkDiscountCode = () => {
         let code = discountCode
-        Axios.post("http://localhost:3001/checkDiscountCode", {code: code}).then(res => {
+        Axios.post("https://good-dragon.herokuapp.com/checkDiscountCode", {code: code}).then(res => {
             console.log(res)
             if(res.data.discount)
             setPercentOff(res.data.discount)
@@ -92,7 +92,7 @@ function Checkout() {
         })
 
 
-            Axios.post("http://localhost:3001/placeOrder", {data: {itemID: itemList, total: orderTotal, username: currentUser.username, date: date, quantity: quantityList}}).then(res => {
+            Axios.post("https://good-dragon.herokuapp.com/placeOrder", {data: {itemID: itemList, total: orderTotal, username: currentUser.username, date: date, quantity: quantityList}}).then(res => {
                 console.log(res)
                 
             })
