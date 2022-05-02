@@ -18,7 +18,7 @@ function TestNavbar(props) {
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#0aecf0', size: '27px' }}>
+      <IconContext.Provider value={{ color: '#17999c', size: '27px' }}>
         <div className='navbar' onClick={() => showSidebar()}>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars />

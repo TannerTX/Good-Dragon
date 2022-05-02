@@ -13,9 +13,12 @@
     left: 10%;
     width: 10%;
     height: 30vh;
-    background-color: rgba(250, 235, 215, 0);
-    padding-left: 5px;
+    background-color: rgb(255, 145, 0);
     border-left: 1px solid black;
+    border-right: 1px solid black;
+    background: rgb(223, 223, 223);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+       
 }
 .buttonNavContainer button {
     padding: 15px 25px;
