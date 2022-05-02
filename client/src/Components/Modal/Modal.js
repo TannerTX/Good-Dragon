@@ -28,11 +28,14 @@ export default function Dropbox(props) {
         Axios.post("https://good-dragon.herokuapp.com/updateItem", {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
             console.log(res)
             alert("Successfully Updated!")
-            window.location.href = window.location.href;
-            window.location.reload(true)
+            swapPage("/shop")
         })
 
 
+    }
+
+    const swapPage = (page) => {
+        history(page)
     }
 
     const handleDelete = () => {
@@ -41,7 +44,7 @@ export default function Dropbox(props) {
         Axios.post("https://good-dragon.herokuapp.com/deleteItem", {id: id}).then(res => {
             console.log(res)
             alert("Success!")
-            history("/shop")
+            swapPage("/shop")
         })
     }
 
