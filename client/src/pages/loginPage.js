@@ -37,8 +37,6 @@ function Login() {
             await Axios.post(`https://good-dragon.herokuapp.com/login`, user).then(response =>{
             setFormErrors(validate(response))
 
-            if(response.data.success)
-            window.location.reload(false)
          })
         }
 
