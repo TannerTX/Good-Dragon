@@ -38,12 +38,15 @@ function Login() {
             setFormErrors(validate(response))
 
             if(response.data.success)
-            
-            history("/shop")
+            swapPage()
          })
         }
 
         }
+
+    const swapPage = () => {
+        history("/shop")
+    }
 
     const changePassword = async e => {
 
@@ -60,8 +63,8 @@ function Login() {
             console.log(formErrors)
 
             if(response.data.message === "Success!")
-
-            history("/shop")
+            swapPage()
+    
          })
         }
     }
