@@ -38,7 +38,7 @@ function Login() {
             setFormErrors(validate(response))
 
             if(response.data.success)
-            swapHome()
+            swapShop()
          })
         }
 
