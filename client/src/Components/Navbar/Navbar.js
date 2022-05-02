@@ -21,7 +21,7 @@ function TestNavbar(props) {
             if(response.data.loggedIn === true) 
             setCurrentUser(response.data.user[0])
              })
-  }, [])
+  }, [sidebar])
 
 
   return (
