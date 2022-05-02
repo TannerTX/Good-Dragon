@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import "./AcctManagement.css"
 import Axios from "axios"
+import {base_url} from "./config.js"
 
 function AcctManagement() {
 
@@ -26,7 +27,7 @@ function AcctManagement() {
     let map = new Map()
     const handleUserSearch = () => {
 
-        Axios.post("http://localhost:3001/getUserInfo", {user:userSearch}).then(res => {
+        Axios.post(`${base_url}/getUserInfo`, {user:userSearch}).then(res => {
             if(res.data[0].username) {
                 console.log(res.data[0])
                 setFoundUser(res.data[0])
@@ -38,7 +39,7 @@ function AcctManagement() {
                 setOldPassword(res.data[0].password)
                 setPhone(res.data[0].phoneNum)
 
-                Axios.post("http://localhost:3001/getUserOrders", {user: res.data[0].username}).then(res => {
+                Axios.post(`${base_url}/getUserOrders`, {user: res.data[0].username}).then(res => {
                     
                 if(res.data[0]) {
                     setPlacedOrders(res.data)
@@ -86,7 +87,7 @@ function AcctManagement() {
         let last = name.split(" ")[1]
 
         let newUserInfo = {oldUser, username, isAdmin, oldPassword, newPassword, first, last, address, email, phone}
-        Axios.post("http://localhost:3001/updateUserInfo", {userInfo: newUserInfo}).then(res => {
+        Axios.post(`${base_url}/updateUserInfo`, {userInfo: newUserInfo}).then(res => {
             console.log(res)
 
             if(res.data.errorMessage)

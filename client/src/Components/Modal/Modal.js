@@ -3,7 +3,7 @@ import Axios from "axios"
 import "./modal.css"
 import { useNavigate } from "react-router-dom"
 import { AiFillPropertySafety } from "react-icons/ai"
-
+import {base_url} from "../AdminPage/config.js"
 
 export default function Dropbox(props) {
 
@@ -25,23 +25,28 @@ export default function Dropbox(props) {
         setRand(Math.floor(Math.random() * 100))
 
         let id = props.item.itemID
-        Axios.post("http://localhost:3001/updateItem", {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
+        Axios.post(`${base_url}/updateItem`, {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
             console.log(res)
             alert("Successfully Updated!")
-            window.location.href = window.location.href;
-            window.location.reload(true)
+            swapShop()
+            props.rand(5)
         })
 
 
     }
 
+    const swapShop = () => {
+        history("/shop")
+    }
+
+
     const handleDelete = () => {
         setRand(Math.floor(Math.random() * 100))
         let id = props.item.itemID
-        Axios.post("http://localhost:3001/deleteItem", {id: id}).then(res => {
+        Axios.post(`${base_url}/deleteItem`, {id: id}).then(res => {
             console.log(res)
             alert("Success!")
-            history("/shop")
+            swapShop()
         })
     }
 

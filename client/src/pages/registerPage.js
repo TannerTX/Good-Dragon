@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import "../assets/styles/Login.css"
 import Axios from "axios"
 import bgVideo from '../assets/videos/dogs3.mp4'
-
+import {base_url} from "../assets/config.js"
 
 function Register() {
 
@@ -25,7 +25,7 @@ function Register() {
         const user = {username, password, firstName, lastName, address, phone, email}
         setFormErrors(validate(user))
         if(Object.values(formErrors).length === 0){
-        const response = await Axios.post("http://localhost:3001/register", user).then(response =>{
+        const response = await Axios.post(`${base_url}/register`, user).then(response =>{
             console.log(response); 
             setFormErrors(validate(response))
             if (response.data.success === true)

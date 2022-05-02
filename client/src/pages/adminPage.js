@@ -6,6 +6,7 @@ import AcctManagement from "../Components/AdminPage/AcctManagement.js"
 import Discount from "../Components/AdminPage/Discounts.js"
 import ProductManagement from "../Components/AdminPage/ProductManagement.js"
 import OrderHistory from "../Components/AdminPage/OrderHistory.js"
+import {base_url} from "../assets/config.js"
 
 import bg from '../assets/videos/dog4.jpg'
 
@@ -26,7 +27,7 @@ function Admin() {
     }, [])
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get(`${base_url}/login`).then(response => {    
             if(response.data.loggedIn === true) 
             setLoginStatus(response.data.user[0])
              })

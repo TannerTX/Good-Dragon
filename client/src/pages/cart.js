@@ -16,11 +16,11 @@ export default class Cart extends React.Component {
 
     componentDidMount() {
     
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
             if(response.data.loggedIn === true) 
             this.state.currentUser = response.data.user[0]
             
-            Axios.post("http://localhost:3001/getUserCart", {user: this.state.currentUser}).then(res => {
+            Axios.post("https://good-dragon.herokuapp.com/getUserCart", {user: this.state.currentUser}).then(res => {
                 
                 this.setState({cart: res.data});
                 console.log(this.state.cart)

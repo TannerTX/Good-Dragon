@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useNavigate, useHistory } from "react-router-dom"
 import Axios from "axios"
 import "../assets/styles/checkout.css"
-
+import {base_url} from "../assets/config.js"
 
 
 function Checkout() {
@@ -21,12 +21,12 @@ function Checkout() {
 
     useState(() => {
 
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get(`${base_url}/login`).then(response => {    
             setCurrentUser(response.data.user[0])
             console.log("CURRENT USER")
             console.log(response.data.user[0])
 
-        Axios.post("http://localhost:3001/getUserCart", {user:response.data.user[0]}).then(res => {
+        Axios.post(`${base_url}/getUserCart`, {user:response.data.user[0]}).then(res => {
             setCheckoutItems(res.data)
             console.log("ITEMS")
             console.log(res.data)
@@ -53,7 +53,7 @@ function Checkout() {
 
     const checkDiscountCode = () => {
         let code = discountCode
-        Axios.post("http://localhost:3001/checkDiscountCode", {code: code}).then(res => {
+        Axios.post(`${base_url}/checkDiscountCode`, {code: code}).then(res => {
             console.log(res)
             if(res.data.discount)
             setPercentOff(res.data.discount)
@@ -92,7 +92,7 @@ function Checkout() {
         })
 
 
-            Axios.post("http://localhost:3001/placeOrder", {data: {itemID: itemList, total: orderTotal, username: currentUser.username, date: date, quantity: quantityList}}).then(res => {
+            Axios.post(`${base_url}/placeOrder`, {data: {itemID: itemList, total: orderTotal, username: currentUser.username, date: date, quantity: quantityList}}).then(res => {
                 console.log(res)
                 
             })
@@ -110,20 +110,20 @@ function Checkout() {
                     </div>
                     <div className="priceInfoContainer">
                         <div className="itemNameContainer"><h2 style={{fontSize: "15px"}}>{item.itemName}</h2></div>
-                        <div className="itemQuantityContainer"><h3>Quantity: {item.quantity}</h3></div>
-                        <div className="itemPriceContainer"><h3>Price/Unit: <a style={{color: item.sale > 0 && "orange"}}>$
+                        <div className="itemQuantityContainer"><h5>Quantity: {item.quantity}</h5></div>
+                        <div className="itemPriceContainer"><h5>Price/Unit: <a style={{color: item.sale > 0 && "orange"}}>$
                             {   item.sale > 0 ? 
                                 (item.itemPrice - (item.itemPrice * item.sale/100) ).toFixed(2)
                                 :
                                 item.itemPrice
                             }
-                        </a></h3></div>
-                        <div className="totalPrice"><h3 style={{color: "green"}}>Total Price: ${
+                        </a></h5></div>
+                        <div className="totalPrice"><h4 style={{color: "green"}}>Total Price: ${
                         item.sale > 0 ?
                         ((item.itemPrice - (item.itemPrice * item.sale/100)) * item.quantity).toFixed(2)
                         :
                         item.itemPrice * item.quantity
-                        }</h3></div>
+                        }</h4></div>
                     </div>
                 </div>    
                 
@@ -134,18 +134,18 @@ function Checkout() {
         <h2>Summary of Order</h2>
 
         <div className="Items">
-            <h3>Items ({totalItems}):</h3>
-            <h3>Shipping:</h3>
-            <h3 style={{paddingTop: "10px"}}>Total w/o Tax:</h3>
-            <h3>Estimated Tax:</h3>
+            <h5>Items ({totalItems}):</h5>
+            <h5>Shipping:</h5>
+            <h5 style={{paddingTop: "10px"}}>Total w/o Tax:</h5>
+            <h5>Estimated Tax:</h5>
         </div>
 
         <div className="ItemsPrice">
-            <h3>${totalPrice}</h3>
-            <h3>$0.00</h3>
+            <h5>${totalPrice}</h5>
+            <h5>$0.00</h5>
             <hr />
-            <h3 style={{paddingTop: "10px"}}>${totalPrice}</h3>
-            <h3>${(totalPrice * .0825).toFixed(2)}</h3>
+            <h5 style={{paddingTop: "10px"}}>${totalPrice}</h5>
+            <h5>${(totalPrice * .0825).toFixed(2)}</h5>
             
         </div>
     

@@ -11,6 +11,7 @@ import "../Components/purchasableItems/productCard.css"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
 import Funcs  from "../Components/sortingFuncs/sorts.js"
 import { FaWindows } from "react-icons/fa"
+import {base_url} from "../assets/config.js"
 
 export default function Shop2() {
     
@@ -26,10 +27,11 @@ export default function Shop2() {
     const [sort, setSortMethod] = useState("")
     const [numSearches, setNumSearches] = useState(0)
     const [rand, setRand] = useState(0)
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get(`${base_url}/login`).then(response => {    
             if(response.data.loggedIn === true) 
             setCurrentUser(response.data.user[0])
              })
@@ -39,17 +41,17 @@ export default function Shop2() {
             
                     if(location.state.search != "") {
                     console.log("NONDEFAULT WAS CHOSEN")
-                    Axios.post("http://localHost:3001/getData", {searchData: location.state.search}).then(res => {setItems(res.data)})
+                    Axios.post(`${base_url}/getData`, {searchData: location.state.search}).then(res => {setItems(res.data)})
                     window.history.replaceState(null, '')
                     }
            
              }
              else {
-                Axios.post("http://localHost:3001/getData", {sortMethod: ""}).then(res => {setItems(res.data) })
+                Axios.post(`${base_url}/getData`, {sortMethod: ""}).then(res => {setItems(res.data) })
              }
                 
             
-    }, [])
+    }, [rand])
 
 
     const sortCart = (val) => {
@@ -65,10 +67,20 @@ export default function Shop2() {
 
     }
 
+    const searchItem = () => {
+        Axios.post(`${base_url}/getData`, {searchData:search}).then(res => {
+            setItems(res.data)
+        })
+    }
+
      
     return(
 
         <>
+        <div className="searchbar">
+            <input onChange={(e) => setSearch(e.target.value)} placeholder="Search Products..." />
+            <button onClick={searchItem}>Search</button>
+        </div>
         <div className="cartButton">
         <Link to={currentUser.username ? "/cart":"/login"}>
             <FaIcons.FaShoppingBag />
@@ -83,7 +95,7 @@ export default function Shop2() {
         />
 
         <div class="cards">
-            {items.map((prod) => <PurchasableItems item={prod} cart={cart} currUser={currentUser} />)}
+            {items.map((prod) => <PurchasableItems item={prod} cart={cart} currUser={currentUser} rand={setRand} />)}
         </div>
 
         </>

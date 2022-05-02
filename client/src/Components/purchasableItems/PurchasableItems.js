@@ -7,6 +7,7 @@ import Dropdown from "../Modal/Modal.js"
 import "../Modal/modal.css"
 import Axios from "axios"
 import { IconContext } from "react-icons/lib"
+import {base_url} from "../AdminPage/config.js"
 
 
 
@@ -44,7 +45,7 @@ function PurchasableItems(props) {
         let data = {item: props.item, user: props.currUser, amt: actualAmount}
 
         console.log(`ADDING ${data.amt} ${data.item.itemName}s TO ${data.user.username}'s CART`)
-        await Axios.post("http://localhost:3001/addToCart", data).then(response => {console.log(response)})
+        await Axios.post(`${base_url}/addToCart`, data).then(response => {console.log(response)})
 
     }
 
@@ -67,7 +68,7 @@ function PurchasableItems(props) {
         {showModal && <Dropdown item={props.item} adminMode={false} />}
         {showModal && <button className="btn" onClick={handleModal}>Close</button>}
 
-        {showAdminModal && <Dropdown item={props.item} adminMode={true} />}
+        {showAdminModal && <Dropdown item={props.item} rand={props.rand} adminMode={true} />}
         {showAdminModal && <button className="btn" onClick={handleAdminModal}>Close</button>}
 
            <div class="card">

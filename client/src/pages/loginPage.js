@@ -4,7 +4,7 @@ import '../assets/styles/Login.css'
 import '../assets/styles/fancyLogout.css'
 import bgVideo from '../assets/videos/dogs2.mp4'
 import bgVideo2 from '../assets/videos/dogs3.mp4'
-
+import {base_url} from "../assets/config.js"
 import Axios from "axios"
 
 function Login() {
@@ -34,16 +34,24 @@ function Login() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-            await Axios.post(`http://localhost:3001/login`, user).then(response =>{
-            console.log(response);
+            await Axios.post(`${base_url}/login`, user).then(response =>{
             setFormErrors(validate(response))
 
-            if(response.data.success)
-            window.location.reload(false)
+            if(response.data.success) {
+            swapHome()
+            }
          })
         }
 
         }
+
+    const swapShop = () => {
+        history("/shop")
+    }
+
+    const swapHome = () => {
+        history("/")
+    }
 
     const changePassword = async e => {
 
@@ -53,15 +61,15 @@ function Login() {
         setFormErrors(validateNewPassword(user))
 
         if(Object.values(formErrors).length === 0){
-            await Axios.post("http://localhost:3001/changePassword", user).then(response =>{
-            console.log(response);
+            await Axios.post(`${base_url}/changePassword`, user).then(response =>{
             setFormErrors(validateNewPassword(response))
 
             console.log("FORM ERRORS")
             console.log(formErrors)
 
             if(response.data.message === "Success!")
-            window.location.reload(false)
+            swapShop()
+    
          })
         }
     }
@@ -112,14 +120,14 @@ function Login() {
     }
 
     const logout = async e => {
-        Axios.post("http://localhost:3001/logout").then(response => {
+        Axios.post(`${base_url}/logout`).then(response => {
             console.log(response)
             })
-        window.location.reload(false)
+        swapHome()
     }
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/login").then(response => {
+        Axios.get(`${base_url}/login`).then(response => {
             console.log(response.data)
 
             if(response.data.loggedIn === true){

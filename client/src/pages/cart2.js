@@ -4,6 +4,7 @@ import Axios from "axios"
 import CartItem from "../Components/cartItem/cartItem.js"
 import * as AiIcons from "react-icons/ai"
 import cartImg from "../assets/images/logos/cart.png"
+import {base_url} from "../assets/config.js"
 
 export default function Cart() {
     
@@ -22,12 +23,12 @@ export default function Cart() {
 
     useEffect(() => {
     
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get(`${base_url}/login`).then(response => {    
             console.log(response)
             if(response.data.loggedIn === true) 
             setCurrentUser(response.data.user[0])
             
-            Axios.post("http://localhost:3001/getUserCart", {user: response.data.user[0]}).then(res => {
+            Axios.post(`${base_url}/getUserCart`, {user: response.data.user[0]}).then(res => {
                 
                 setCart(res.data);
                 console.log(cart)
@@ -63,7 +64,7 @@ export default function Cart() {
         let numToDelete = deleteMap.get(itemName) || 1
         console.log(`${itemName}, ${numToDelete}`)
         
-        Axios.post("http://localhost:3001/removeFromCart", {currentUser, itemName, itemID, numToDelete}).then(res => {
+        Axios.post(`${base_url}/removeFromCart`, {currentUser, itemName, itemID, numToDelete}).then(res => {
             console.log(res)
         })
 

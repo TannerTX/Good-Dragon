@@ -10,13 +10,6 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
-/*!
- * Splide.js
- * Version  : 4.0.0
- * License  : MIT
- * Copyright: 2022 Naotoshi Fujita
- */
-
 /**
  * React Router DOM v6.2.2
  *

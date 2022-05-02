@@ -33,9 +33,9 @@ export default class Shop extends React.Component {
     componentDidMount() {
         console.log(`SEARCH VALUE: ${this.state.searchValue}`)
 
-        Axios.post("http://localHost:3001/getData", {sortMethod: ""}).then(res => {this.setState({items: res.data})})
+        Axios.post("https://good-dragon.herokuapp.com/getData", {sortMethod: ""}).then(res => {this.setState({items: res.data})})
 
-        Axios.get("http://localhost:3001/login").then(response => {    
+        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
             if(response.data.loggedIn === true) 
             this.setState({currentUser: response.data.user[0]})
              })
@@ -62,7 +62,7 @@ export default class Shop extends React.Component {
             default: query = "";
         }
 
-        this.setState({sortMethod: query}, () => Axios.post("http://localhost:3001/getData", {sortMethod: this.state.sortMethod}).then(res => { 
+        this.setState({sortMethod: query}, () => Axios.post("https://good-dragon.herokuapp.com/getData", {sortMethod: this.state.sortMethod}).then(res => { 
             this.setState({items: res.data}); 
             console.log(this.state.items)
         }))

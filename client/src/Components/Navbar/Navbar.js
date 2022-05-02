@@ -7,13 +7,22 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import Axios from "axios"
+import {base_url} from "../AdminPage/config.js"
 
 function TestNavbar(props) {
+
+
   const [sidebar, setSidebar] = useState(false);
+  const [currentUser, setCurrentUser] = useState({})
   const showSidebar = () => setSidebar(!sidebar);
+  Axios.defaults.withCredentials = true
 
-
-
+  useEffect(() => {
+    Axios.get(`${base_url}/login`).then(response => {    
+            if(response.data.loggedIn === true) 
+            setCurrentUser(response.data.user[0])
+             })
+  }, [sidebar])
 
 
   return (
@@ -45,7 +54,7 @@ function TestNavbar(props) {
               );
             })}
 
-            {props.isLoggedIn &&
+            {currentUser.username &&
           <li key="6" className="nav-text">
           <Link to="/cart">
             <FaIcons.FaShoppingBag />
@@ -53,7 +62,7 @@ function TestNavbar(props) {
           </Link>
         </li> }
 
-        {props.isAdmin === 1 &&
+        { currentUser.isAdmin &&
             <li key="7" className="nav-text">
               <Link to="/admin">
                 <AiIcons.AiFillCrown />
