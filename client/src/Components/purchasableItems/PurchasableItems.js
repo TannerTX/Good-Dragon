@@ -67,7 +67,7 @@ function PurchasableItems(props) {
         {showModal && <Dropdown item={props.item} adminMode={false} />}
         {showModal && <button className="btn" onClick={handleModal}>Close</button>}
 
-        {showAdminModal && <Dropdown item={props.item} adminMode={true} />}
+        {showAdminModal && <Dropdown item={props.item} rand={props.setRand} adminMode={true} />}
         {showAdminModal && <button className="btn" onClick={handleAdminModal}>Close</button>}
 
            <div class="card">

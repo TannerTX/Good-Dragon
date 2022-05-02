@@ -38,8 +38,7 @@ function Login() {
             setFormErrors(validate(response))
 
             if(response.data.success) {
-            window.location.href = "/"
-            window.location.reload(true)
+            swapHome()
             }
          })
         }

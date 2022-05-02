@@ -12,8 +12,16 @@ function TestNavbar(props) {
 
 
   const [sidebar, setSidebar] = useState(false);
+  const [currentUser, setCurrentUser] = useState({})
   const showSidebar = () => setSidebar(!sidebar);
+  Axios.defaults.withCredentials = true
 
+  useEffect(() => {
+    Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
+            if(response.data.loggedIn === true) 
+            setCurrentUser(response.data.user[0])
+             })
+  }, [])
 
 
   return (
@@ -45,7 +53,7 @@ function TestNavbar(props) {
               );
             })}
 
-            {props.isLoggedIn &&
+            {currentUser.username &&
           <li key="6" className="nav-text">
           <Link to="/cart">
             <FaIcons.FaShoppingBag />
@@ -53,7 +61,7 @@ function TestNavbar(props) {
           </Link>
         </li> }
 
-        { 
+        { currentUser.isAdmin &&
             <li key="7" className="nav-text">
               <Link to="/admin">
                 <AiIcons.AiFillCrown />

@@ -29,6 +29,7 @@ export default function Dropbox(props) {
             console.log(res)
             alert("Successfully Updated!")
             swapShop()
+            props.rand(5)
         })
 
 

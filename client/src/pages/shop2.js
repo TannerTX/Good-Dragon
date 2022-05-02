@@ -50,7 +50,7 @@ export default function Shop2() {
              }
                 
             
-    }, [])
+    }, [rand])
 
 
     const sortCart = (val) => {
@@ -94,7 +94,7 @@ export default function Shop2() {
         />
 
         <div class="cards">
-            {items.map((prod) => <PurchasableItems item={prod} cart={cart} currUser={currentUser} />)}
+            {items.map((prod) => <PurchasableItems item={prod} cart={cart} currUser={currentUser} rand={setRand} />)}
         </div>
 
         </>
