@@ -7,7 +7,7 @@ function Home() {
     return(
         <body> 
             <div>
-            <video autoPlay loop muted><source src={bgVideo} type="video/mp4" /></video>
+            <video autoPlay loop muted><source src={bgVideo} type="video/mp4"/></video>
             <img src='https://imgur.com/X5KLtYQ.png' class="center fade-in-image" />
             <div class="yes-body">
             <SearchBtn />

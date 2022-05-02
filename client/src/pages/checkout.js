@@ -110,20 +110,20 @@ function Checkout() {
                     </div>
                     <div className="priceInfoContainer">
                         <div className="itemNameContainer"><h2 style={{fontSize: "15px"}}>{item.itemName}</h2></div>
-                        <div className="itemQuantityContainer"><h3>Quantity: {item.quantity}</h3></div>
-                        <div className="itemPriceContainer"><h3>Price/Unit: <a style={{color: item.sale > 0 && "orange"}}>$
+                        <div className="itemQuantityContainer"><h5>Quantity: {item.quantity}</h5></div>
+                        <div className="itemPriceContainer"><h5>Price/Unit: <a style={{color: item.sale > 0 && "orange"}}>$
                             {   item.sale > 0 ? 
                                 (item.itemPrice - (item.itemPrice * item.sale/100) ).toFixed(2)
                                 :
                                 item.itemPrice
                             }
-                        </a></h3></div>
-                        <div className="totalPrice"><h3 style={{color: "green"}}>Total Price: ${
+                        </a></h5></div>
+                        <div className="totalPrice"><h4 style={{color: "green"}}>Total Price: ${
                         item.sale > 0 ?
                         ((item.itemPrice - (item.itemPrice * item.sale/100)) * item.quantity).toFixed(2)
                         :
                         item.itemPrice * item.quantity
-                        }</h3></div>
+                        }</h4></div>
                     </div>
                 </div>    
                 
@@ -134,18 +134,18 @@ function Checkout() {
         <h2>Summary of Order</h2>
 
         <div className="Items">
-            <h3>Items ({totalItems}):</h3>
-            <h3>Shipping:</h3>
-            <h3 style={{paddingTop: "10px"}}>Total w/o Tax:</h3>
-            <h3>Estimated Tax:</h3>
+            <h5>Items ({totalItems}):</h5>
+            <h5>Shipping:</h5>
+            <h5 style={{paddingTop: "10px"}}>Total w/o Tax:</h5>
+            <h5>Estimated Tax:</h5>
         </div>
 
         <div className="ItemsPrice">
-            <h3>${totalPrice}</h3>
-            <h3>$0.00</h3>
+            <h5>${totalPrice}</h5>
+            <h5>$0.00</h5>
             <hr />
-            <h3 style={{paddingTop: "10px"}}>${totalPrice}</h3>
-            <h3>${(totalPrice * .0825).toFixed(2)}</h3>
+            <h5 style={{paddingTop: "10px"}}>${totalPrice}</h5>
+            <h5>${(totalPrice * .0825).toFixed(2)}</h5>
             
         </div>
     
