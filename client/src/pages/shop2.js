@@ -11,6 +11,7 @@ import "../Components/purchasableItems/productCard.css"
 import PurchasableItems from "../Components/purchasableItems/PurchasableItems.js"
 import Funcs  from "../Components/sortingFuncs/sorts.js"
 import { FaWindows } from "react-icons/fa"
+import {base_url} from "../assets/config.js"
 
 export default function Shop2() {
     
@@ -30,7 +31,7 @@ export default function Shop2() {
 
     useEffect(() => {
         
-        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
+        Axios.get(`${base_url}/login`).then(response => {    
             if(response.data.loggedIn === true) 
             setCurrentUser(response.data.user[0])
              })
@@ -40,13 +41,13 @@ export default function Shop2() {
             
                     if(location.state.search != "") {
                     console.log("NONDEFAULT WAS CHOSEN")
-                    Axios.post("https://good-dragon.herokuapp.com/getData", {searchData: location.state.search}).then(res => {setItems(res.data)})
+                    Axios.post(`${base_url}/getData`, {searchData: location.state.search}).then(res => {setItems(res.data)})
                     window.history.replaceState(null, '')
                     }
            
              }
              else {
-                Axios.post("https://good-dragon.herokuapp.com/getData", {sortMethod: ""}).then(res => {setItems(res.data) })
+                Axios.post(`${base_url}/getData`, {sortMethod: ""}).then(res => {setItems(res.data) })
              }
                 
             
@@ -67,7 +68,7 @@ export default function Shop2() {
     }
 
     const searchItem = () => {
-        Axios.post("https://good-dragon.herokuapp.com/getData", {searchData:search}).then(res => {
+        Axios.post(`${base_url}/getData`, {searchData:search}).then(res => {
             setItems(res.data)
         })
     }

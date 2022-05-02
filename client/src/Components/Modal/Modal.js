@@ -3,7 +3,7 @@ import Axios from "axios"
 import "./modal.css"
 import { useNavigate } from "react-router-dom"
 import { AiFillPropertySafety } from "react-icons/ai"
-
+import {base_url} from "../AdminPage/config.js"
 
 export default function Dropbox(props) {
 
@@ -25,7 +25,7 @@ export default function Dropbox(props) {
         setRand(Math.floor(Math.random() * 100))
 
         let id = props.item.itemID
-        Axios.post("https://good-dragon.herokuapp.com/updateItem", {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
+        Axios.post(`${base_url}/updateItem`, {data: {itemName, id, description, price, available, age, pedigree, sale} }).then(res => {
             console.log(res)
             alert("Successfully Updated!")
             swapShop()
@@ -43,7 +43,7 @@ export default function Dropbox(props) {
     const handleDelete = () => {
         setRand(Math.floor(Math.random() * 100))
         let id = props.item.itemID
-        Axios.post("https://good-dragon.herokuapp.com/deleteItem", {id: id}).then(res => {
+        Axios.post(`${base_url}/deleteItem`, {id: id}).then(res => {
             console.log(res)
             alert("Success!")
             swapShop()

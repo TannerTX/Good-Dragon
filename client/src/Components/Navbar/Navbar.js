@@ -7,6 +7,7 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import Axios from "axios"
+import {base_url} from "../AdminPage/config.js"
 
 function TestNavbar(props) {
 
@@ -17,7 +18,7 @@ function TestNavbar(props) {
   Axios.defaults.withCredentials = true
 
   useEffect(() => {
-    Axios.get("https://good-dragon.herokuapp.com/login").then(response => {    
+    Axios.get(`${base_url}/login`).then(response => {    
             if(response.data.loggedIn === true) 
             setCurrentUser(response.data.user[0])
              })

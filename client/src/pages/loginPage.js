@@ -4,7 +4,7 @@ import '../assets/styles/Login.css'
 import '../assets/styles/fancyLogout.css'
 import bgVideo from '../assets/videos/dogs2.mp4'
 import bgVideo2 from '../assets/videos/dogs3.mp4'
-
+import {base_url} from "../assets/config.js"
 import Axios from "axios"
 
 function Login() {
@@ -34,7 +34,7 @@ function Login() {
         setFormErrors(validate(user))
         
         if(Object.values(formErrors).length === 0){
-            await Axios.post(`https://good-dragon.herokuapp.com/login`, user).then(response =>{
+            await Axios.post(`${base_url}/login`, user).then(response =>{
             setFormErrors(validate(response))
 
             if(response.data.success) {
@@ -61,7 +61,7 @@ function Login() {
         setFormErrors(validateNewPassword(user))
 
         if(Object.values(formErrors).length === 0){
-            await Axios.post("https://good-dragon.herokuapp.com/changePassword", user).then(response =>{
+            await Axios.post(`${base_url}/changePassword`, user).then(response =>{
             setFormErrors(validateNewPassword(response))
 
             console.log("FORM ERRORS")
@@ -120,14 +120,14 @@ function Login() {
     }
 
     const logout = async e => {
-        Axios.post("https://good-dragon.herokuapp.com/logout").then(response => {
+        Axios.post(`${base_url}/logout`).then(response => {
             console.log(response)
             })
         swapHome()
     }
 
     useEffect(() => {
-        Axios.get("https://good-dragon.herokuapp.com/login").then(response => {
+        Axios.get(`${base_url}/login`).then(response => {
             console.log(response.data)
 
             if(response.data.loggedIn === true){

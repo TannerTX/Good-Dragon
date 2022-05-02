@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./Discounts.css";
 import * as FaIcons from "react-icons/fa"
+import {base_url} from "./config.js"
 
 function Discount() {
   const [code, setCode] = useState("");
@@ -18,7 +19,7 @@ function Discount() {
   
 
     if (code != "" && percentOff != "" && good === true) {
-      Axios.post("https://good-dragon.herokuapp.com/discountCodes", {
+      Axios.post(`${base_url}/discountCodes`, {
         function: "add",
         disCode: code,
         disOff: percentOff,
@@ -30,12 +31,12 @@ function Discount() {
   };
 
   const removeDiscount = (code) => {
-    Axios.post("https://good-dragon.herokuapp.com/deleteCode", {code: code})
+    Axios.post(`${base_url}/deleteCode`, {code: code})
     setCode("sdfds")
   }
 
   useEffect(() => {
-    Axios.post("https://good-dragon.herokuapp.com/discountCodes", { function: "get" }).then(
+    Axios.post(`${base_url}/discountCodes`, { function: "get" }).then(
       (res) => {
         setCurrCodes(res.data);
       }

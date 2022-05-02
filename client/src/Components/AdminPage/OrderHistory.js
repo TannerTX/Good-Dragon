@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./OrderHistory.css";
-
+import {base_url} from "./config.js"
 
 
 
@@ -15,7 +15,7 @@ function OrderHistory() {
 
   useEffect(() => {
 
-    Axios.post("https://good-dragon.herokuapp.com/getPlacedOrders").then(res => {
+    Axios.post(`${base_url}/getPlacedOrders`).then(res => {
       console.log(res)
       if(res.data[0])
       setPlacedOrders(res.data)
@@ -23,7 +23,7 @@ function OrderHistory() {
       setPlacedOrders(null)
     })
 
-    Axios.post("https://good-dragon.herokuapp.com/getOrderHistory").then(res => {
+    Axios.post(`${base_url}/getOrderHistory`).then(res => {
       console.log(res)
       if(res.data[0])
       setOrderHistory(res.data)
@@ -31,7 +31,7 @@ function OrderHistory() {
       setOrderHistory(null)
     })
 
-    Axios.post("https://good-dragon.herokuapp.com/getUsers").then(res => {
+    Axios.post(`${base_url}/getUsers`).then(res => {
       setUsers(res.data)
     })
 
@@ -61,7 +61,7 @@ function OrderHistory() {
       dbSort = "ORDER BY orderTotal ASC"
       else dbSort = `WHERE username="${sort}"`
 
-      Axios.post("https://good-dragon.herokuapp.com/getOrderHistory", {sort: dbSort}).then(res => {
+      Axios.post(`${base_url}/getOrderHistory`, {sort: dbSort}).then(res => {
         setOrderHistory(res.data)
       })
   }

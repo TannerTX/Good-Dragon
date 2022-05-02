@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import "./cart.css"
 
+
 function CartItem(props) {
 
     return(
