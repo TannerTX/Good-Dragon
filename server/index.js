@@ -13,7 +13,7 @@ const session = require("express-session")
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://good-dragon.herokuapp.com"],
     methods: ["GET", "POST"],
     credentials: true
 }))
