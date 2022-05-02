@@ -38,14 +38,18 @@ function Login() {
             setFormErrors(validate(response))
 
             if(response.data.success)
-            swapPage("/home")
+            swapHome()
          })
         }
 
         }
 
-    const swapPage = (page) => {
-        history(page)
+    const swapShop = () => {
+        history("/shop")
+    }
+
+    const swapHome = () => {
+        history("/")
     }
 
     const changePassword = async e => {
@@ -63,7 +67,7 @@ function Login() {
             console.log(formErrors)
 
             if(response.data.message === "Success!")
-            swapPage("/shop")
+            swapShop()
     
          })
         }
@@ -118,7 +122,7 @@ function Login() {
         Axios.post("https://good-dragon.herokuapp.com/logout").then(response => {
             console.log(response)
             })
-        swapPage("/home")
+        swapHome()
     }
 
     useEffect(() => {
