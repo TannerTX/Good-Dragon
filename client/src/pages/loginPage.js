@@ -37,6 +37,8 @@ function Login() {
             await Axios.post(`https://good-dragon.herokuapp.com/login`, user).then(response =>{
             setFormErrors(validate(response))
 
+            if(response.data.success)
+            history("/shop")
          })
         }
 
@@ -57,7 +59,7 @@ function Login() {
             console.log(formErrors)
 
             if(response.data.message === "Success!")
-            window.location.reload(false)
+            history("/shop")
          })
         }
     }
